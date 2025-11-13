@@ -2,6 +2,7 @@ import express from "express"
 import handlebars from "express-handlebars"
 import mongoose from "mongoose"
 import cookieParser from 'cookie-parser'
+import routes from "./routes.js"
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.set('views', 'src/views');
 app.use(express.static('src/public'));
 app.use(express.urlencoded());
 app.use(cookieParser());
+app.use(routes);
 
-app.listen(2105, () => console.log("Server is listening on port http://localhost:2105......"))
+app.listen(2222, () => console.log("Server is listening on port http://localhost:2222......"))

@@ -6,3 +6,4 @@ A project for my ReactJS Course.
 - [x] Setup mongoose
 - [x] Setup handlebars
 - [x] Add resources
+- [x] Render Home Page
