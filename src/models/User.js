@@ -23,7 +23,8 @@ const userSchema = new Schema({
         required: [true, "A profile picture is required"]
     },
     reviews: [{
-        type: Types.ObjectId
+        type: Types.ObjectId,
+        ref: "Reviews"
     }]
 })
 

@@ -14,4 +14,4 @@ A project for my ReactJS Course.
 - [x] Render Profile Page
 - [x] Create User Model
 - [x] Create Game Model
-- [] Create Review Model
+- [x] Create Review Model

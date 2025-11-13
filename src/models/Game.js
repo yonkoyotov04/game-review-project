@@ -36,7 +36,8 @@ const gameSchema = new Schema({
         type: Number
     },
     reviews: [{
-        type: Types.ObjectId
+        type: Types.ObjectId,
+        ref: "Review"
     }],
 })
 
