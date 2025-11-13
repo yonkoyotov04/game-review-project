@@ -13,5 +13,5 @@ A project for my ReactJS Course.
 - [x] Render Register Page
 - [x] Render Profile Page
 - [x] Create User Model
-- [] Create Game Model
+- [x] Create Game Model
 - [] Create Review Model
