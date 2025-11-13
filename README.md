@@ -8,3 +8,4 @@ A project for my ReactJS Course.
 - [x] Add resources
 - [x] Render Home Page
 - [x] Render About Page
+- [x] Render Catalogue Page
