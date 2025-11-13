@@ -5,3 +5,4 @@ A project for my ReactJS Course.
 - [x] Install needed libraries
 - [x] Setup mongoose
 - [x] Setup handlebars
+- [x] Add resources
