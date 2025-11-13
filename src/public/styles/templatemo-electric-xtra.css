@@ -889,24 +889,29 @@ nav.scrolled {
     }
 }
 
-/* Contact Section */
-.contact {
+/* Auth Section */
+.auth {
     padding: 100px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.contact-container {
+.auth-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
 }
 
-.contact-form {
+.auth-form {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 94, 0, 0.2);
-    border-radius: 10px;
+    max-width: 460px;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 148px;
     padding: 40px;
+    text-align: center;
+    border-radius: 30px;
     backdrop-filter: blur(10px);
 }
 
@@ -1929,55 +1934,55 @@ footer {
 
 /* ==== Games Listing Page ==== */
 .games-list {
-  max-width: 1200px;
-  margin: 120px auto;
-  padding: 0 20px 60px;
-  text-align: center;
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 0 20px 60px;
+    text-align: center;
 }
 
 /* Search Bar */
 .search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 50px;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
 }
 
 .search-bar input {
-  width: 300px;
-  padding: 12px 18px;
-  border: 1px solid rgba(255, 94, 0, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+    width: 300px;
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 94, 0, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .search-bar input:focus {
-  outline: none;
-  border-color: #00B2FF;
-  box-shadow: 0 0 15px rgba(0, 178, 255, 0.4);
+    outline: none;
+    border-color: #00B2FF;
+    box-shadow: 0 0 15px rgba(0, 178, 255, 0.4);
 }
 
 .search-btn {
-  padding: 12px 25px;
-  background: linear-gradient(45deg, #FF5E00, #00B2FF);
-  border: none;
-  color: white;
-  border-radius: 8px;
-  font-family: 'Orbitron', monospace;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #FF5E00, #00B2FF);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .search-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255, 94, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 94, 0, 0.5);
 }

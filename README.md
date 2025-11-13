@@ -9,3 +9,6 @@ A project for my ReactJS Course.
 - [x] Render Home Page
 - [x] Render About Page
 - [x] Render Catalogue Page
+- [x] Render Login Page
+- [x] Render Register Page
+- [x] Render Profile Page
