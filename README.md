@@ -7,3 +7,4 @@ A project for my ReactJS Course.
 - [x] Setup handlebars
 - [x] Add resources
 - [x] Render Home Page
+- [x] Render About Page
