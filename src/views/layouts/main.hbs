@@ -44,7 +44,7 @@ https://templatemo.com/tm-596-electric-xtra
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo-link">
+            <a href="/" class="logo-link">
                 <svg class="logo-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -62,10 +62,14 @@ https://templatemo.com/tm-596-electric-xtra
             <ul class="nav-links" id="navLinks">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/games/" class="nav-link">Catalogue</a></li>
+                {{#if isAuthenticated}}
+                <li><a href="/games/create" class="nav-link">Add Game</a></li>
+                <li><a href="/profile" class="nav-link">Profile</a></li>
+                <li><a href="/auth/logout" class="nav-link">Logout</a></li>
+                {{else}}
                 <li><a href="/auth/login" class="nav-link">Login</a></li>
                 <li><a href="/auth/register" class="nav-link">Register</a></li>
-                <li><a href="/auth/logout" class="nav-link">Logout</a></li>
-                <li><a href="/profile" class="nav-link">Profile</a></li>
+                {{/if}}
                 <li><a href="/about" class="nav-link">About</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">

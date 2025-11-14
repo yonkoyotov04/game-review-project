@@ -20,4 +20,5 @@ A project for my ReactJS Course.
 - [x] Add Register Function
 - [x] Add Logout Function
 - [x] Add Login Function
-- [] Add Auth Middleware
+- [x] Add Auth Middleware
+- [x] Add Route Guard
