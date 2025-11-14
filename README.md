@@ -15,3 +15,8 @@ A project for my ReactJS Course.
 - [x] Create User Model
 - [x] Create Game Model
 - [x] Create Review Model
+- [x] Add Token Utils
+- [x] Add Error Utils
+- [x] Add Register Function
+- [] Add Login Function
+- [] Add Auth Middleware
