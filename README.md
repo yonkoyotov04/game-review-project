@@ -22,3 +22,4 @@ A project for my ReactJS Course.
 - [x] Add Login Function
 - [x] Add Auth Middleware
 - [x] Add Route Guard
+- [x] Render Create Page
