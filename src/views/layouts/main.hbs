@@ -19,6 +19,13 @@ https://templatemo.com/tm-596-electric-xtra
 </head>
 
 <body>
+    {{#if error}}
+    <div>
+        <div class="errorContainer">
+            <p>{{error}}</p>
+        </div>
+    </div>
+    {{/if}}
     <!-- Animated Grid Background -->
     <div class="grid-bg"></div>
     <div class="gradient-overlay"></div>

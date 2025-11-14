@@ -22,7 +22,7 @@ export default {
     },
 
     async login(email, password) {
-        const user = User.findOne({email});
+        const user = await User.findOne({email});
 
         if (!user) {
             throw new Error('Invalid email or password!');

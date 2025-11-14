@@ -19,5 +19,5 @@ A project for my ReactJS Course.
 - [x] Add Error Utils
 - [x] Add Register Function
 - [x] Add Logout Function
-- [] Add Login Function
+- [x] Add Login Function
 - [] Add Auth Middleware

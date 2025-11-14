@@ -1986,3 +1986,49 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 0 20px rgba(255, 94, 0, 0.5);
 }
+
+/* ==== Error Container ==== */
+.errorContainer {
+    position: fixed;
+    right: 100px;
+    min-width: 100px;
+    display: block;
+    z-index: 11111;
+    top: 200px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+
+    background: rgba(255, 50, 50, 0.08);
+    border: 1px solid rgba(255, 94, 0, 0.4);
+
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+
+    color: #ff5e00;
+    letter-spacing: 1px;
+
+    box-shadow: 0 0 25px rgba(255, 94, 0, 0.25);
+    backdrop-filter: blur(6px);
+
+    animation: errorPulse 2s infinite ease-in-out;
+}
+
+@keyframes errorPulse {
+    0% {
+        box-shadow: 0 0 12px rgba(255, 94, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 28px rgba(255, 94, 0, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 12px rgba(255, 94, 0, 0.3);
+    }
+}
+
+.errorContainer p {
+    margin: 0;
+}
