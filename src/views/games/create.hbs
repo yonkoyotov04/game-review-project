@@ -4,31 +4,36 @@
         <form id="authForm" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" value="{{game.title}}" required>
             </div>
             <div class="form-group">
                 <label for="director">Director</label>
-                <input type="text" id="director" name="director" required>
+                <input type="text" id="director" name="director" value="{{game.director}}" required>
             </div>
             <div class="form-group">
                 <label for="genre">Genre</label>
-                <input type="text" id="genre" name="genre" required>
+                <select id="genre" class="inputFields" name="genre">
+                    <option value="">Select Category</option>
+                    {{#each genres}}
+                    <option value="{{value}}" {{selected}}>{{label}}</option>
+                    {{/each}}
+                </select>
             </div>
             <div class="form-group">
                 <label for="relDate">Release Date</label>
-                <input type="date" id="relDate" name="reDate" required>
+                <input type="date" id="relDate" name="relDate" value="{{game.relDate}}" required>
             </div>
             <div class="form-group">
                 <label for="platforms">Platforms</label>
-                <input type="text" id="platforms" name="platforms" required>
+                <input type="text" id="platforms" name="platforms" value="{{game.platforms}}" required>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description" required>{{game.description}}</textarea>
             </div>
             <div class="form-group">
                 <label for="imageUrl">Game Image</label>
-                <input type="text" id="imageUrl" name="imageUrl" required>
+                <input type="text" id="imageUrl" name="imageUrl" value="{{game.imageUrl}}" required>
             </div>
             <button type="submit" class="submit-btn">Add Game</button>
         </form>

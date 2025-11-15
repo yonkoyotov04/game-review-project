@@ -930,7 +930,8 @@ nav.scrolled {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 15px;
     background: rgba(255, 255, 255, 0.05);
@@ -942,8 +943,21 @@ nav.scrolled {
     font-family: 'Rajdhani', sans-serif;
 }
 
+.form-group option {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 94, 0, 0.3);
+    color: black;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family: 'Rajdhani', sans-serif;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: #FF5E00;
     box-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
@@ -1060,6 +1074,10 @@ nav.scrolled {
 
 /* Footer */
 footer {
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
     background: rgba(0, 0, 0, 0.8);
     border-top: 1px solid rgba(255, 94, 0, 0.2);
     padding: 40px 20px;
@@ -1809,7 +1827,8 @@ footer {
 .square-game-card {
     position: relative;
     aspect-ratio: 1 / 1;
-    /* keeps it perfectly square */
+    max-width: 248px;
+    max-height: 248px;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid rgba(255, 94, 0, 0.2);
@@ -1854,6 +1873,7 @@ footer {
     letter-spacing: 1px;
     margin: 0;
     text-shadow: 0 0 8px rgba(0, 178, 255, 0.7);
+    -webkit-text-stroke: 1px black;
 }
 
 /* Responsive */
