@@ -1,0 +1,57 @@
+<section class="game-card">
+        <h2 class="section-title">Game Overview</h2>
+
+        <div class="game-card-container">
+            <div class="game-image">
+                <img src="https://assets-prd.ignimgs.com/2025/04/02/nintendoswitch2-hollow-knight-silksong-keyart-square-1743636317910.jpg"
+                    alt="Game Cover">
+            </div>
+
+            <div class="game-details">
+                <h3 class="game-title">{{game.title}}</h3>
+                <p><strong>Developer:</strong> {{game.director}}</p>
+                <p><strong>Genre:</strong> {{game.genre}}</p>
+                <p><strong>Release:</strong> {{game.relDate}}</p>
+                <p><strong>Platform:</strong> {{game.platforms}}</p>
+                <p><strong>Description:</strong> {{game.description}}</p>
+
+                <div class="game-stats">
+                    <p><strong>Rating:</strong> {{game.rating}}/10</p>
+                    <p><strong>Average Time:</strong> {{game.length}} hours</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="finish-btn">I Finished the Game</button>
+
+        <!-- Reviews Display Section -->
+        <div class="reviews-showcase">
+            <h3 class="reviews-title">Player Reviews</h3>
+
+            <div class="reviews-grid">
+                {{#each game.reviews}}
+                <div class="review-card">
+                    <p class="review-text">“An electrifying journey through a world that feels alive. The atmosphere is
+                        unmatched.”</p>
+                    <div class="review-footer">
+                        <span class="reviewer">– Alex R.</span>
+                        <span class="stars">⭐ 9.5/10</span>
+                    </div>
+                </div>
+                {{else}}
+                <p class="section-title">There are no reviews yet...</p>
+                {{/each}}
+            </div>
+            {{#if game.reviews}}
+            <div class="reviews-pagination">
+                <button class="page-btn prev">← Previous</button>
+                <div class="page-numbers">
+                    <button class="page-number active">1</button>
+                    <button class="page-number">2</button>
+                    <button class="page-number">3</button>
+                </div>
+                <button class="page-btn next">Next →</button>
+            </div>
+            {{/if}}
+        </div>
+    </section>

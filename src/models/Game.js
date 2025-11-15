@@ -36,9 +36,8 @@ const gameSchema = new Schema({
         type: Number
     },
     reviews: [{
-        type: Types.ObjectId,
-        ref: "Review"
-    }],
+        type: Types.ObjectId
+    }]
 })
 
 const Game = model("Game", gameSchema)

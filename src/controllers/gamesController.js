@@ -30,4 +30,16 @@ gamesController.post('/create', isAuth, async(req, res) => {
     }
 })
 
+gamesController.get('/:gameId/details', async (req, res) => {
+    const gameId = req.params.gameId;
+    
+    try {
+        const game = await gamesService.getOneGame(gameId);
+        res.render('games/details', {game})
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        res.status(404).render('404', {error: errorMessage});
+    }
+})
+
 export default gamesController

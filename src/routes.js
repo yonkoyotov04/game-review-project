@@ -9,5 +9,9 @@ routes.use(homeController);
 routes.use('/games', gamesController);
 routes.use('/auth', authController);
 
+routes.get('/*splat', (req, res) => {
+    res.render('404');
+})
+
 
 export default routes;

@@ -4,89 +4,16 @@
             <button class="view-all-btn">View All</button>
         </div>
         <div class="square-game-grid">
+            {{#each games}}
             <div class="square-game-card">
-                <img src="https://assets1.ignimgs.com/2018/09/04/sekiro---button-1536103897438.jpg" alt="Sekiro">
+                <img src="{{imageUrl}}" alt="{{title}}">
                 <div class="square-game-info">
-                    <h3>Sekiro: Shadows Die Twice</h3>
+                    <h3>{{title}}</h3>
                 </div>
             </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2021/06/12/elden-ring-button-03-1623460560664.jpg" alt="Elden Ring">
-                <div class="square-game-info">
-                    <h3>Elden Ring</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://image.api.playstation.com/cdn/EP0700/CUSA03365_00/OFMeAw2KhrdaEZAjW1f3tCIXbogkLpTC.png" alt="Dark Souls 3">
-                <div class="square-game-info">
-                    <h3>Dark Souls 3</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2022/05/16/god-of-war-2018-1652716403586.jpg" alt="God of War">
-                <div class="square-game-info">
-                    <h3>God of War (2018)</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets1.ignimgs.com/2019/07/17/fire-emblem-three-houses---button-fin-1563322090834.jpg" alt="Fire Emblem: Three Houses">
-                <div class="square-game-info">
-                    <h3>Fire Emblem: Three Houses</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2023/10/07/spidey2-1696694190202.jpeg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80" alt="Marvel's Spider-Man 2">
-                <div class="square-game-info">
-                    <h3>Marvel's Spider-Man 2</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2023/12/13/liesofp-1702510493314.jpg?crop=1%3A1%2Csmart&width=348&height=348&format=jpg&auto=webp&quality=80" alt="Lies of P">
-                <div class="square-game-info">
-                    <h3>Lies of P</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2021/02/26/pokemon-shining-pearl-button-1614365557149.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80" alt="Pokemon Shining Pearl">
-                <div class="square-game-info">
-                    <h3>Pokemon Shining Pearl</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2022/04/08/etetet-1649445257494.jpg" alt="ET">
-                <div class="square-game-info">
-                    <h3>ET</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets1.ignimgs.com/2019/01/17/terraria---button-1547745886957.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80" alt="Terraria">
-                <div class="square-game-info">
-                    <h3>Terraria</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets1.ignimgs.com/2019/02/14/resident-evil-code-veronica-x---button-fin-1550186955621.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80" alt="Resident Evil: CV">
-                <div class="square-game-info">
-                    <h3>Resident Evil: Code Veronica</h3>
-                </div>
-            </div>
-
-            <div class="square-game-card">
-                <img src="https://assets-prd.ignimgs.com/2022/01/28/silent-hill-1-button-crop-1643356296150.jpg" alt="Silent Hill">
-                <div class="square-game-info">
-                    <h3>Silent Hill</h3>
-                </div>
-            </div>
+            {{else}}
+            <p class="section-title">There are no games yet...</p>
+            {{/each}}
         </div>
     </section>
 

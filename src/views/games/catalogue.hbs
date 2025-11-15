@@ -11,11 +11,11 @@
     <div class="square-game-grid">
         {{#each games}}
         <div class="square-game-card">
-            <img src="{{imageUrl}}"
-                alt="{{title}}">
-            <div class="square-game-info">
-                <h3>{{title}}</h3>
-            </div>
+            <a href="/games/{{id}}/details"><img src="{{imageUrl}}" alt="{{title}}">
+                <div class="square-game-info">
+                    <h3>{{title}}</h3>
+                </div>
+            </a>
         </div>
         {{else}}
         <p class="section-title">There are no games yet...</p>
