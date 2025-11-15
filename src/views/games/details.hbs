@@ -22,7 +22,11 @@
             </div>
         </div>
 
+        {{#if isAuthenticated}}
         <button class="finish-btn">Leave a Review</button>
+        {{else}}
+        <p class="basic-text">You need to <a href="/auth/login">login</a> to leave a review</p>
+        {{/if}}
 
         <!-- Reviews Display Section -->
         <div class="reviews-showcase">
