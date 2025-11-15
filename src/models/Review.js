@@ -3,10 +3,12 @@ import { Schema, model, Types } from "mongoose";
 const reviewSchema = new Schema({
     gameId: {
         type: Types.ObjectId,
+        ref: "Game",
         required: [true, "A game is required"]
     },
     userId: {
         type: Types.ObjectId,
+        ref: "User",
         required: [true, "A user is required"]
     },
     rating: {

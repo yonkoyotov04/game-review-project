@@ -31,3 +31,14 @@ A project for my ReactJS Course.
 - [x] Render Edit Profile Page
 - [x] Add Edit Profile Functionality
 - [x] Add Delete Profile Functionality
+- [] Add Functionality to the categories
+- [] Add Functionality to View All in the home page
+- [] Add Functionality to Search Game in the catalogue page
+- [] Add Edit and Delete Buttons And Functionality in game details
+- [] Add More Error Handling for Create Game, Login and Register
+- [] Make Edit and Delete Profile Better
+- [] Add Leave Review Functionality
+- [] Render Reviews in game details
+- [] Render Reviews in user profile
+- [] Handle Rating and Average Time in game details
+- [] Add Pagination
