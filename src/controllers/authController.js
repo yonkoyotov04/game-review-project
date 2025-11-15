@@ -50,4 +50,12 @@ authController.get('/logout', isAuth, (req, res) => {
     res.redirect('/');
 })
 
+authController.get('/profile', isAuth, (req, res) => {
+    res.render('profile/profile')
+})
+
+authController.get('/profile/:userId/edit', isAuth, (req, res) => {
+    res.render('profile/edit')
+})
+
 export default authController;

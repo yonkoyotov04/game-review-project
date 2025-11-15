@@ -13,15 +13,12 @@ homeController.get('/', async (req, res) => {
         const errorMessage = getErrorMessage(error);
         res.status(404).render('home', {error: errorMessage})
     }
-
 })
 
 homeController.get('/about', (req, res) => {
     res.render('about');
 })
 
-homeController.get('/profile', (req, res) => {
-    res.render('profile')
-})
+
 
 export default homeController

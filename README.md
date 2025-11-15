@@ -27,4 +27,5 @@ A project for my ReactJS Course.
 - [x] Add Create Game Functionality
 - [x] Render Details Page Dynamically
 - [x] Render Catalogue Dynamically
-- [] Render Profile Dynamically
+- [x] Render Profile Dynamically
+- [x] Render Edit Profile Page
