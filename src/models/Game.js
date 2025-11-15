@@ -30,7 +30,7 @@ const gameSchema = new Schema({
         required: [true, "An image is required"]
     },
     rating: {
-        type: Number,
+        type: Number
     },
     length: {
         type: Number

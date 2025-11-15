@@ -23,3 +23,4 @@ A project for my ReactJS Course.
 - [x] Add Auth Middleware
 - [x] Add Route Guard
 - [x] Render Create Page
+- [x] Create games service

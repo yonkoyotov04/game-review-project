@@ -5,7 +5,7 @@ export default function authMiddleware (req, res, next) {
     const token = req.cookies['auth'];
 
     if (!token) {
-        next();
+        return next();
     }
 
     try {
@@ -26,7 +26,7 @@ export default function authMiddleware (req, res, next) {
 
 export function isAuth(req, res, next) {
     if (!req.isAuthenticated) {
-        res.redirect('/auth/login')
+        return res.redirect('/auth/login')
     }
 
     next();
@@ -34,7 +34,7 @@ export function isAuth(req, res, next) {
 
 export function isGuest(req, res, next) {
     if (req.isAuthenticated) {
-        res.redirect('/');
+        return res.redirect('/');
     }
 
     next();

@@ -21,11 +21,7 @@ const userSchema = new Schema({
     profilePic: {
         type: String,
         required: [true, "A profile picture is required"]
-    },
-    reviews: [{
-        type: Types.ObjectId,
-        ref: "Reviews"
-    }]
+    }
 })
 
 userSchema.pre('save', async function() {
