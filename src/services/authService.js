@@ -36,5 +36,13 @@ export default {
 
         const token = generateAuthToken(user);
         return token;
+    },
+
+    editProfile(userId, newData) {
+        return User.findByIdAndUpdate(userId, newData, {runValidators: true});
+    },
+
+    deleteProfile(userId) {
+        return User.findByIdAndDelete(userId);
     }
 }

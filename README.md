@@ -29,3 +29,5 @@ A project for my ReactJS Course.
 - [x] Render Catalogue Dynamically
 - [x] Render Profile Dynamically
 - [x] Render Edit Profile Page
+- [x] Add Edit Profile Functionality
+- [x] Add Delete Profile Functionality

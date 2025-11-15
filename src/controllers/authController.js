@@ -51,11 +51,35 @@ authController.get('/logout', isAuth, (req, res) => {
 })
 
 authController.get('/profile', isAuth, (req, res) => {
-    res.render('profile/profile')
+    res.render('auth/profile')
 })
 
-authController.get('/profile/:userId/edit', isAuth, (req, res) => {
-    res.render('profile/edit')
+authController.get('/profile/edit', isAuth, (req, res) => {
+    res.render('auth/edit')
+})
+
+authController.post('/profile/edit', isAuth, async(req, res) => {
+    const userId = req.user.id;
+    const newData = req.body;
+
+    try {
+        await authService.editProfile(userId, newData);
+        res.clearCookie('auth');
+        res.redirect('/');
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        res.render('auth/edit' , {user: newData, error: errorMessage});
+    }
+
+
+})
+
+authController.get('/profile/delete', isAuth, async(req, res) => {
+    const userId = req.user.id;
+
+    res.clearCookie('auth');
+    await authService.deleteProfile(userId);
+    res.redirect('/');
 })
 
 export default authController;
