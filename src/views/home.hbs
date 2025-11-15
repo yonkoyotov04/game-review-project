@@ -1,78 +1,81 @@
-    <section class="popular-games">
-        <div class="popular-games-header">
-            <h2 class="section-title">Most Popular Games</h2>
-            <button class="view-all-btn">View All</button>
-        </div>
-        <div class="square-game-grid">
-            {{#each games}}
-            <div class="square-game-card">
+<section class="popular-games">
+    <div class="popular-games-header">
+        <h2 class="section-title">Most Popular Games</h2>
+        <button class="view-all-btn">View All</button>
+    </div>
+    <div class="square-game-grid">
+        {{#each games}}
+        <div class="square-game-card">
+            <a href="/games/{{id}}/details">
                 <img src="{{imageUrl}}" alt="{{title}}">
                 <div class="square-game-info">
                     <h3>{{title}}</h3>
                 </div>
-            </div>
-            {{else}}
-            <p class="section-title">There are no games yet...</p>
-            {{/each}}
+            </a>
+
         </div>
-    </section>
+        {{else}}
+        <p class="section-title">There are no games yet...</p>
+        {{/each}}
+    </div>
+</section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <h2 class="section-title">Browse by Category</h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Action</h3>
-                </div>
-            </div>
-
-            <div class="category-card" >
-                <div class="category-overlay">
-                    <h3>Adventure</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>RPG</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Simulation</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Strategy</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Horror</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Sports</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Racing</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-overlay">
-                    <h3>Tactical</h3>
-                </div>
+<!-- Categories Section -->
+<section class="categories">
+    <h2 class="section-title">Browse by Category</h2>
+    <div class="category-grid">
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Action</h3>
             </div>
         </div>
-    </section>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Adventure</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>RPG</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Simulation</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Strategy</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Horror</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Sports</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Racing</h3>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-overlay">
+                <h3>Tactical</h3>
+            </div>
+        </div>
+    </div>
+</section>

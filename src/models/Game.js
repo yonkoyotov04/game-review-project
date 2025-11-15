@@ -30,10 +30,10 @@ const gameSchema = new Schema({
         required: [true, "An image is required"]
     },
     rating: {
-        type: Number
+        type: String
     },
     length: {
-        type: Number
+        type: String
     },
     reviews: [{
         type: Types.ObjectId

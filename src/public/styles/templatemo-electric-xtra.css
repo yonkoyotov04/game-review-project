@@ -1303,11 +1303,6 @@ footer {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.game-image img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(255, 94, 0, 0.6);
-}
-
 .game-details {
     flex: 1;
     font-family: 'Rajdhani', sans-serif;

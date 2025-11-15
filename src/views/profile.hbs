@@ -1,12 +1,12 @@
 <section class="profile" id="profile">
     <div class="profile-header">
         <div class="profile-pic">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNPNadGWQrBJ41tCFOHthSfetOql7aPyW05Q&s"
+            <img src="{{user.profilePic}}"
                 alt="Profile Picture">
         </div>
         <div class="profile-info">
-            <h1 class="username">NeonRunner42</h1>
-            <p class="user-tagline">“Chasing the glitch in every world.”</p>
+            <h1 class="username">{{user.username}}</h1>
+            <p class="user-tagline">“{{user.bio}}”</p>
         </div>
     </div>
 
@@ -17,6 +17,7 @@
         </div>
 
         <div class="games-grid">
+            {{#each reviews}}
             <div class="game-card-profile">
                 <div class="game-header">
                     <h3>Hollow Knight: Silksong</h3>
@@ -29,39 +30,15 @@
                 <p class="game-review">“An electrifying journey through a world that feels alive. The atmosphere is
                     unmatched.”</p>
             </div>
-
-            <div class="game-card-profile">
-                <div class="game-header">
-                    <h3>Elden Ring</h3>
-                    <div class="game-header-right">
-                        <span class="game-rating">⭐ 9.5/10</span>
-                        <img src="https://assets-prd.ignimgs.com/2021/06/12/elden-ring-button-03-1623460560664.jpg"
-                            alt="Elden Ring" class="game-icon">
-                    </div>
-                </div>
-                <p class="game-review">“Beautiful game, one of the greatest games ever made. Aside from trying out
-                    bloodborne for a couple hours, this is my first dark souls game and I'm very happy I let friends
-                    talk me into it!”</p>
-            </div>
-
-            <div class="game-card-profile">
-                <div class="game-header">
-                    <h3>Subnautica</h3>
-                    <div class="game-header-right">
-                        <span class="game-rating">⭐ 9.1/10</span>
-                        <img src="https://assets-prd.ignimgs.com/2020/10/01/subnautica-button-fin-1601572911886.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80"
-                            alt="Subnautica" class="game-icon">
-                    </div>
-                </div>
-                <p class="game-review">“Very wet”
-                </p>
-            </div>
+            {{else}}
+            <p class="section-title">You haven't finished any games yet...</p>
+            {{/each}}
         </div>
     </div>
 
     <!-- Profile Actions -->
     <div class="profile-actions">
-        <button class="edit-btn">Edit Profile</button>
-        <button class="delete-btn" onclick="deleteAccount()">Delete Account</button>
+        <a href="/profile/{{user.id}}/edit"><button class="edit-btn">Edit Profile</button></a>
+        <a href="/profile/{{user.id}}/delete"><button class="delete-btn">Delete Profile</button></a>
     </div>
 </section>
