@@ -49,4 +49,6 @@ export function isAdmin(req, res, next) {
     if (!req.isAdmin) {
         return res.redirect('/');
     }
+
+    next();
 }

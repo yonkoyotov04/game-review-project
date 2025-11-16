@@ -14,7 +14,6 @@ gamesController.get('/', async (req, res) => {
 
 gamesController.get('/create', isAdmin, (req, res) => {
     const genres = getGenreViewData();
-    console.log(genres);
     res.render('games/create', {genres});
 })
 
@@ -55,6 +54,39 @@ gamesController.get('/:category', async(req, res) => {
     const games = await gamesService.getByCategory(category)
 
     res.render('games/catalogue', {games});
+})
+
+gamesController.get('/:gameId/edit', isAdmin, async(req, res) => {
+    const gameId = req.params.gameId;
+    const gameData = await gamesService.getOneGame(gameId);
+    const genres = getGenreViewData(gameData.genre)
+
+    res.render('games/edit', {game: gameData, genres})
+})
+
+gamesController.post('/:gameId/edit', isAdmin, async(req, res) => {
+    const gameId = req.params.gameId;
+    const newData = req.body;
+
+    try {
+        await gamesService.editGame(gameId, newData);
+        res.redirect(`/games/${gameId}/details`);
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        res.status(400).render('404', {error: errorMessage});
+    }
+})
+
+gamesController.get('/:gameId/delete', isAdmin, async(req, res) => {
+    const gameId = req.params.gameId;
+
+    try {
+        await gamesService.deleteGame(gameId);
+        res.redirect('/games');
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        res.status(400).render('404', {error: errorMessage});
+    }
 })
 
 export default gamesController

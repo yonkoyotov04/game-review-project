@@ -21,5 +21,11 @@ export default {
     },
     createGame(gameData) {
         return Game.create({rating: 0, length: 0, ...gameData});
+    },
+    editGame(gameId, newData) {
+        return Game.findByIdAndUpdate(gameId, newData, {runValidators: true});
+    },
+    deleteGame(gameId) {
+        return Game.findByIdAndDelete(gameId);
     }
 }
