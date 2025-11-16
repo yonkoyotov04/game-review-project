@@ -17,6 +17,11 @@ export default function authMiddleware (req, res, next) {
         res.locals.isAuthenticated = true;
         res.locals.user = decodedToken;
 
+        if (decodedToken.email == 'jjotov488@gmail.com') {
+            req.isAdmin = true;
+            res.locals.isAdmin = true;
+        }
+
         next();
     } catch (error) {
         res.clearCookie('auth');
@@ -38,4 +43,10 @@ export function isGuest(req, res, next) {
     }
 
     next();
+}
+
+export function isAdmin(req, res, next) {
+    if (!req.isAdmin) {
+        return res.redirect('/');
+    }
 }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { isAuth } from "../middlewares/authMiddleware.js";
+import { isAdmin} from "../middlewares/authMiddleware.js";
 import gamesService from "../services/gamesService.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
 import getGenreViewData from "../utils/generalUtils.js";
@@ -12,13 +12,13 @@ gamesController.get('/', async (req, res) => {
     res.render('games/catalogue', {games, filter});
 })
 
-gamesController.get('/create', isAuth, (req, res) => {
+gamesController.get('/create', isAdmin, (req, res) => {
     const genres = getGenreViewData();
     console.log(genres);
     res.render('games/create', {genres});
 })
 
-gamesController.post('/create', isAuth, async(req, res) => {
+gamesController.post('/create', isAdmin, async(req, res) => {
     const gameData = req.body;
 
     try {
