@@ -38,6 +38,10 @@ export default {
         return token;
     },
 
+    getProfileData(id) {
+        return User.findById(id).select({username: true, bio: true, profilePic: true});
+    },
+
     editProfile(userId, newData) {
         return User.findByIdAndUpdate(userId, newData, {runValidators: true});
     },

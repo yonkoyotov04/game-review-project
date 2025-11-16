@@ -50,12 +50,18 @@ authController.get('/logout', isAuth, (req, res) => {
     res.redirect('/');
 })
 
-authController.get('/profile', isAuth, (req, res) => {
-    res.render('auth/profile')
+authController.get('/profile', isAuth, async(req, res) => {
+    const userId = req.user.id;
+    const profileData = await authService.getProfileData(userId);
+
+    res.render('auth/profile', {user: profileData})
 })
 
-authController.get('/profile/edit', isAuth, (req, res) => {
-    res.render('auth/edit')
+authController.get('/profile/edit', isAuth, async(req, res) => {
+    const userId = req.user.id;
+    const profileData = await authService.getProfileData(userId);
+
+    res.render('auth/edit', {user: profileData})
 })
 
 authController.post('/profile/edit', isAuth, async(req, res) => {
@@ -64,14 +70,11 @@ authController.post('/profile/edit', isAuth, async(req, res) => {
 
     try {
         await authService.editProfile(userId, newData);
-        res.clearCookie('auth');
-        res.redirect('/');
+        res.redirect('/auth/profile');
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.render('auth/edit' , {user: newData, error: errorMessage});
     }
-
-
 })
 
 authController.get('/profile/delete', isAuth, async(req, res) => {
