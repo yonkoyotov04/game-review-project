@@ -7,8 +7,9 @@ import getGenreViewData from "../utils/generalUtils.js";
 const gamesController = Router();
 
 gamesController.get('/', async (req, res) => {
-    const games = await gamesService.getAllGames();
-    res.render('games/catalogue', {games});
+    const filter = req.query;
+    const games = await gamesService.getAllGames(filter);
+    res.render('games/catalogue', {games, filter});
 })
 
 gamesController.get('/create', isAuth, (req, res) => {

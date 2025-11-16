@@ -3,8 +3,10 @@
 
     <!-- Search Bar -->
     <div class="search-bar">
-        <input type="text" id="gameSearch" placeholder="Search for a game..." />
-        <button class="search-btn">Search</button>
+        <form method="GET">
+            <input type="text" id="gameSearch" name="title" value="{{filter.title}}" placeholder="Search for a game..." />
+            <button type="submit" class="search-btn">Search</button>
+        </form>
     </div>
 
     <!-- Game Grid -->

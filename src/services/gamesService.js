@@ -1,8 +1,14 @@
 import Game from "../models/Game.js"
 
 export default {
-    getAllGames() {
-        return Game.find().select({title: true, imageUrl: true, reviews: true, id: true});
+    getAllGames(filter = {}) {
+        let query = Game.find().select({title: true, imageUrl: true, reviews: true, id: true})
+
+        if (filter.title) {
+            query.find({title: { $regex: filter.title, $options:'i' }});
+        }
+
+        return query;
     },
     getOneGame(id) {
         return Game.findById(id).populate('reviews');
