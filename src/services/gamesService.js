@@ -10,6 +10,9 @@ export default {
     getMostPopular() {
         return Game.find().select({title: true, imageUrl: true, reviews: true, id: true}).limit(12);
     },
+    getByCategory(category) {
+        return Game.find({genre: category});
+    },
     createGame(gameData) {
         return Game.create({rating: 0, length: 0, ...gameData});
     }

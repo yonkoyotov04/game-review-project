@@ -42,4 +42,18 @@ gamesController.get('/:gameId/details', async (req, res) => {
     }
 })
 
+gamesController.get('/:category', async(req, res) => {
+    let category = req.params.category;
+    
+    if (['rpg', 'fps', 'mmo'].includes(category)) {
+        category = category.toUpperCase();
+    } else {
+        category = category[0].toUpperCase() + category.slice(1);
+    }
+
+    const games = await gamesService.getByCategory(category)
+
+    res.render('games/catalogue', {games});
+})
+
 export default gamesController

@@ -5,7 +5,7 @@ const gameSchema = new Schema({
         type: String,
         required: [true, "A game title is required"],
     },
-    director: {
+    developers: {
         type: String,
         required: [true, "A game director is required"]
     },
