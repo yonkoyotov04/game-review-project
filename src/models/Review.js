@@ -6,7 +6,7 @@ const reviewSchema = new Schema({
         ref: "Game",
         required: [true, "A game is required"]
     },
-    userId: {
+    user: {
         type: Types.ObjectId,
         ref: "User",
         required: [true, "A user is required"]
@@ -24,7 +24,7 @@ const reviewSchema = new Schema({
     },
     thoughts: {
         type: String,
-        minLength: [20, 'Review is too short'],
+        minLength: [10, 'Review is too short'],
         required: [true, "Thoughts are required"]
     }
 })

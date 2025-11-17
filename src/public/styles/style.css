@@ -1419,10 +1419,17 @@ footer {
     letter-spacing: 2px;
 }
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+.reviews-container {
+    display: flex;
+}
+
+.review-list {
+    list-style-type: none;
+    width: 100%;
+}
+
+.review-list-item {
+    margin-bottom: 20px;
 }
 
 .review-card {
@@ -1471,10 +1478,16 @@ footer {
 
 .reviewer {
     color: #00B2FF;
+    font-weight: 700;
 }
 
 .stars {
     color: #FF5E00;
+    font-weight: 700;
+}
+
+.playTime {
+    color: #228B22;
     font-weight: 700;
 }
 

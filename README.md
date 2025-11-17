@@ -38,8 +38,8 @@ A project for my ReactJS Course.
 - [x] Add Edit and Delete Functionality in game details
 - [] Add More Error Handling for Create Game, Login and Register
 - [x] Make Edit Profile Better
-- [] Add Leave Review Functionality
-- [] Render Reviews in game details
+- [x] Add Leave Review Functionality
+- [x] Render Reviews in game details
 - [] Render Reviews in user profile
 - [] Handle Rating and Average Time in game details
 - [] Add Functionality to View All in the home page

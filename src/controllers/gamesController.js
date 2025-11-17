@@ -35,6 +35,7 @@ gamesController.get('/:gameId/details', async (req, res) => {
     
     try {
         const game = await gamesService.getOneGame(gameId);
+        console.log(game.reviews);
         res.render('games/details', {game})
     } catch (error) {
         const errorMessage = getErrorMessage(error);

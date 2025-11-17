@@ -10,11 +10,11 @@ reviewController.get('/:gameId/create', (req, res) => {
 
 reviewController.post('/:gameId/create', async (req, res) => {
     const gameId = req.params.gameId;
-    const userId = req.user.id;
+    const user = req.user.id;
     const formData = req.body;
 
     try {
-        const reviewData = { gameId, userId, ...formData };
+        const reviewData = { gameId, user, ...formData };
         const review = await reviewService.reviewGame(reviewData);
         await reviewService.attachToGame(gameId, review.id);
         res.redirect(`/games/${gameId}/details`);

@@ -31,19 +31,23 @@
     <div class="reviews-showcase">
         <h3 class="reviews-title">Player Reviews</h3>
 
-        <div class="reviews-grid">
-            {{#each game.reviews}}
-            <div class="review-card">
-                <p class="review-text">“An electrifying journey through a world that feels alive. The atmosphere is
-                    unmatched.”</p>
-                <div class="review-footer">
-                    <span class="reviewer">– Alex R.</span>
-                    <span class="stars">⭐ 9.5/10</span>
-                </div>
-            </div>
-            {{else}}
-            <p class="section-title">There are no reviews yet...</p>
-            {{/each}}
+        <div class="reviews-container">
+            <ul class="review-list">
+                {{#each game.reviews}}
+                <li class="review-list-item">
+                    <div class="review-card">
+                        <p class="review-text">{{thoughts}}</p>
+                        <div class="review-footer">
+                            <span class="reviewer">{{user.username}}</span>
+                            <span class="stars">⭐ {{rating}}/10</span>
+                            <span class="playTime">⏲ {{playTime}} hours</span>
+                        </div>
+                    </div>
+                </li>
+                {{else}}
+                <p class="section-title">There are no reviews yet...</p>
+                {{/each}}
+            </ul>
         </div>
         {{#if game.reviews}}
         <div class="reviews-pagination">
