@@ -47,8 +47,14 @@ gamesController.get('/:gameId/details', async (req, res) => {
 
         gameRating = gameRating / reviews.length;
         gameLength = gameLength / reviews.length
+
+        let hasReviewed = false;
+
+        if (reviews.some(review => review.user.equals(req.user.id))) {
+            hasReviewed = true;
+        }
     
-        res.render('games/details', {game, reviews, gameRating, gameLength})
+        res.render('games/details', {game, reviews, gameRating, gameLength, hasReviewed})
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.status(404).render('404', {error: errorMessage});

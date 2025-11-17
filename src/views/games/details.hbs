@@ -22,9 +22,13 @@
     </div>
 
     {{#if isAuthenticated}}
-    <a href="/reviews/{{game.id}}/review"><button class="review-btn">Leave a Review</button></a>
+    {{#if hasReviewed}}
+    <p class="basic-text">You already left a review!</p>
     {{else}}
-    <p class="basic-text">You need to <a href="/auth/login">login</a> to leave a review</p>
+    <a href="/reviews/{{game.id}}/review"><button class="review-btn">Leave a Review</button></a>
+    {{/if}}
+    {{else}}
+    <p class="basic-text">You need to <a href="/auth/login">login</a> to leave a review!</p>
     {{/if}}
 
     <!-- Reviews Display Section -->

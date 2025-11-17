@@ -13,9 +13,6 @@ export default {
     getOneGame(id) {
         return Game.findById(id)
     },
-    getMostPopular() {
-        return Game.find().select({title: true, imageUrl: true, reviews: true, id: true}).limit(12);
-    },
     getByCategory(category) {
         return Game.find({genre: category});
     },

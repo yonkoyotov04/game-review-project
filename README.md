@@ -43,12 +43,11 @@ A project for my ReactJS Course.
 - [x] Delete game reviews if the game is deleted
 - [x] Add functionality for viewing other people's profiles
 - [x] Make it impossible to delete or edit another person's profile
-- [] Render review details
-- [] Edit review in review details (if owner)
-- [] Delete review in review details (if owner)
-- [] Don't let users leave a review on the same game again.
+- [] Edit review in review(if owner)
+- [] Delete review in review(if owner)
+- [x] Don't let users leave a review on the same game again.
 - [x] Render Reviews in user profile
 - [x] Delete reviews if the user deletes his profile
-- [] Handle Rating and Average Time in game details
-- [] Add Functionality to View All in the home page
+- [x] Handle Rating and Average Time in game details
+- [] Fix or repurpose Most Popular Games on the home page
 - [] Add Pagination

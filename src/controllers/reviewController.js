@@ -24,4 +24,8 @@ reviewController.post('/:gameId/review', async (req, res) => {
 
 })
 
+reviewController.get('/:reviewId/details', async(req, res) => {
+    
+})
+
 export default reviewController;
