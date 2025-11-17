@@ -28,12 +28,6 @@ const gameSchema = new Schema({
     imageUrl: {
         type: String,
         required: [true, "An image is required"]
-    },
-    rating: {
-        type: String
-    },
-    length: {
-        type: String
     }
 })
 

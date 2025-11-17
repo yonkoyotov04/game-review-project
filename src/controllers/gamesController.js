@@ -37,7 +37,18 @@ gamesController.get('/:gameId/details', async (req, res) => {
     try {
         const game = await gamesService.getOneGame(gameId);
         const reviews = await reviewService.getGameReviews(gameId);
-        res.render('games/details', {game, reviews})
+        let gameRating = 0;
+        let gameLength = 0;
+
+        reviews.forEach(review => {
+            gameRating += review.rating;
+            gameLength += review.playTime;
+        })
+
+        gameRating = gameRating / reviews.length;
+        gameLength = gameLength / reviews.length
+    
+        res.render('games/details', {game, reviews, gameRating, gameLength})
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.status(404).render('404', {error: errorMessage});
