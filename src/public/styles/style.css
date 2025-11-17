@@ -913,7 +913,9 @@ nav.scrolled {
     gap: 60px;
 }
 
-.auth-form {
+.auth-form, 
+.game-form, 
+.review-form {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 94, 0, 0.2);
     max-width: 460px;
@@ -1349,7 +1351,7 @@ footer {
     padding-top: 10px;
 }
 
-.finish-btn {
+.review-btn {
     display: block;
     margin-top: 30px;
     margin-left: auto;
@@ -1363,13 +1365,14 @@ footer {
     font-family: 'Orbitron', monospace;
     font-weight: 700;
     text-transform: uppercase;
+    text-decoration: none;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 0 20px rgba(255, 94, 0, 0.4);
 }
 
-.finish-btn:hover {
+.review-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 30px rgba(0, 178, 255, 0.6);
 }

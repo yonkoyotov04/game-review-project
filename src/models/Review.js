@@ -13,14 +13,18 @@ const reviewSchema = new Schema({
     },
     rating: {
         type: Number,
+        min: [1, "Rating is too low"],
+        max: [10, "Rating is too high"],
         required: [true, "A rating is required"]
     },
     playTime: {
         type: Number,
+        min: [1, 'Play Time is too short'],
         required: [true, "Play time is required"]
     },
     thoughts: {
         type: String,
+        minLength: [20, 'Review is too short'],
         required: [true, "Thoughts are required"]
     }
 })

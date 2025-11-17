@@ -35,7 +35,7 @@ A project for my ReactJS Course.
 - [x] Add Functionality to Search Game in the catalogue page 
 - [x] Make a route guard for Add Game, so that only the admin can add games
 - [x] Add Edit and Delete Buttons in game details
-- [] Add Edit and Delete Functionality in game details
+- [x] Add Edit and Delete Functionality in game details
 - [] Add More Error Handling for Create Game, Login and Register
 - [x] Make Edit Profile Better
 - [] Add Leave Review Functionality

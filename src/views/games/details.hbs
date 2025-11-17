@@ -22,7 +22,7 @@
     </div>
 
     {{#if isAuthenticated}}
-    <button class="finish-btn">Leave a Review</button>
+    <a href="/reviews/{{game.id}}/create"><button class="review-btn">Leave a Review</button></a>
     {{else}}
     <p class="basic-text">You need to <a href="/auth/login">login</a> to leave a review</p>
     {{/if}}
