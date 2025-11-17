@@ -11,7 +11,7 @@ export default {
         return query;
     },
     getOneGame(id) {
-        return Game.findById(id).populate({path: 'reviews', populate: {path: "user", select: 'username profilePic'}})
+        return Game.findById(id)
     },
     getMostPopular() {
         return Game.find().select({title: true, imageUrl: true, reviews: true, id: true}).limit(12);

@@ -34,11 +34,7 @@ const gameSchema = new Schema({
     },
     length: {
         type: String
-    },
-    reviews: [{
-        type: Types.ObjectId,
-        ref: "Review"
-    }]
+    }
 })
 
 const Game = model("Game", gameSchema)

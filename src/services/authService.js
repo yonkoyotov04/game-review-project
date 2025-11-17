@@ -39,9 +39,7 @@ export default {
     },
 
     getProfileData(id) {
-        return User.findById(id)
-        .select({username: true, bio: true, profilePic: true, reviews: true})
-        .populate({path: 'reviews', select: 'game rating playTime thoughts', populate:{path: 'game', select: 'title imageUrl'}});
+        return User.findById(id).select({username: true, bio: true, profilePic: true});
     },
 
     editProfile(userId, newData) {

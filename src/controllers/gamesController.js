@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { isAdmin} from "../middlewares/authMiddleware.js";
 import gamesService from "../services/gamesService.js";
+import reviewService from "../services/reviewService.js"
 import { getErrorMessage } from "../utils/errorUtils.js";
 import getGenreViewData from "../utils/generalUtils.js";
 
@@ -35,8 +36,8 @@ gamesController.get('/:gameId/details', async (req, res) => {
     
     try {
         const game = await gamesService.getOneGame(gameId);
-        console.log(game.reviews);
-        res.render('games/details', {game})
+        const reviews = await reviewService.getGameReviews(gameId);
+        res.render('games/details', {game, reviews})
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.status(404).render('404', {error: errorMessage});
@@ -82,6 +83,7 @@ gamesController.get('/:gameId/delete', isAdmin, async(req, res) => {
     const gameId = req.params.gameId;
 
     try {
+        await reviewService.deleteReviewsForGame(gameId);
         await gamesService.deleteGame(gameId);
         res.redirect('/games');
     } catch (error) {

@@ -22,7 +22,7 @@
     </div>
 
     {{#if isAuthenticated}}
-    <a href="/reviews/{{game.id}}/create"><button class="review-btn">Leave a Review</button></a>
+    <a href="/reviews/{{game.id}}/review"><button class="review-btn">Leave a Review</button></a>
     {{else}}
     <p class="basic-text">You need to <a href="/auth/login">login</a> to leave a review</p>
     {{/if}}
@@ -33,12 +33,12 @@
 
         <div class="reviews-container">
             <ul class="review-list">
-                {{#each game.reviews}}
+                {{#each reviews}}
                 <li class="review-list-item">
                     <div class="review-card">
                         <div class="review-header">
                             <span class="reviewer">{{user.username}}</span>
-                            <span><a href=""><img src="{{user.profilePic}}"
+                            <span><a href="/auth/{{user.id}}/profile"><img src="{{user.profilePic}}"
                             alt="{{user.username}}" class="profile-icon"></a></span>
                         </div>
                         <p class="review-text">{{thoughts}}</p>
