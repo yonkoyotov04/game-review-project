@@ -1,7 +1,7 @@
 import { Schema, model, Types } from "mongoose";
 
 const reviewSchema = new Schema({
-    gameId: {
+    game: {
         type: Types.ObjectId,
         ref: "Game",
         required: [true, "A game is required"]

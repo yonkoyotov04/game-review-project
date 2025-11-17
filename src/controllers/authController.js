@@ -54,7 +54,7 @@ authController.get('/profile', isAuth, async(req, res) => {
     const userId = req.user.id;
     const profileData = await authService.getProfileData(userId);
 
-    res.render('auth/profile', {user: profileData})
+    res.render('auth/profile', {user: profileData, reviews: profileData.reviews})
 })
 
 authController.get('/profile/edit', isAuth, async(req, res) => {

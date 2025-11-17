@@ -39,8 +39,12 @@ A project for my ReactJS Course.
 - [] Add More Error Handling for Create Game, Login and Register
 - [x] Make Edit Profile Better
 - [x] Add Leave Review Functionality
-- [x] Render Reviews in game details
-- [] Render Reviews in user profile
+- [x] Render reviews in game details
+- [] Render review details
+- [] Edit review in review details
+- [] Delete review in review details
+- [] Don't let users leave a review on the same game again.
+- [x] Render Reviews in user profile
 - [] Handle Rating and Average Time in game details
 - [] Add Functionality to View All in the home page
 - [] Add Pagination

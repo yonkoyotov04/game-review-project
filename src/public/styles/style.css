@@ -1453,7 +1453,8 @@ footer {
     opacity: 0.9;
     line-height: 1.7;
     color: #fff;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     position: relative;
 }
 
@@ -1463,6 +1464,16 @@ footer {
     color: #FF5E00;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Rajdhani', sans-serif;
+    opacity: 0.8;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 94, 0, 0.2);
 }
 
 .review-footer {
@@ -1476,9 +1487,11 @@ footer {
     padding-top: 10px;
 }
 
+.review-game-title,
 .reviewer {
     color: #00B2FF;
     font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .stars {
@@ -1811,7 +1824,8 @@ footer {
     gap: 10px;
 }
 
-.game-icon {
+.game-icon,
+.profile-icon {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -1820,7 +1834,8 @@ footer {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.game-icon:hover {
+.game-icon:hover,
+.profile-icon:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(255, 94, 0, 0.6);
 }

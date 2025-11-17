@@ -9,15 +9,16 @@ reviewController.get('/:gameId/create', (req, res) => {
 })
 
 reviewController.post('/:gameId/create', async (req, res) => {
-    const gameId = req.params.gameId;
+    const game = req.params.gameId;
     const user = req.user.id;
     const formData = req.body;
 
     try {
-        const reviewData = { gameId, user, ...formData };
+        const reviewData = { game, user, ...formData };
         const review = await reviewService.reviewGame(reviewData);
-        await reviewService.attachToGame(gameId, review.id);
-        res.redirect(`/games/${gameId}/details`);
+        await reviewService.attachToGame(game, review.id);
+        await reviewService.attachToUser(user, review.id);
+        res.redirect(`/games/${game}/details`);
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.status(400).render('reviews/create', {error: errorMessage, review: formData});

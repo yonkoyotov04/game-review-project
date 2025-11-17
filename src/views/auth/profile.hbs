@@ -1,8 +1,7 @@
 <section class="profile" id="profile">
     <div class="profile-header">
         <div class="profile-pic">
-            <img src="{{user.profilePic}}"
-                alt="Profile Picture">
+            <img src="{{user.profilePic}}" alt="Profile Picture">
         </div>
         <div class="profile-info">
             <h1 class="username">{{user.username}}</h1>
@@ -10,7 +9,7 @@
         </div>
     </div>
 
-    <div class="finished-games" id="games">
+    {{!-- <div class="finished-games" id="games">
         <div class="games-header">
             <h2 class="section-title">Reviews</h2>
             <button class="view-all-btn">View All</button>
@@ -34,6 +33,44 @@
             <p class="section-title">You haven't finished any games yet...</p>
             {{/each}}
         </div>
+    </div> --}}
+
+    <div class="reviews-showcase">
+        <h3 class="reviews-title">Reviews</h3>
+
+        <div class="reviews-container">
+            <ul class="review-list">
+                {{#each reviews}}
+                <li class="review-list-item">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="review-game-title">{{game.title}}</span>
+                            <span><a href="/games/{{game.id}}/details"><img src="{{game.imageUrl}}"
+                            alt="{{game.title}}" class="game-icon"></a></span>
+                        </div>
+                        <p class="review-text">{{thoughts}}</p>
+                        <div class="review-footer">
+                            <span class="stars">⭐ {{rating}}/10</span>
+                            <span class="playTime">⏲ {{playTime}} hours</span>
+                        </div>
+                    </div>
+                </li>
+                {{else}}
+                <p class="section-title">There are no reviews yet...</p>
+                {{/each}}
+            </ul>
+        </div>
+        {{#if game.reviews}}
+        <div class="reviews-pagination">
+            <button class="page-btn prev">← Previous</button>
+            <div class="page-numbers">
+                <button class="page-number active">1</button>
+                <button class="page-number">2</button>
+                <button class="page-number">3</button>
+            </div>
+            <button class="page-btn next">Next →</button>
+        </div>
+        {{/if}}
     </div>
 
     <!-- Profile Actions -->
