@@ -9,6 +9,15 @@ const gamesController = Router();
 
 gamesController.get('/', async (req, res) => {
     const filter = req.query;
+
+    if (filter.genre) {
+        if (['rpg', 'fps', 'mmo'].includes(filter.genre)) {
+            filter.genre = filter.genre.toUpperCase();
+        } else {
+            filter.genre = filter.genre[0].toUpperCase() + filter.genre.slice(1);
+        }
+    }
+
     const games = await gamesService.getAllGames(filter);
     res.render('games/catalogue', { games, filter });
 })
@@ -48,7 +57,6 @@ gamesController.get('/:gameId/details', async (req, res) => {
 
             gameRating = (gameRating / reviews.length).toFixed(1);
             gameLength = (gameLength / reviews.length).toFixed(1);
-
         }
 
         let hasReviewed = false;
@@ -62,20 +70,6 @@ gamesController.get('/:gameId/details', async (req, res) => {
         const errorMessage = getErrorMessage(error);
         res.status(404).render('404', { error: errorMessage });
     }
-})
-
-gamesController.get('/:category', async (req, res) => {
-    let category = req.params.category;
-
-    if (['rpg', 'fps', 'mmo'].includes(category)) {
-        category = category.toUpperCase();
-    } else {
-        category = category[0].toUpperCase() + category.slice(1);
-    }
-
-    const games = await gamesService.getByCategory(category)
-
-    res.render('games/catalogue', { games });
 })
 
 gamesController.get('/:gameId/edit', isAdmin, async (req, res) => {

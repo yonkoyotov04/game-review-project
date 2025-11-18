@@ -40,9 +40,11 @@
                 <li class="review-list-item">
                     <div class="review-card">
                         <div class="review-header">
-                            <span class="reviewer">{{user.username}}</span>
-                            <span><a href="/auth/{{user.id}}/profile"><img src="{{user.profilePic}}"
-                            alt="{{user.username}}" class="profile-icon"></a></span>
+                            <div>
+                                <span class="reviewer">{{user.username}}</span>
+                                <span><a href="/auth/{{user.id}}/profile"><img src="{{user.profilePic}}"
+                                alt="{{user.username}}" class="profile-icon"></a></span>
+                            </div>
                         </div>
                         <p class="review-text">{{thoughts}}</p>
                         <div class="review-footer">

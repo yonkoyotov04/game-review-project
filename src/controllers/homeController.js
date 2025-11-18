@@ -8,7 +8,7 @@ homeController.get('/', async (req, res) => {
     try {
         let games = await gamesService.getAllGames();
         games = games.sort((a, b) => b.reviews?.length - a.reviews?.length);
-        games = games.slice(0, 11);
+        games = games.slice(0, 12);
         res.render('home', {games});
     } catch (error) {
         const errorMessage = getErrorMessage(error);

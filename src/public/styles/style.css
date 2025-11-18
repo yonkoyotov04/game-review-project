@@ -1470,7 +1470,7 @@ footer {
     font-weight: bold;
 }
 
-.review-header {
+.review-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1478,6 +1478,15 @@ footer {
     opacity: 0.8;
     font-size: 0.95rem;
     border-bottom: 1px solid rgba(255, 94, 0, 0.2);
+}
+
+.review-header div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Rajdhani', sans-serif;
+    opacity: 0.8;
+    font-size: 0.95rem;
 }
 
 .review-footer {
@@ -1496,6 +1505,7 @@ footer {
     color: #00B2FF;
     font-weight: 700;
     font-size: 1.5rem;
+    margin-right: 15px;
 }
 
 .stars {
