@@ -1421,6 +1421,10 @@ footer {
 
 .reviews-container {
     display: flex;
+    overflow-y: auto;
+    max-height: 640px;
+    scrollbar-width: thin;
+    scrollbar-color: #00B2FF rgba(255, 255, 255, 0.05);
 }
 
 .review-list {

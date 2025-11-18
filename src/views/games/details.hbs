@@ -31,7 +31,6 @@
     <p class="basic-text">You need to <a href="/auth/login">login</a> to leave a review!</p>
     {{/if}}
 
-    <!-- Reviews Display Section -->
     <div class="reviews-showcase">
         <h3 class="reviews-title">Player Reviews</h3>
 
@@ -57,7 +56,7 @@
                 {{/each}}
             </ul>
         </div>
-        {{#if game.reviews}}
+        {{#if reviews}}
         <div class="reviews-pagination">
             <button class="page-btn prev">← Previous</button>
             <div class="page-numbers">

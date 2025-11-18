@@ -49,5 +49,6 @@ A project for my ReactJS Course.
 - [x] Render Reviews in user profile
 - [x] Delete reviews if the user deletes his profile
 - [x] Handle Rating and Average Time in game details
+- [x] Add a scrollbar for reviews
 - [] Fix or repurpose Most Popular Games on the home page
 - [] Add Pagination

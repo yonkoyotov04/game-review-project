@@ -53,13 +53,13 @@ authController.get('/logout', isAuth, (req, res) => {
     res.redirect('/');
 })
 
-authController.get('/:userId/profile', isAuth, async (req, res) => {
+authController.get('/:userId/profile', async (req, res) => {
     const userId = req.params.userId;
     const profileData = await authService.getProfileData(userId);
     const reviews = await reviewService.getUserReviews(userId);
     let isOwner = false;
 
-    if (req.user.id === userId) {
+    if (req.user?.id === userId) {
         isOwner = true;
     }
 
