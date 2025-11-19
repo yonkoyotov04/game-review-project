@@ -14,23 +14,9 @@ gamesController.get('/', async (req, res) => {
     res.render('games/catalogue', { games, filter });
 })
 
-gamesController.get('/:category', async (req, res) => {
-    let category = req.params.category;
-    let filter = req.query;
-
-    if (['rpg', 'fps', 'mmo'].includes(category)) {
-        category = category.toUpperCase();
-    } else {
-        category = category[0].toUpperCase() + category.slice(1);
-    }
-
-    const games = await gamesService.getByCategory(category, filter);
-
-    res.render('games/catalogue', { games, filter });
-})
-
 gamesController.get('/create', isAuth, (req, res) => {
     const genres = getGenreViewData();
+    res.render('games/create', { genres })
 })
 
 gamesController.post('/create', isAuth, async (req, res) => {
@@ -47,6 +33,21 @@ gamesController.post('/create', isAuth, async (req, res) => {
     }
 })
 
+gamesController.get('/:category', async (req, res) => {
+    let category = req.params.category;
+    let filter = req.query;
+
+    if (['rpg', 'fps', 'mmo'].includes(category)) {
+        category = category.toUpperCase();
+    } else {
+        category = category[0].toUpperCase() + category.slice(1);
+    }
+
+    const games = await gamesService.getByCategory(category, filter);
+
+    res.render('games/catalogue', { games, filter });
+})
+
 gamesController.get('/:gameId/details', async (req, res) => {
     const gameId = req.params.gameId;
 
@@ -54,12 +55,6 @@ gamesController.get('/:gameId/details', async (req, res) => {
     try {
         const game = await gamesService.getOneGame(gameId);
         const reviews = await reviewService.getGameReviews(gameId);
-
-        let isOwner = false;
-
-        if (game.ownerId === req.user?.id) {
-            isOwner = true;
-        }
 
         let gameRating = 0;
         let gameLength = 0;
@@ -72,6 +67,12 @@ gamesController.get('/:gameId/details', async (req, res) => {
 
             gameRating = (gameRating / reviews.length).toFixed(1);
             gameLength = (gameLength / reviews.length).toFixed(1);
+        }
+
+        let isOwner = false;
+
+        if (game.ownerId.equals(req.user?.id)) {
+            isOwner = true;
         }
 
         let hasReviewed = false;
@@ -90,9 +91,21 @@ gamesController.get('/:gameId/details', async (req, res) => {
 gamesController.get('/:gameId/edit', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const gameData = await gamesService.getOneGame(gameId);
-    const genres = getGenreViewData(gameData.genre)
 
-    res.render('games/edit', { game: gameData, genres })
+    try {
+        if (!gameData.ownerId.equals(req.user?.id)) {
+            throw new Error('Only the game creator can edit it')
+        }
+
+        const genres = getGenreViewData(gameData.genre)
+
+        res.render('games/edit', { game: gameData, genres })
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        res.status(401).render('404', {error: errorMessage})
+    }
+
+
 })
 
 gamesController.post('/:gameId/edit', isAuth, async (req, res) => {
@@ -110,8 +123,13 @@ gamesController.post('/:gameId/edit', isAuth, async (req, res) => {
 
 gamesController.get('/:gameId/delete', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
+    const gameData = await gamesService.getOneGame(gameId);
 
     try {
+        if (!gameData.ownerId.equals(req.user?.id)) {
+            throw new Error('Only the game creator can delete it')
+        }
+
         await reviewService.deleteReviewsForGame(gameId);
         await gamesService.deleteGame(gameId);
         res.redirect('/games');
