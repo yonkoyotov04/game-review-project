@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { isAdmin } from "../middlewares/authMiddleware.js";
+import { isAuth } from "../middlewares/authMiddleware.js";
 import gamesService from "../services/gamesService.js";
 import reviewService from "../services/reviewService.js"
 import { getErrorMessage } from "../utils/errorUtils.js";
@@ -14,10 +14,10 @@ gamesController.get('/', async (req, res) => {
     res.render('games/catalogue', { games, filter });
 })
 
-gamesController.get('/:category', async(req, res) => {
+gamesController.get('/:category', async (req, res) => {
     let category = req.params.category;
     let filter = req.query;
-    
+
     if (['rpg', 'fps', 'mmo'].includes(category)) {
         category = category.toUpperCase();
     } else {
@@ -26,19 +26,19 @@ gamesController.get('/:category', async(req, res) => {
 
     const games = await gamesService.getByCategory(category, filter);
 
-    res.render('games/catalogue', {games, filter});
+    res.render('games/catalogue', { games, filter });
 })
 
-gamesController.get('/create', isAdmin, (req, res) => {
+gamesController.get('/create', isAuth, (req, res) => {
     const genres = getGenreViewData();
-    res.render('games/create', { genres });
 })
 
-gamesController.post('/create', isAdmin, async (req, res) => {
+gamesController.post('/create', isAuth, async (req, res) => {
     const gameData = req.body;
+    const userId = req.user?.id;
 
     try {
-        await gamesService.createGame(gameData);
+        await gamesService.createGame(gameData, userId);
         res.redirect('/games')
     } catch (error) {
         const errorMessage = getErrorMessage(error);
@@ -50,9 +50,17 @@ gamesController.post('/create', isAdmin, async (req, res) => {
 gamesController.get('/:gameId/details', async (req, res) => {
     const gameId = req.params.gameId;
 
+
     try {
         const game = await gamesService.getOneGame(gameId);
         const reviews = await reviewService.getGameReviews(gameId);
+
+        let isOwner = false;
+
+        if (game.ownerId === req.user?.id) {
+            isOwner = true;
+        }
+
         let gameRating = 0;
         let gameLength = 0;
 
@@ -72,14 +80,14 @@ gamesController.get('/:gameId/details', async (req, res) => {
             hasReviewed = true;
         }
 
-        res.render('games/details', { game, reviews, gameRating, gameLength, hasReviewed })
+        res.render('games/details', { game, gameLength, gameRating, reviews, hasReviewed, isOwner })
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.status(404).render('404', { error: errorMessage });
     }
 })
 
-gamesController.get('/:gameId/edit', isAdmin, async (req, res) => {
+gamesController.get('/:gameId/edit', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const gameData = await gamesService.getOneGame(gameId);
     const genres = getGenreViewData(gameData.genre)
@@ -87,7 +95,7 @@ gamesController.get('/:gameId/edit', isAdmin, async (req, res) => {
     res.render('games/edit', { game: gameData, genres })
 })
 
-gamesController.post('/:gameId/edit', isAdmin, async (req, res) => {
+gamesController.post('/:gameId/edit', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const newData = req.body;
 
@@ -100,7 +108,7 @@ gamesController.post('/:gameId/edit', isAdmin, async (req, res) => {
     }
 })
 
-gamesController.get('/:gameId/delete', isAdmin, async (req, res) => {
+gamesController.get('/:gameId/delete', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
 
     try {

@@ -1,32 +1,45 @@
 import Game from "../models/Game.js"
+import Review from "../models/Review.js";
 
 export default {
     getAllGames(filter = {}) {
-        let query = Game.find().select({title: true, imageUrl: true, id: true})
+        let query = Game.find().select({ title: true, imageUrl: true, id: true, reviewsCount: true })
 
         if (filter.title) {
-            query.find({title: { $regex: filter.title, $options:'i' }});
+            query.find({ title: { $regex: filter.title, $options: 'i' } });
         }
 
         return query;
     },
-    getOneGame(id) {
-        return Game.findById(id)
+    async getOneGame(id) {
+        const game = await Game.findById(id);
+        const reviews = await Review.find({ game: game.id }).select({ rating: true, playTime: true });
+
+        if (reviews.length === game.reviewsCount) {
+            return game;
+        }
+
+        const newData = {
+            id: game.id, title: game.title, developers: game.developers,
+            genre: game.genre, relDate: game.relDate, platforms: game.platforms, description: game.description,
+            imageUrl: game.imageUrl, reviewsCount: reviews.length};
+
+        return Game.findByIdAndUpdate(game.id, newData);
     },
     getByCategory(category, filter = {}) {
-        let query = Game.find({genre: category}).select({title: true, imageUrl: true, id: true});
+        let query = Game.find({ genre: category }).select({ title: true, imageUrl: true, id: true });
 
         if (filter.title) {
-            query.find({title: { $regex: filter.title, $options:'i' }});
+            query.find({ title: { $regex: filter.title, $options: 'i' } });
         }
 
         return query;
     },
-    createGame(gameData) {
-        return Game.create({rating: 0, length: 0, ...gameData});
+    createGame(gameData, creatorId) {
+        return Game.create({ reviewsCount: 0, ownerId: creatorId, ...gameData });
     },
     editGame(gameId, newData) {
-        return Game.findByIdAndUpdate(gameId, newData, {runValidators: true});
+        return Game.findByIdAndUpdate(gameId, newData, { runValidators: true });
     },
     deleteGame(gameId) {
         return Game.findByIdAndDelete(gameId);

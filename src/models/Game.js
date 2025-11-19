@@ -14,6 +14,8 @@ const gameSchema = new Schema({
     genre: {
         type: String,
         required: [true, "A genre is required"],
+        enum: ['Action', 'Adventure', 'RPG', 'Fighting', 'FPS', 
+        'Simulation', 'Strategy', 'Horror', 'Sports', 'Racing', 'Tactical', 'MMO']
     },
     relDate: {
         type: String,
@@ -33,6 +35,13 @@ const gameSchema = new Schema({
         type: String,
         required: [true, "An image is required"],
         match: [/^https?:\/\//, "ImageURL is invalid"]
+    },
+    reviewsCount: {
+        type: Number
+    },
+    ownerId: {
+        type: Types.ObjectId,
+        ref: 'User'
     }
 })
 

@@ -51,5 +51,6 @@ A project for my ReactJS Course.
 - [x] Handle Rating and Average Time in game details
 - [x] Add a scrollbar for reviews
 - [x] Fix the search bar when sorting by category
-- [] Fix or repurpose Most Popular Games on the home page
+- [x] Fix or repurpose Most Popular Games on the home page
+- [] Fix create page
 - [] Add Pagination
