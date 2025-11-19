@@ -5,35 +5,11 @@
         </div>
         <div class="profile-info">
             <h1 class="username">{{user.username}}</h1>
+            {{#if user.bio}}
             <p class="user-tagline">“{{user.bio}}”</p>
+            {{/if}}
         </div>
     </div>
-
-    {{!-- <div class="finished-games" id="games">
-        <div class="games-header">
-            <h2 class="section-title">Reviews</h2>
-            <button class="view-all-btn">View All</button>
-        </div>
-
-        <div class="games-grid">
-            {{#each reviews}}
-            <div class="game-card-profile">
-                <div class="game-header">
-                    <h3>Hollow Knight: Silksong</h3>
-                    <div class="game-header-right">
-                        <span class="game-rating">⭐ 9.2/10</span>
-                        <img src="https://assets-prd.ignimgs.com/2025/04/02/nintendoswitch2-hollow-knight-silksong-keyart-square-1743636317910.jpg"
-                            alt="Hollow Knight: Silksong" class="game-icon">
-                    </div>
-                </div>
-                <p class="game-review">“An electrifying journey through a world that feels alive. The atmosphere is
-                    unmatched.”</p>
-            </div>
-            {{else}}
-            <p class="section-title">You haven't finished any games yet...</p>
-            {{/each}}
-        </div>
-    </div> --}}
 
     <div class="reviews-showcase">
         <h3 class="reviews-title">Reviews</h3>

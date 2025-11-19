@@ -36,7 +36,7 @@ A project for my ReactJS Course.
 - [x] Make a route guard for Add Game, so that only the admin can add games
 - [x] Add Edit and Delete Buttons in game details
 - [x] Add Edit and Delete Functionality in game details
-- [] Add More Error Handling for Create Game, Login and Register
+- [x] Add More Error Handling for Create Game, Login and Register
 - [x] Make Edit Profile Better
 - [x] Add Leave Review Functionality
 - [x] Render reviews in game details

@@ -26,6 +26,7 @@ authController.post('/register', isGuest, async (req, res) => {
         res.status(401).render('auth/register', {
             error: errorMessage,
             email: userData.email,
+            username: userData.username,
             bio: userData.bio,
             profilePic: userData.profilePic
         });
