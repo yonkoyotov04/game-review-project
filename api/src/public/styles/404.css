@@ -1,0 +1,53 @@
+.error-404-container {
+    max-width: 700px;
+    margin: 150px auto;
+    padding: 40px 50px;
+
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 94, 0, 0.35);
+    border-radius: 16px;
+
+    text-align: center;
+
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 35px rgba(255, 94, 0, 0.25);
+}
+
+.error-404-title {
+    font-family: "Orbitron", monospace;
+    font-size: 6rem;
+    color: #00B2FF;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px rgba(0, 178, 255, 0.7);
+}
+
+.error-404-message {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 40px;
+    opacity: 0.85;
+}
+
+.error-404-btn {
+    display: inline-block;
+    padding: 14px 35px;
+
+    background: linear-gradient(45deg, #FF5E00, #00B2FF);
+    color: #ffffff;
+    text-decoration: none;
+
+    border-radius: 10px;
+    font-family: "Orbitron", monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+    box-shadow: 0 0 18px rgba(0, 178, 255, 0.35);
+}
+
+.error-404-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px rgba(0, 178, 255, 0.7);
+}

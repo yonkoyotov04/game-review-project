@@ -6,7 +6,7 @@
         <div class="profile-info">
             <h1 class="username">{{user.username}}</h1>
             {{#if user.bio}}
-            <p class="user-tagline">“{{user.bio}}”</p>
+            <p class="user-bio">“{{user.bio}}”</p>
             {{/if}}
         </div>
     </div>
@@ -20,7 +20,7 @@
                 <li class="review-list-item">
                     <div class="review-card">
                         <div class="review-header">
-                            <div class="borderless">
+                            <div>
                                 <span class="review-game-title">{{game.title}}</span>
                                 <span><a href="/games/{{game.id}}/details"><img src="{{game.imageUrl}}"
                                             alt="{{game.title}}" class="game-icon"></a></span>
