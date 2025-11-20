@@ -22,19 +22,6 @@ reviewController.post('/:gameId/review', async (req, res) => {
         const errorMessage = getErrorMessage(error);
         res.status(400).render('reviews/create', {error: errorMessage, review: formData});
     }
-
-})
-
-reviewController.get('/:reviewId/delete', isAuth, async(req, res) => {
-    const reviewId = req.params.reviewId;
-
-    try {
-        await reviewService.deleteOneReview(reviewId);
-        res.redirect('/');
-    } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        res.status(401).render('404', {error: errorMessage});
-    }
 })
 
 reviewController.get('/:reviewId/edit', isAuth, async(req, res) => {
@@ -55,6 +42,18 @@ reviewController.post('/:reviewId/edit', isAuth, async(req, res) => {
         const newReview = { game, user, ...formData };
         await reviewService.editReview(reviewId, newReview);
         res.redirect(`/auth/${user}/profile`);
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        res.status(401).render('404', {error: errorMessage});
+    }
+})
+
+reviewController.get('/:reviewId/delete', isAuth, async(req, res) => {
+    const reviewId = req.params.reviewId;
+
+    try {
+        await reviewService.deleteOneReview(reviewId);
+        res.redirect('/');
     } catch (error) {
         const errorMessage = getErrorMessage(error);
         res.status(401).render('404', {error: errorMessage});

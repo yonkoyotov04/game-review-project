@@ -13,7 +13,7 @@ export default {
     },
     async getOneGame(id) {
         const game = await Game.findById(id);
-        const reviews = await Review.find({ game: game.id }).select({ rating: true, playTime: true });
+        const reviews = await Review.find({ game: game.id }).select({ id: true });
 
         if (reviews.length === game.reviewsCount) {
             return game;

@@ -6,10 +6,6 @@ import reviewService from "../services/reviewService.js";
 
 const authController = Router();
 
-authController.get('/login', isGuest, (req, res) => {
-    res.render('auth/login');
-})
-
 authController.get('/register', isGuest, (req, res) => {
     res.render('auth/register');
 })
@@ -31,6 +27,10 @@ authController.post('/register', isGuest, async (req, res) => {
             profilePic: userData.profilePic
         });
     }
+})
+
+authController.get('/login', isGuest, (req, res) => {
+    res.render('auth/login');
 })
 
 authController.post('/login', isGuest, async (req, res) => {
@@ -99,8 +99,6 @@ authController.get('/profile/delete', isAuth, async (req, res) => {
         const errorMessage = getErrorMessage(error);
         res.status(401).render('404', {error: errorMessage})
     }
-
-
 })
 
 export default authController;

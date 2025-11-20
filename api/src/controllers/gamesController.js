@@ -51,7 +51,6 @@ gamesController.get('/:category', async (req, res) => {
 gamesController.get('/:gameId/details', async (req, res) => {
     const gameId = req.params.gameId;
 
-
     try {
         const game = await gamesService.getOneGame(gameId);
         const reviews = await reviewService.getGameReviews(gameId);
