@@ -386,3 +386,42 @@ footer {
     text-shadow: 0 0 10px currentColor;
 }
 
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(10, 10, 10, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding-top: 50px;
+        transition: left 0.3s ease;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .about-graphic {
+        width: 200px;
+        height: 200px;
+    }
+
+    .shape-circle,
+    .shape-triangle,
+    .shape-square {
+        transform: scale(0.6);
+    }
+}
+

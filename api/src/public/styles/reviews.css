@@ -109,6 +109,16 @@
     margin-right: 15px;
 }
 
+.game-icon,
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 94, 0, 0.4);
+    box-shadow: 0 0 10px rgba(255, 94, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .stars {
     color: #FF5E00;
     font-weight: 700;
