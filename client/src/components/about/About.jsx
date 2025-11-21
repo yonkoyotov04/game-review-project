@@ -1,0 +1,24 @@
+export default function About() {
+    return (
+        <section className="about" id="about">
+            <h2 className="section-title">About Game Review</h2>
+            <div className="about-content">
+                <div className="about-text">
+                    <h2>Pioneering the Digital Frontier</h2>
+                    <p>At ELECTRIC XTRA, we're not just building technology – we're crafting the future. Our mission is to
+                        bridge the gap between human potential and digital innovation, creating solutions that empower
+                        individuals and transform industries.</p>
+                    <p>Founded by visionaries who saw beyond the limitations of current technology, ELECTRIC XTRA represents
+                        a quantum leap in digital infrastructure. We combine cutting-edge research with practical
+                        applications to deliver solutions that are both revolutionary and reliable.</p>
+                    <p>Join us as we redefine what's possible in the digital age. The future isn't something that happens to
+                        us – it's something we create together.</p>
+                </div>
+                <div className="about-visual">
+                    <div className="about-graphic"></div>
+                </div>
+            </div>
+        </section>
+    )
+
+}
