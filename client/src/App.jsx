@@ -10,6 +10,7 @@ import Catalogue from './components/catalogue/Catalogue.jsx'
 import Profile from './components/profile/Profile.jsx'
 import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
+import GameDetails from './components/game-details/GameDetails.jsx'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/games/details' element={<GameDetails />} />
       </Routes>
 
       <Footer />
