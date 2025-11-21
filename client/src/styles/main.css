@@ -355,6 +355,9 @@ nav.scrolled {
 }
 
 footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
     position: static;
     left: 0px;
     bottom: 0px;
