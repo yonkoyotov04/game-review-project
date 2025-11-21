@@ -1,0 +1,40 @@
+/*
+TemplateMo 596 Electric Xtr
+https://templatemo.com/tm-596-electric-xtra
+*/
+
+@charset "utf-8";
+
+@import url(./main.css);
+@import url(./home.css);
+@import url(./about.css);
+@import url(./form.css);
+@import url(./404.css);
+@import url(./catalogue.css);
+@import url(./gameDetails.css);
+@import url(./reviews.css);
+@import url(./profile.css);
+
+/* .delete-btn {
+    background: linear-gradient(45deg, #ff2e00, #ff7a00);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 25px;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 46, 0, 0.3);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(45deg, #ff0000, #ff4d00);
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+} */
+
+
