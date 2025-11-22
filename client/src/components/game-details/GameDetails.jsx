@@ -1,23 +1,37 @@
+import { useParams } from "react-router";
 import ReviewCard from "../review-card/Review-Card.jsx";
+import { useEffect, useState } from "react";
+import request from "../../utils/requester.js";
 
 export default function GameDetails() {
+    const { gameId } = useParams();
+    const [gameData, setGameData] = useState({});
+
+    useEffect(() => {
+        request(`/games/${gameId}/details`)
+        .then(result => {
+            setGameData(result);
+        })
+        .catch(err => alert(err.message))
+    }, [])
+
+
     return (
         <section className="game-card">
             <h2 className="section-title">Game Overview</h2>
 
             <div className="game-card-container">
                 <div className="game-image">
-                    <img src="https://assets-prd.ignimgs.com/2025/04/02/nintendoswitch2-hollow-knight-silksong-keyart-square-1743636317910.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80" alt="Game Cover" />
+                    <img src={gameData.imageUrl} />
                 </div>
 
                 <div className="game-details">
-                    <h3 className="game-title">Hollow Knight: Silksong</h3>
-                    <p><strong>Developer:</strong> Team Cherry</p>
-                    <p><strong>Genre:</strong> Adventure</p>
-                    <p><strong>Release:</strong> 2025/09/04</p>
-                    <p><strong>Platform:</strong> PC, PS5, Xbox Series X/S, Switch 2</p>
-                    <p><strong>Description:</strong> Hollow Knight: Silksong is a Metroidvania action-adventure game where you play as Hornet,
-                    an agile bug who is captured and taken to the strange kingdom of Pharloom.</p>
+                    <h3 className="game-title">{gameData.title}</h3>
+                    <p><strong>Developers:</strong> {gameData.developers}</p>
+                    <p><strong>Genre:</strong> {gameData.genre}</p>
+                    <p><strong>Release:</strong> {gameData.relDate}</p>
+                    <p><strong>Platforms:</strong> {gameData.platforms}</p>
+                    <p><strong>Description:</strong> {gameData.description}</p>
 
                     <div className="game-stats">
                         <p><strong>Rating:</strong> 9/10</p>
@@ -28,7 +42,7 @@ export default function GameDetails() {
 
             
             <p className="basic-text">You already left a review!</p>
-            <a href="/reviews/{{game.id}}/review"><button className="review-btn">Leave a Review</button></a>
+            <a href={`reviews/${gameData._id}/review`}><button className="review-btn">Leave a Review</button></a>
             <p className="basic-text">You need to <a href="/auth/login">login</a> to leave a review!</p>
 
             <div className="reviews-showcase">
@@ -57,8 +71,8 @@ export default function GameDetails() {
             </div>
          
             <div className="game-actions">
-                <a href="/games/{{game.id}}/edit"><button className="edit-btn">Edit Game</button></a>
-                <a href="/games/{{game.id}}/delete"><button className="delete-btn">Delete Game</button></a>
+                <a href={`/games/${gameData._id}/edit`}><button className="edit-btn">Edit Game</button></a>
+                <a href={`/games/${gameData._id}/delete`}><button className="delete-btn">Delete Game</button></a>
             </div>
         </section>
     )
