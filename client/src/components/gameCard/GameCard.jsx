@@ -1,12 +1,12 @@
 import { Link } from "react-router"
 
-export default function GameCard() {
+export default function GameCard(game) {
     return (
         <div className="square-game-card">
-            <Link to="/games/details">
-                <img src="https://assets-prd.ignimgs.com/2025/04/02/nintendoswitch2-hollow-knight-silksong-keyart-square-1743636317910.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80" alt="Game" />
+            <Link to={`games/${game._id}/details`}>
+                <img src={game.imageUrl} alt="Game" />
                 <div className="square-game-info">
-                    <h3>Hollow Knight: Silksong</h3>
+                    <h3>{game.title}</h3>
                 </div>
             </Link>
         </div>

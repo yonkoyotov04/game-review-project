@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
+import request from "../../utils/requester.js";
 
 export default function Home() {
+
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        request('/')
+        .then(result => {
+            setGames(Object.values(result));
+        })
+        .catch(err => {
+            alert(err.message);
+        })
+    }, []);
 
     return (
         <>
@@ -9,18 +23,8 @@ export default function Home() {
                     <h2 className="section-title">Most Popular Games</h2>
                 </div>
                 <div className="square-game-grid">
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <GameCard />
-                    <p className="section-title">There are no games yet...</p>
+                    {games.map(game => <GameCard key={game.title} {...game} />)}
+                    {games.length === 0 && <p className="section-title">There are no games yet...</p>}
                 </div>
             </section>
 

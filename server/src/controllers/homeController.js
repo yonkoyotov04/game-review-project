@@ -9,17 +9,11 @@ homeController.get('/', async (req, res) => {
         let games = await gamesService.getAllGames();
         games = games.sort((a, b) => b.reviewsCount - a.reviewsCount);
         games = games.slice(0, 12);
-        res.render('home', {games});
+
+        res.json(games ?? []);
     } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        res.status(404).render('home', {error: errorMessage})
+        res.status(404).json({ message: getErrorMessage(error) })
     }
 })
-
-homeController.get('/about', (req, res) => {
-    res.render('about');
-})
-
-
 
 export default homeController

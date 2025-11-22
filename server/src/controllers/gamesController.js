@@ -1,9 +1,7 @@
 import { Router } from "express";
-import { isAuth } from "../middlewares/authMiddleware.js";
 import gamesService from "../services/gamesService.js";
 import reviewService from "../services/reviewService.js"
 import { getErrorMessage } from "../utils/errorUtils.js";
-import getGenreViewData from "../utils/generalUtils.js";
 
 const gamesController = Router();
 
@@ -77,7 +75,7 @@ gamesController.put('/:gameId/edit', async (req, res) => {
     }
 })
 
-gamesController.delete('/:gameId/delete', isAuth, async (req, res) => {
+gamesController.delete('/:gameId/delete', async (req, res) => {
     const gameId = req.params.gameId;
     const gameData = await gamesService.getOneGame(gameId);
 

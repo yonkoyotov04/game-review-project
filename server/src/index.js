@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import cors from 'cors'
 import routes from "./routes.js"
 import authMiddleware from "./middlewares/authMiddleware.js"
+import { errorHandler } from "./middlewares/errorHandler.js"
 
 const app = express();
 
@@ -15,12 +16,14 @@ try {
     console.log("Failed to connect to database", error.message)
 }
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.json());
 
 app.use(authMiddleware);
 
 app.use(routes);
+
+app.use(errorHandler);
 
 app.listen(2222, () => console.log("Server is listening on port http://localhost:2222......"))

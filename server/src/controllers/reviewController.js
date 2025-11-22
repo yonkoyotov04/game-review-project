@@ -1,7 +1,6 @@
 import { Router } from "express";
 import reviewService from "../services/reviewService.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
-import { isAuth } from "../middlewares/authMiddleware.js";
 
 const reviewController = Router();
 
@@ -24,7 +23,7 @@ reviewController.post('/:gameId/review', async (req, res) => {
     }
 })
 
-reviewController.get('/:reviewId/edit', isAuth, async(req, res) => {
+reviewController.get('/:reviewId/edit', async(req, res) => {
     const reviewId = req.params.reviewId;
 
     const review = await reviewService.getReviewById(reviewId);
@@ -32,7 +31,7 @@ reviewController.get('/:reviewId/edit', isAuth, async(req, res) => {
     res.render('reviews/edit', {review})
 })
 
-reviewController.post('/:reviewId/edit', isAuth, async(req, res) => {
+reviewController.post('/:reviewId/edit', async(req, res) => {
     const reviewId = req.params.reviewId;
     const user = req.user?.id;
     const formData = req.body;
@@ -48,7 +47,7 @@ reviewController.post('/:reviewId/edit', isAuth, async(req, res) => {
     }
 })
 
-reviewController.get('/:reviewId/delete', isAuth, async(req, res) => {
+reviewController.get('/:reviewId/delete', async(req, res) => {
     const reviewId = req.params.reviewId;
 
     try {
