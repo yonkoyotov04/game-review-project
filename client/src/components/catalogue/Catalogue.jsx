@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
+import request from "../../utils/requester.js";
 
 export default function Catalogue() {
+
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        request('/games')
+        .then(result => {
+            setGames(Object.values(result));
+        })
+        .catch(err => alert(err.message));
+    }, [])
+
     return (
         <section className="games-list">
             <h2 className="section-title">All Games</h2>
@@ -13,16 +26,8 @@ export default function Catalogue() {
             </div>
 
             <div className="square-game-grid">
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <GameCard />
-                <p className="section-title">There are no games yet...</p>
+                {games.map(game => <GameCard key={game._id} {...game} />)}
+                {games.length === 0 && <p className="section-title">There are no games yet...</p>}
             </div>
 
             <div className="reviews-pagination">
