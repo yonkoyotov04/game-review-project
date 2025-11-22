@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import JWT_SECRET from "../config/constants.js";
 
 export default function authMiddleware (req, res, next) {
-    const token = req.cookies['auth'];
+    const token = req.header('X-Authorization');
 
     if (!token) {
         return next();
@@ -12,30 +12,9 @@ export default function authMiddleware (req, res, next) {
         const decodedToken = jwt.verify(token, JWT_SECRET);
 
         req.user = decodedToken;
-        req.isAuthenticated = true;
-
-        res.locals.isAuthenticated = true;
-        res.locals.user = decodedToken;
 
         next();
     } catch (error) {
-        res.clearCookie('auth');
-        res.redirect('/auth/login');
+        res.status(401).json({ message: 'Invalid user!' });
     }
-}
-
-export function isAuth(req, res, next) {
-    if (!req.isAuthenticated) {
-        return res.redirect('/auth/login')
-    }
-
-    next();
-}
-
-export function isGuest(req, res, next) {
-    if (req.isAuthenticated) {
-        return res.redirect('/');
-    }
-
-    next();
 }
