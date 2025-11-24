@@ -3,7 +3,7 @@ import Review from "../models/Review.js";
 
 export default {
     getAllGames(filter = {}) {
-        let query = Game.find().select({ title: true, imageUrl: true, id: true, reviewsCount: true })
+        let query = Game.find().select({ title: true, imageUrl: true, id: true, reviewsCount: true, genre: true })
 
         if (filter.title) {
             query.find({ title: { $regex: filter.title, $options: 'i' } });
