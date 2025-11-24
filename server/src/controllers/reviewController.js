@@ -4,8 +4,20 @@ import { getErrorMessage } from "../utils/errorUtils.js";
 
 const reviewController = Router();
 
-reviewController.get('/:gameId/review', (req, res) => {
-    res.render('reviews/create');
+reviewController.get('/game/:gameId', async(req, res) => {
+    const gameId = req.params.gameId;
+
+    const reviews = await reviewService.getGameReviews(gameId);
+
+    res.json(reviews ?? []);
+})
+
+reviewController.get('/user/:userId', async(req, res) => {
+    const userId = req.params.userId;
+
+    const reviews = await reviewService.getUserReviews(userId);
+
+    res.json(reviews ?? []);
 })
 
 reviewController.post('/:gameId/review', async (req, res) => {
@@ -21,14 +33,6 @@ reviewController.post('/:gameId/review', async (req, res) => {
         const errorMessage = getErrorMessage(error);
         res.status(400).render('reviews/create', {error: errorMessage, review: formData});
     }
-})
-
-reviewController.get('/:reviewId/edit', async(req, res) => {
-    const reviewId = req.params.reviewId;
-
-    const review = await reviewService.getReviewById(reviewId);
-
-    res.render('reviews/edit', {review})
 })
 
 reviewController.post('/:reviewId/edit', async(req, res) => {

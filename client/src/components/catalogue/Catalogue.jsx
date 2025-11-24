@@ -28,7 +28,7 @@ export default function Catalogue() {
 
     return (
         <section className="games-list">
-            <h2 className="section-title">All Games</h2>
+            <h2 className="section-title">{category ? `${category}` : 'All'} Games</h2>
 
             <div className="search-bar">
                 <form method="GET">

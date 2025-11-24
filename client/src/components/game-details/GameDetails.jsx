@@ -1,16 +1,18 @@
 import { useParams } from "react-router";
-import ReviewCard from "../review-card/Review-Card.jsx";
 import { useEffect, useState } from "react";
 import request from "../../utils/requester.js";
+import ReviewSection from "../review-section/reviewSection.jsx";
 
 export default function GameDetails() {
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
+    const [gameReviews, setGameReviews] = useState([]);
 
     useEffect(() => {
         request(`/games/${gameId}/details`)
         .then(result => {
-            setGameData(result);
+            setGameData(result.game);
+            setGameReviews(result.reviews);
         })
         .catch(err => alert(err.message))
     }, [])
@@ -45,30 +47,7 @@ export default function GameDetails() {
             <a href={`reviews/${gameData._id}/review`}><button className="review-btn">Leave a Review</button></a>
             <p className="basic-text">You need to <a href="/auth/login">login</a> to leave a review!</p>
 
-            <div className="reviews-showcase">
-                <h3 className="reviews-title">Player Reviews</h3>
-
-                <div className="reviews-container">
-                    <ul className="review-list">
-                        <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard />
-                        <p className="section-title">There are no reviews yet...</p>
-                    </ul>
-                </div>
-                
-                <div className="reviews-pagination">
-                    <button className="page-btn prev">← Previous</button>
-                    <div className="page-numbers">
-                        <button className="page-number active">1</button>
-                        <button className="page-number">2</button>
-                        <button className="page-number">3</button>
-                    </div>
-                    <button className="page-btn next">Next →</button>
-                </div>
-            </div>
+            <ReviewSection mode="game" id={gameId} />
          
             <div className="game-actions">
                 <a href={`/games/${gameData._id}/edit`}><button className="edit-btn">Edit Game</button></a>

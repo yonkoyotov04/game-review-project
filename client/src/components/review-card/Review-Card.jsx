@@ -1,15 +1,28 @@
-export default function ReviewCard() {
+export default function ReviewCard({_id, popualatedData, playTime, rating, thoughts}) {
+
+    let inGameDetails = true;
+
+    if (!popualatedData.username) {
+        inGameDetails = false; 
+    }
+
+    console.log(inGameDetails);
+
     return (
         <li className="review-list-item">
             <div className="review-card">
                 <div className="review-header">
                     <div>
-                        <span className="review-game-title">Hollow Knight: Silksong</span>
-                        <span><a href="/games/{{game.id}}/details"><img src="https://assets-prd.ignimgs.com/2025/04/02/nintendoswitch2-hollow-knight-silksong-keyart-square-1743636317910.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80"
-                            alt="Hollow Knight: Silksong" className="game-icon" /></a></span>
+                        <span className="review-game-title">
+                            {inGameDetails ? popualatedData.username : popualatedData.title}
+                            </span>
+                        <span><a href={inGameDetails ? `/profile` : `/games/${popualatedData._id}/details`}>
+                        <img src={inGameDetails ? popualatedData.profilePic : popualatedData.imageUrl}
+                            alt="image" className="game-icon" />
+                            </a></span>
                     </div>
                     <div>
-                        <a href="/reviews/{{id}}/edit"><svg
+                        <a href={`/reviews/${_id}/edit`}><svg
                             style={{ marginRight: 10 }}
                             width={24}
                             height={24}
@@ -36,7 +49,7 @@ export default function ReviewCard() {
                             </defs>
                         </svg>
                         </a>
-                        <a href="/reviews/{{id}}/delete"><svg
+                        <a href={`/reviews/${_id}/delete`}><svg
                             style={{ marginRight: 10 }}
                             width={30}
                             height={30}
@@ -87,10 +100,10 @@ export default function ReviewCard() {
                         </a>
                     </div>
                 </div>
-                <p className="review-text">Very good game!</p>
+                <p className="review-text">{thoughts}</p>
                 <div className="review-footer">
-                    <span className="stars">⭐ 10/10</span>
-                    <span className="playTime">⏲ 12 hours</span>
+                    <span className="stars">⭐ {rating}/10</span>
+                    <span className="playTime">⏲ {playTime} hours</span>
                 </div>
             </div>
         </li>

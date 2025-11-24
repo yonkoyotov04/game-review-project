@@ -23,27 +23,11 @@ gamesController.post('/create', async (req, res) => {
     }
 })
 
-gamesController.get('/:category', async (req, res) => {
-    let category = req.params.category;
-    let filter = req.query;
-
-    if (['rpg', 'fps', 'mmo'].includes(category)) {
-        category = category.toUpperCase();
-    } else {
-        category = category[0].toUpperCase() + category.slice(1);
-    }
-
-    const games = await gamesService.getByCategory(category, filter);
-
-    res.json(games ?? []);
-})
-
 gamesController.get('/:gameId/details', async (req, res) => {
     const gameId = req.params.gameId;
 
     try {
         const game = await gamesService.getOneGame(gameId);
-        // const reviews = await reviewService.getGameReviews(gameId);
 
         // let gameRating = 0;
         // let gameLength = 0;
