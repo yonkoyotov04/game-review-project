@@ -1,5 +1,5 @@
-import ReviewCard from "../review-card/Review-Card.jsx";
-import ReviewSection from "../review-section/reviewSection.jsx";
+import ReviewCard from "../review-card/ReviewCard.jsx";
+import ReviewSection from "../review-section/ReviewSection.jsx";
 
 export default function Profile() {
     return (

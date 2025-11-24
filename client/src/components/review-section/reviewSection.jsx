@@ -1,16 +1,39 @@
 import { useEffect, useState } from "react";
-import ReviewCard from "../review-card/Review-Card.jsx";
+import ReviewCard from "../review-card/ReviewCard.jsx";
 import request from "../../utils/requester.js";
 
-export default function ReviewSection({mode, id}) {
+export default function ReviewSection({mode, id, setGameRating, setGameTime}) {
     const [reviews, setReviews] = useState([]);
+
+    const calculateAverageRatingAndTime = (reviews) => {
+        let gameRatingAvg = 0;
+        let gameTimeAvg = 0;
+
+        if (reviews.length === 0) {
+            return;
+        }
+
+        reviews.forEach(review => {
+            gameRatingAvg += review.rating;
+            gameTimeAvg += review.playTime;
+        })
+
+        gameRatingAvg = (gameRatingAvg / reviews.length).toFixed(1);
+        gameTimeAvg = (gameTimeAvg / reviews.length).toFixed(1);
+
+        setGameRating(gameRatingAvg);
+        setGameTime(gameTimeAvg);
+    }
 
     useEffect(() => {
         request(`/reviews/${mode}/${id}`)
         .then(result => {
             setReviews(result);
+            calculateAverageRatingAndTime(result);
         })
     }, [mode, id])
+
+    
 
     return (
         <div className="reviews-showcase">
@@ -19,7 +42,7 @@ export default function ReviewSection({mode, id}) {
             <div className="reviews-container">
                 <ul className="review-list">
                     {reviews.map(review => <ReviewCard key={review._id} mode={mode} popualatedData={review.user} {...review} />)}
-                    <p className="section-title">There are no reviews yet...</p>
+                    {reviews.length === 0 && <p className="section-title">There are no reviews yet...</p>}
                 </ul>
             </div>
 

@@ -6,8 +6,6 @@ export default function ReviewCard({_id, popualatedData, playTime, rating, thoug
         inGameDetails = false; 
     }
 
-    console.log(inGameDetails);
-
     return (
         <li className="review-list-item">
             <div className="review-card">
