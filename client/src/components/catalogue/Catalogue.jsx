@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
 import request from "../../utils/requester.js";
 import { useParams } from "react-router";
+import Pagination from "../pagination/Pagination.jsx";
 
 export default function Catalogue() {
     let { category } = useParams();
     const [games, setGames] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [gamesPerPage, setGamesPerPage] = useState(24);
 
     if (category) {
         if (['rpg', 'fps', 'mmo'].includes(category)) {
@@ -26,6 +29,13 @@ export default function Catalogue() {
             .catch(err => alert(err.message));
     }, [])
 
+    const lastGameIndex = currentPage * gamesPerPage;
+    const firstGameIndex = lastGameIndex - gamesPerPage;
+
+    const displayedGames = games.slice(firstGameIndex, lastGameIndex);
+
+    console.log(displayedGames);
+
     return (
         <section className="games-list">
             <h2 className="section-title">{category ? `${category}` : 'All'} Games</h2>
@@ -38,19 +48,16 @@ export default function Catalogue() {
             </div>
 
             <div className="square-game-grid">
-                {games.map(game => <GameCard key={game._id} {...game} />)}
+                {displayedGames.map(game => <GameCard key={game._id} {...game} />)}
                 {games.length === 0 && <p className="section-title">There are no {category ? `${category}` : ''} games yet...</p>}
             </div>
 
-            <div className="reviews-pagination">
-                <button className="page-btn prev">← Previous</button>
-                <div className="page-numbers">
-                    <button className="page-number active">1</button>
-                    <button className="page-number">2</button>
-                    <button className="page-number">3</button>
-                </div>
-                <button className="page-btn next">Next →</button>
-            </div>
+            {games.length > 24 && <Pagination 
+            totalGames={games.length} 
+            gamesPerPage={gamesPerPage} 
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            />}
         </section>
     )
 }

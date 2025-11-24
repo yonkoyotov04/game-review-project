@@ -24,7 +24,7 @@ const gameSchema = new Schema({
     platforms: {
         type: String,
         required: [true, "A platform is required"],
-        minLength: [3, "The game's platform is too short"]
+        minLength: [2, "The game's platform is too short"]
     },
     description: {
         type: String,

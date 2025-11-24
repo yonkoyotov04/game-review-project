@@ -144,7 +144,7 @@
     }
 }
 
-.reviews-pagination {
+.pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,7 +184,7 @@
 }
 
 @media (max-width: 768px) {
-    .reviews-pagination {
+    .pagination {
         flex-direction: column;
         gap: 10px;
     }
