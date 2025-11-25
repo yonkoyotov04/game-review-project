@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import GameCard from "../gameCard/GameCard.jsx";
 import request from "../../utils/requester.js";
 
@@ -31,90 +32,90 @@ export default function Home() {
             <section className="categories">
                 <h2 className="section-title">Browse by Category</h2>
                 <div className="category-grid">
-                    <a href="/games/action">
+                    <Link to="/games/action">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Action</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/adventure">
+                    </Link>
+                    <Link to="/games/adventure">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Adventure</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/rpg">
+                    </Link>
+                    <Link to="/games/rpg">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>RPG</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/fighting">
+                    </Link>
+                    <Link to="/games/fighting">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Fighting</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/fps">
+                    </Link>
+                    <Link to="/games/fps">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>FPS</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/simulation">
+                    </Link>
+                    <Link to="/games/simulation">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Simulation</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/strategy">
+                    </Link>
+                    <Link to="/games/strategy">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Strategy</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/horror">
+                    </Link>
+                    <Link to="/games/horror">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Horror</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/sports">
+                    </Link>
+                    <Link to="/games/sports">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Sports</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/racing">
+                    </Link>
+                    <Link to="/games/racing">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Racing</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/tactical">
+                    </Link>
+                    <Link to="/games/tactical">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>Tactical</h3>
                             </div>
                         </div>
-                    </a>
-                    <a href="/games/mmo">
+                    </Link>
+                    <Link to="/games/mmo">
                         <div className="category-card">
                             <div className="category-overlay">
                                 <h3>MMO</h3>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </section>
         </>

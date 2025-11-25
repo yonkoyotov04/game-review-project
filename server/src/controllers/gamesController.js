@@ -12,12 +12,13 @@ gamesController.get('/', async (req, res) => {
     res.json(games ?? []);
 })
 
-gamesController.post('/create', async (req, res) => {
+gamesController.post('/', async (req, res) => {
     const gameData = req.body;
     const userId = req.user?.id;
 
     try {
-        await gamesService.createGame(gameData, userId);
+       const game = await gamesService.createGame(gameData, userId);
+       res.json(game ?? {});
     } catch (error) {
         res.status(400).json({ message: getErrorMessage(error) })
     }
@@ -28,19 +29,6 @@ gamesController.get('/:gameId/details', async (req, res) => {
 
     try {
         const game = await gamesService.getOneGame(gameId);
-
-        // let gameRating = 0;
-        // let gameLength = 0;
-
-        // if (reviews.length > 0) {
-        //     reviews.forEach(review => {
-        //         gameRating += review.rating;
-        //         gameLength += review.playTime;
-        //     })
-
-        //     gameRating = (gameRating / reviews.length).toFixed(1);
-        //     gameLength = (gameLength / reviews.length).toFixed(1);
-        // }
 
         res.json(game ?? {});
     } catch (error) {

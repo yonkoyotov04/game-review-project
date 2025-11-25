@@ -34,15 +34,26 @@ export default function Catalogue() {
 
     const displayedGames = games.slice(firstGameIndex, lastGameIndex);
 
-    console.log(displayedGames);
+    const searchHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const {title} = Object.fromEntries(formData);
+
+        const regex = new RegExp(`/${title}/`, 'i');
+
+        console.log(games.filter(game => game.title.match(regex)));
+    }
+    
 
     return (
         <section className="games-list">
             <h2 className="section-title">{category ? `${category}` : 'All'} Games</h2>
 
             <div className="search-bar">
-                <form method="GET">
-                    <input type="text" id="gameSearch" name="title" value="" placeholder="Search for a game..." />
+                <form onSubmit={searchHandler}>
+                    <input type="text" id="gameSearch" name="title" placeholder="Search for a game..." />
                     <button type="submit" className="search-btn">Search</button>
                 </form>
             </div>

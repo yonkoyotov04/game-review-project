@@ -1,20 +1,46 @@
+import { useNavigate } from "react-router";
+import useControlledForm from "../../hooks/useControlledForm.js"
+import request from "../../utils/requester.js";
+
 export default function AddGame() {
+    const navigate = useNavigate();
+
+    const initialValues = {
+        title: '',
+        developers: '',
+        genre: '',
+        relDate: '',
+        platforms: '',
+        description: '',
+        imageUrl: ''
+    }
+
+    const onSubmit = async(values) => {
+        const data = values;
+
+        request('/games', 'POST', data);
+
+        navigate('/games')
+    }
+
+    const {values, changeHandler, submitHandler} = useControlledForm(initialValues, onSubmit)
+
     return (
         <section id="create-game">
             <div className="game-form">
                 <h3 className="form-title">Add Game</h3>
-                <form id="gameForm" method="POST">
+                <form id="gameForm" method="POST" onSubmit={submitHandler}>
                     <div className="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" value="" required />
+                        <label htmlFor="title">Title</label>
+                        <input type="text" id="title" name="title" value={values.title} onChange={changeHandler} required />
                     </div>
                     <div className="form-group">
-                        <label for="developers">Developers</label>
-                        <input type="text" id="developers" name="developers" value="" required />
+                        <label htmlFor="developers">Developers</label>
+                        <input type="text" id="developers" name="developers" value={values.developers} onChange={changeHandler} required />
                     </div>
                     <div className="form-group">
-                        <label for="genre">Genre</label>
-                        <select id="genre" name="genre">
+                        <label htmlFor="genre">Genre</label>
+                        <select id="genre" name="genre" value={values.genre} onChange={changeHandler}>
                             <option value="">Select Category</option>
                             <option value="Action">Action</option>
                             <option value="Adventure">Adventure</option>
@@ -31,20 +57,20 @@ export default function AddGame() {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label for="relDate">Release Date</label>
-                        <input type="date" id="relDate" name="relDate" value="" required />
+                        <label htmlFor="relDate">Release Date</label>
+                        <input type="date" id="relDate" name="relDate" value={values.relDate} onChange={changeHandler} required />
                     </div>
                     <div className="form-group">
-                        <label for="platforms">Platforms</label>
-                        <input type="text" id="platforms" name="platforms" value="" required />
+                        <label htmlFor="platforms">Platforms</label>
+                        <input type="text" id="platforms" name="platforms" value={values.platforms} onChange={changeHandler} required />
                     </div>
                     <div className="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" required>{}</textarea>
+                        <label htmlFor="description">Description</label>
+                        <textarea id="description" name="description" onChange={changeHandler} value={values.description} required></textarea>
                     </div>
                     <div className="form-group">
-                        <label for="imageUrl">Game Image</label>
-                        <input type="text" id="imageUrl" name="imageUrl" value="" required />
+                        <label htmlFor="imageUrl">Game Image</label>
+                        <input type="text" id="imageUrl" name="imageUrl" value={values.imageUrl} onChange={changeHandler} required />
                     </div>
                     <button type="submit" className="submit-btn">Post</button>
                 </form>

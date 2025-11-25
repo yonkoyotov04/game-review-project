@@ -45,16 +45,6 @@ export default function ReviewSection({mode, id, setGameRating, setGameTime}) {
                     {reviews.length === 0 && <p className="section-title">There are no reviews yet...</p>}
                 </ul>
             </div>
-
-            <div className="reviews-pagination">
-                <button className="page-btn prev">← Previous</button>
-                <div className="page-numbers">
-                    <button className="page-number active">1</button>
-                    <button className="page-number">2</button>
-                    <button className="page-number">3</button>
-                </div>
-                <button className="page-btn next">Next →</button>
-            </div>
         </div>
     )
 }
