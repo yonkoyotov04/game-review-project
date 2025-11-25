@@ -1,56 +1,20 @@
 # game-review-project
 A project for my ReactJS Course.
 
-- [x] Initialize Project
-- [x] Install needed libraries
-- [x] Setup mongoose
-- [x] Setup handlebars
-- [x] Add resources
-- [x] Render Home Page
-- [x] Render About Page
-- [x] Render Catalogue Page
-- [x] Render Login Page
-- [x] Render Register Page
-- [x] Render Profile Page
-- [x] Create User Model
-- [x] Create Game Model
-- [x] Create Review Model
-- [x] Add Token Utils
-- [x] Add Error Utils
-- [x] Add Register Function
-- [x] Add Logout Function
-- [x] Add Login Function
-- [x] Add Auth Middleware
-- [x] Add Route Guard
-- [x] Render Create Page
-- [x] Create Games Service
-- [x] Add Create Game Functionality
-- [x] Render Details Page Dynamically
-- [x] Render Catalogue Dynamically
-- [x] Render Profile Dynamically
-- [x] Render Edit Profile Page
-- [x] Add Edit Profile Functionality
-- [x] Add Delete Profile Functionality
-- [x] Add Functionality to the categories
-- [x] Add Functionality to Search Game in the catalogue page 
-- [x] Make a route guard for Add Game, so that only the admin can add games
-- [x] Add Edit and Delete Buttons in game details
-- [x] Add Edit and Delete Functionality in game details
-- [x] Add More Error Handling for Create Game, Login and Register
-- [x] Make Edit Profile Better
-- [x] Add Leave Review Functionality
-- [x] Render reviews in game details
-- [x] Delete game reviews if the game is deleted
-- [x] Add functionality for viewing other people's profiles
-- [x] Make it impossible to delete or edit another person's profile
-- [x] Edit review in review(if owner)
-- [x] Delete review in review(if owner)
-- [x] Don't let users leave a review on the same game again.
-- [x] Render Reviews in user profile
-- [x] Delete reviews if the user deletes his profile
-- [x] Handle Rating and Average Time in game details
-- [x] Add a scrollbar for reviews
-- [x] Fix the search bar when sorting by category
-- [x] Fix or repurpose Most Popular Games on the home page
-- [] Fix create page
-- [] Add Pagination
+## What's left:
+- [] Search functionality for catalogue
+- [] Register functionality
+- [] Login Functionality
+- [] Logout Functionality
+- [] Route guarding and button hiding
+- [] Leave Review functionality
+- [] Hide leave review if you've already left a review
+- [] Hide leave review if you're not logged in
+- [] Add ownerId to games created in the react client
+- [] Show edit and delete buttons in a game's details page if you're the owner or admin;
+- [] Render Profile dynamically
+- [] Render other user's profiles
+- [] Show reviews in profile dynamically
+- [] Show edit and delete buttons on reviews in your profile page
+- [] Show Edit and delete profile buttons in yur profile page
+- [] Fix the footer's position
