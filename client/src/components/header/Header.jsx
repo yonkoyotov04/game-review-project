@@ -9,7 +9,7 @@ export default function Header() {
         <nav id="navbar" >
             <div className="nav-container">
                 <Link to="/" className="logo-link">
-                    <span className="logo-text">Game Review</span>
+                    <span className="logo-text">CyberCritic</span>
                 </Link>
                 <ul className="nav-links" id="navLinks">
                     <li><Link to="/" className="nav-link">Home</Link></li>
