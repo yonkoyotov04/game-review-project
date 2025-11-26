@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <nav id="navbar" >
             <div className="nav-container">
-                <a href="/" className="logo-link">
+                <Link to="/" className="logo-link">
                     <span className="logo-text">Game Review</span>
                 </a>
                 <ul className="nav-links" id="navLinks">
@@ -18,7 +18,7 @@ export default function Header() {
                         <>
                             <li><Link to="/games/create" className="nav-link">Add Game</Link></li>
                             <li><Link to="/profile" className="nav-link">Profile</Link></li>
-                            <li><Link to="/logout" className="nav-link">Logout</Link></li>
+                            <li><Link onClick={logoutHandler} className="nav-link">Logout</Link></li>
                         </>
 
                     ) : (
