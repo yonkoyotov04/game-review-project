@@ -1,4 +1,4 @@
-# game-review-project
+# CyberCritic
 CyberCritic is a game-review project for my ReactJS course in SoftUni.
 Its primary purpose is for users to leave reviews on their favourite games, after having played them of course.
 In the home page, the twelve most popular games in the site at that time are displayed.
