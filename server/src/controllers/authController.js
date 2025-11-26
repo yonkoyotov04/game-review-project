@@ -39,7 +39,6 @@ authController.get('/logout', (req, res) => {
 authController.get('/:userId/profile', async (req, res) => {
     const userId = req.params.userId;
     const profileData = await authService.getProfileData(userId);
-    // const reviews = await reviewService.getUserReviews(userId);
     
     res.status(201).json(profileData)
 })

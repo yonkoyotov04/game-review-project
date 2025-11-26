@@ -3,14 +3,14 @@ import { Link } from "react-router"
 import UserContext from "../../contexts/userContext.js"
 
 export default function Header() {
-    const { isAuthenticated, user } = useContext(UserContext);
+    const { isAuthenticated, user, logoutHandler } = useContext(UserContext);
 
     return (
         <nav id="navbar" >
             <div className="nav-container">
                 <Link to="/" className="logo-link">
                     <span className="logo-text">Game Review</span>
-                </a>
+                </Link>
                 <ul className="nav-links" id="navLinks">
                     <li><Link to="/" className="nav-link">Home</Link></li>
                     <li><Link to="/games" className="nav-link">Catalogue</Link></li>

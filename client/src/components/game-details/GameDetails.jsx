@@ -1,22 +1,23 @@
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useParams, Link} from "react-router";
+import { useContext, useEffect, useState, } from "react";
 import request from "../../utils/requester.js";
-import ReviewSection from "../review-section/ReviewSection.jsx";
+import UserContext from "../../contexts/userContext.js";
+import GameReviewSection from "../review-section/GameReviewSection.jsx";
 
 export default function GameDetails() {
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [gameRating, setGameRating] = useState(0);
     const [gameTime, setGameTime] = useState(0);
+    const { isAuthenticated, user } = useContext(UserContext);
 
     useEffect(() => {
         request(`/games/${gameId}/details`)
-        .then(result => {
-            setGameData(result);
-        })
-        .catch(err => alert(err.message))
+            .then(result => {
+                setGameData(result);
+            })
+            .catch(err => alert(err.message))
     }, [])
-
 
     return (
         <section className="game-card">
@@ -42,16 +43,18 @@ export default function GameDetails() {
                 </div>
             </div>
 
-            
+            {isAuthenticated ?
+                <Link to={`reviews/${gameId}/review`}><button className="review-btn">Leave a Review</button></Link>
+                : <p className="basic-text">You need to <Link to="/login">login</Link> to leave a review!</p>}
             <p className="basic-text">You already left a review!</p>
-            <a href={`reviews/${gameData._id}/review`}><button className="review-btn">Leave a Review</button></a>
-            <p className="basic-text">You need to <a href="/auth/login">login</a> to leave a review!</p>
 
-            <ReviewSection mode="game" id={gameId} setGameRating={setGameRating} setGameTime={setGameTime} />
-         
+
+
+            <GameReviewSection id={gameId} setGameRating={setGameRating} setGameTime={setGameTime} />
+
             <div className="game-actions">
-                <a href={`/games/${gameData._id}/edit`}><button className="edit-btn">Edit Game</button></a>
-                <a href={`/games/${gameData._id}/delete`}><button className="delete-btn">Delete Game</button></a>
+                <a href={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></a>
+                <a href={`/games/${gameId}/delete`}><button className="delete-btn">Delete Game</button></a>
             </div>
         </section>
     )

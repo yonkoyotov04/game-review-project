@@ -1,4 +1,6 @@
-export default function ReviewCard({_id, popualatedData, playTime, rating, thoughts}) {
+import { Link } from "react-router";
+
+export default function ReviewCard({id, popualatedData, playTime, rating, thoughts}) {
 
     let inGameDetails = true;
 
@@ -14,13 +16,13 @@ export default function ReviewCard({_id, popualatedData, playTime, rating, thoug
                         <span className="review-game-title">
                             {inGameDetails ? popualatedData.username : popualatedData.title}
                             </span>
-                        <span><a href={inGameDetails ? `/profile` : `/games/${popualatedData._id}/details`}>
+                        <span><Link to={inGameDetails ? `/profile` : `/games/${popualatedData._id}/details`}>
                         <img src={inGameDetails ? popualatedData.profilePic : popualatedData.imageUrl}
                             alt="image" className="game-icon" />
-                            </a></span>
+                            </Link></span>
                     </div>
                     <div>
-                        <a href={`/reviews/${_id}/edit`}><svg
+                        <a href={`/reviews/${id}/edit`}><svg
                             style={{ marginRight: 10 }}
                             width={24}
                             height={24}
@@ -47,7 +49,7 @@ export default function ReviewCard({_id, popualatedData, playTime, rating, thoug
                             </defs>
                         </svg>
                         </a>
-                        <a href={`/reviews/${_id}/delete`}><svg
+                        <a href={`/reviews/${id}/delete`}><svg
                             style={{ marginRight: 10 }}
                             width={30}
                             height={30}
