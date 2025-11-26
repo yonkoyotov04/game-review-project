@@ -3,8 +3,8 @@ A project for my ReactJS Course.
 
 ## What's left:
 - [] Search functionality for catalogue
-- [] Register functionality
-- [] Login Functionality
+- [x] Register functionality
+- [x] Login Functionality
 - [] Logout Functionality
 - [] Route guarding and button hiding
 - [] Leave Review functionality

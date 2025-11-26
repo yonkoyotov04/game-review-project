@@ -24,7 +24,8 @@ authController.post('/login', async (req, res) => {
         const token = await authService.login(email, password);
         res.status(201).json(token);
     } catch (error) {
-        res.status(401).json({ message: getErrorMessage(error) })
+       res.statusMessage = getErrorMessage(error);
+        res.status(401).end();
     }
 
 
