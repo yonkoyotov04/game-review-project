@@ -11,29 +11,47 @@ import Profile from './components/profile/Profile.jsx'
 import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import GameDetails from './components/game-details/GameDetails.jsx'
+import UserContext from './contexts/userContext.js'
 
 function App() {
 
-  return (
-    <>
-      <Header />
-      <Background />
+    const [user, setUser] = useState({});
 
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/games/create' element={<AddGame />} />
-        <Route path='/games' element={<Catalogue />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/games/:gameId/details' element={<GameDetails />} />
-        <Route path='/games/:category' element={<Catalogue />} />
-      </Routes>
+    const onLogin = (user) => {
+        setUser(user);
+    }
 
-      <Footer />
-    </>
-  )
+    const onLogout = () => {
+        setUser({});
+    }
+
+    const contextValues = {
+        user,
+        isAuthenticated: !!user.email,
+        loginHandler: onLogin,
+        logoutHandler: onLogout
+    }
+
+    return (
+        <UserContext.Provider value={contextValues}>
+            <Header />
+            <Background />
+
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/games/create' element={<AddGame />} />
+                <Route path='/games' element={<Catalogue />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/games/:gameId/details' element={<GameDetails />} />
+                <Route path='/games/:category' element={<Catalogue />} />
+            </Routes>
+
+            <Footer />
+        </UserContext.Provider>
+    )
 }
 
 export default App
