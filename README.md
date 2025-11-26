@@ -1,5 +1,14 @@
 # game-review-project
-A project for my ReactJS Course.
+CyberCritic is a game-review project for my ReactJS course in SoftUni.
+Its primary purpose is for users to leave reviews on their favourite games, after having played them of course.
+In the home page, the twelve most popular games in the site at that time are displayed.
+The catalogue displays all games present in the site, but it can be sorted by category through the home page
+and specific games can be searched by title via a search bar at the top of the catalogue.
+Only logged in users can leave reviews. If a game is missing in the catalogue, logged in users can add games to it
+via the Add Game page. Users can also edit and delete their reviews, and the games as well if that is needed. In the details of a game an average score and average time to beat it are displayed. They're calculated by getting the average of all scores users have left for said game.
+Logged in users can see their profile and all the reviews they've left, and can also edit their username, bio and profile picture or delete their
+profile if they so wish. Other users' profiles can be viewed as well by clicking on their profile picture on any of the reviews they've left, but obviously cannot be edited or deleted by anyone other than their owner.
+
 
 ## What's left:
 - [] Search functionality for catalogue
