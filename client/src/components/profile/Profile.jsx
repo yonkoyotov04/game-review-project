@@ -18,8 +18,6 @@ export default function Profile() {
         }
     }, [user._id])
 
-    console.log(profileData);
-
     return (
         <section className="profile" id="profile">
             <div className="profile-header">

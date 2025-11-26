@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router";
 import useControlledForm from "../../hooks/useControlledForm.js"
 import request from "../../utils/requester.js";
+import { useContext } from "react";
+import UserContext from "../../contexts/userContext.js";
 
 export default function AddGame() {
+    const {user} = useContext(UserContext);
     const navigate = useNavigate();
 
     const initialValues = {
@@ -16,7 +19,7 @@ export default function AddGame() {
     }
 
     const onSubmit = async(values) => {
-        const data = values;
+        const data = {...values, ownerId: user._id};
 
         request('/games', 'POST', data);
 
