@@ -26,6 +26,6 @@ profile if they so wish. Other users' profiles can be viewed as well by clicking
 - [x] Render other user's profiles
 - [x] Show reviews in your profile dynamically
 - [x] Show reviews in another user's profile dynamically
-- [] Show edit and delete buttons on reviews in your profile page
+- [x] Show edit and delete buttons on reviews in your profile page
 - [x] Show Edit and delete profile buttons in your profile page
 - [] Fix the footer's position

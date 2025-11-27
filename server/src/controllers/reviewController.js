@@ -20,18 +20,17 @@ reviewController.get('/user/:userId', async(req, res) => {
     res.json(reviews ?? []);
 })
 
-reviewController.post('/:gameId/review', async (req, res) => {
+reviewController.post('/:gameId', async (req, res) => {
     const game = req.params.gameId;
-    const user = req.user.id;
+    const user = req.user?.id;
     const formData = req.body;
 
     try {
         const reviewData = { game, user, ...formData };
-        await reviewService.reviewGame(reviewData);
-        res.redirect(`/games/${game}/details`);
+        const review = await reviewService.reviewGame(reviewData);
+        res.json(review ?? {});
     } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        res.status(400).render('reviews/create', {error: errorMessage, review: formData});
+        res.status(400).json({ message: getErrorMessage(error) })
     }
 })
 

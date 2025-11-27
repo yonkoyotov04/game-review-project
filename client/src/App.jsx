@@ -12,6 +12,7 @@ import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import GameDetails from './components/game-details/GameDetails.jsx'
 import UserContext from './contexts/userContext.js'
+import LeaveReview from './components/leave-review/LeaveReview.jsx'
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
                 <Route path='/games/:category' element={<Catalogue />} />
                 <Route path='/games/:gameId/details' element={<GameDetails />} />
                 <Route path='/games/create' element={<AddGame />} />
+                <Route path='/reviews/:gameId/review' element={<LeaveReview />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/profile/:userId' element={<Profile />} />

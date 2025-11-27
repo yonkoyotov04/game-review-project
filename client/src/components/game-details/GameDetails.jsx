@@ -43,7 +43,7 @@ export default function GameDetails() {
             </div>
 
             {isAuthenticated ?
-                <Link to={`reviews/${gameId}/review`}><button className="review-btn">Leave a Review</button></Link>
+                <Link to={`/reviews/${gameId}/review`}><button className="review-btn">Leave a Review</button></Link>
                 : <p className="basic-text">You need to <Link to="/login">login</Link> to leave a review!</p>}
             <p className="basic-text">You already left a review!</p>
 
