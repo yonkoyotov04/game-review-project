@@ -40,13 +40,13 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/about' element={<About />} />
-                <Route path='/games/create' element={<AddGame />} />
                 <Route path='/games' element={<Catalogue />} />
-                <Route path='/profile' element={<Profile />} />
+                <Route path='/games/:category' element={<Catalogue />} />
+                <Route path='/games/:gameId/details' element={<GameDetails />} />
+                <Route path='/games/create' element={<AddGame />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/games/:gameId/details' element={<GameDetails />} />
-                <Route path='/games/:category' element={<Catalogue />} />
+                <Route path='/profile/:userId' element={<Profile />} />
             </Routes>
 
             <Footer />

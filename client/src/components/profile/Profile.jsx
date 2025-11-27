@@ -2,21 +2,25 @@ import { useContext, useEffect, useState } from "react";
 import ProfileReviewSection from "../review-section/ProfileReviewSection.jsx";
 import UserContext from "../../contexts/userContext.js";
 import request from "../../utils/requester.js";
+import { useParams } from "react-router";
+import checkOwnership from "../../utils/checkOwnership.js";
 
 export default function Profile() {
-
+    const { userId } = useParams();
     const { user } = useContext(UserContext);
     const [profileData, setProfileData] = useState({});
+    const [isOwner, setIsOwner] = useState(false);
 
     useEffect(() => {
-        if (user._id) {
-            request(`/auth/${user._id}/profile`)
+        if (userId) {
+            request(`/auth/${userId}/profile`)
                 .then(result => {
                     setProfileData(result);
+                    setIsOwner(userId === user?._id);
                 })
                 .catch(err => alert(err.message))
         }
-    }, [user._id])
+    }, [userId])
 
     return (
         <section className="profile" id="profile">
@@ -30,12 +34,12 @@ export default function Profile() {
                 </div>
             </div>
 
-            {user._id && <ProfileReviewSection id={user._id} />}
+            {userId && <ProfileReviewSection id={userId} />}
 
-            <div className="profile-actions">
+            {isOwner ? (<div className="profile-actions">
                 <a href="/auth/profile/edit"><button className="edit-btn">Edit Profile</button></a>
                 <a href="/auth/profile/delete"><button className="delete-btn">Delete Profile</button></a>
-            </div>
+            </div>) : ''}
         </section>
     )
 }

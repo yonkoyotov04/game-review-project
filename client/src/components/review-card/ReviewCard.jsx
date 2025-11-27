@@ -16,7 +16,7 @@ export default function ReviewCard({id, popualatedData, playTime, rating, though
                         <span className="review-game-title">
                             {inGameDetails ? popualatedData.username : popualatedData.title}
                             </span>
-                        <span><Link to={inGameDetails ? `/profile` : `/games/${popualatedData._id}/details`}>
+                        <span><Link to={inGameDetails ? `/profile/${popualatedData._id}` : `/games/${popualatedData._id}/details`}>
                         <img src={inGameDetails ? popualatedData.profilePic : popualatedData.imageUrl}
                             alt="image" className="game-icon" />
                             </Link></span>
