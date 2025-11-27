@@ -19,13 +19,13 @@ profile if they so wish. Other users' profiles can be viewed as well by clicking
 - [] Route Guarding
 - [] Leave Review functionality
 - [] Hide leave review if you've already left a review
-- [] Hide leave review if you're not logged in
+- [x] Hide leave review if you're not logged in
 - [x] Add ownerId to games created in the react client
 - [] Show edit and delete buttons in a game's details page if you're the owner or admin;
 - [x] Render Profile dynamically
-- [] Render other user's profiles
+- [x] Render other user's profiles
 - [x] Show reviews in your profile dynamically
-- [] Show reviews in another user's profile dynamically
+- [x] Show reviews in another user's profile dynamically
 - [] Show edit and delete buttons on reviews in your profile page
-- [] Show Edit and delete profile buttons in yur profile page
+- [x] Show Edit and delete profile buttons in your profile page
 - [] Fix the footer's position

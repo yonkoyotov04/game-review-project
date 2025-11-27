@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
-import request from "../../utils/requester.js";
 import { useParams } from "react-router";
 import Pagination from "../pagination/Pagination.jsx";
 import useFetch from "../../hooks/useFetch.js";
