@@ -3,6 +3,7 @@ import GameCard from "../gameCard/GameCard.jsx";
 import request from "../../utils/requester.js";
 import { useParams } from "react-router";
 import Pagination from "../pagination/Pagination.jsx";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function Catalogue() {
     let { category } = useParams();
@@ -18,56 +19,43 @@ export default function Catalogue() {
         }
     }
 
-    useEffect(() => {
-        request('/games')
-            .then(result => {
-                if (category) {
-                    result = result.filter(game => game.genre === category);
-                }
-                setGames(Object.values(result));
-            })
-            .catch(err => alert(err.message));
-    }, [])
+    const { isLoading, error, refetch } = useFetch('/games', setGames, category);
+
+    if (error) {
+        console.log(error);
+    }
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;
 
     const displayedGames = games.slice(firstGameIndex, lastGameIndex);
 
-    const searchHandler = (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-
-        const {title} = Object.fromEntries(formData);
-
-        const regex = new RegExp(`/${title}/`, 'i');
-
-        console.log(games.filter(game => game.title.match(regex)));
-    }
-    
 
     return (
         <section className="games-list">
             <h2 className="section-title">{category ? `${category}` : 'All'} Games</h2>
 
             <div className="search-bar">
-                <form onSubmit={searchHandler}>
+                <form>
                     <input type="text" id="gameSearch" name="title" placeholder="Search for a game..." />
                     <button type="submit" className="search-btn">Search</button>
                 </form>
             </div>
 
             <div className="square-game-grid">
-                {displayedGames.map(game => <GameCard key={game._id} {...game} />)}
-                {games.length === 0 && <p className="section-title">There are no {category ? `${category}` : ''} games yet...</p>}
+                {isLoading ? <p className="section-title">Loading...</p>
+                    :
+                    <>
+                        {displayedGames.map(game => <GameCard key={game._id} {...game} />)}
+                        {games.length === 0 && <p className="section-title">There are no {category ? `${category}` : ''} games yet...</p>}
+                    </>}
             </div>
 
-            {games.length > 24 && <Pagination 
-            totalGames={games.length} 
-            gamesPerPage={gamesPerPage} 
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
+            {games.length > 24 && <Pagination
+                totalGames={games.length}
+                gamesPerPage={gamesPerPage}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
             />}
         </section>
     )
