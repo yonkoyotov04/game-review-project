@@ -1,4 +1,4 @@
-import { useParams, Link} from "react-router";
+import { useParams, Link } from "react-router";
 import { useContext, useEffect, useState, } from "react";
 import request from "../../utils/requester.js";
 import UserContext from "../../contexts/userContext.js";
@@ -11,8 +11,13 @@ export default function GameDetails() {
     const [gameRating, setGameRating] = useState(0);
     const [gameTime, setGameTime] = useState(0);
     const { isAuthenticated, user } = useContext(UserContext);
-    
-    const {isLoading, error, refetch} = useFetch(`/games/${gameId}/details`, setGameData)
+    let isOwner = false;
+
+    if (gameData.ownerId === user?._id) {
+        isOwner = true;
+    }
+
+    const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData)
 
     if (error) {
         console.error(error);
@@ -49,10 +54,13 @@ export default function GameDetails() {
 
             <GameReviewSection id={gameId} setGameRating={setGameRating} setGameTime={setGameTime} />
 
-            <div className="game-actions">
-                <a href={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></a>
-                <a href={`/games/${gameId}/delete`}><button className="delete-btn">Delete Game</button></a>
-            </div>
+            {isOwner ? (
+                <div className="game-actions">
+                    <a href={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></a>
+                    <a href={`/games/${gameId}/delete`}><button className="delete-btn">Delete Game</button></a>
+                </div>
+            ) : ''}
+
         </section>
     )
 }

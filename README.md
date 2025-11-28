@@ -17,7 +17,7 @@ profile if they so wish. Other users' profiles can be viewed as well by clicking
 - [x] Logout Functionality
 - [x] Button Hiding
 - [] Route Guarding
-- [] Leave Review functionality
+- [x] Leave Review functionality
 - [] Hide leave review if you've already left a review
 - [x] Hide leave review if you're not logged in
 - [x] Add ownerId to games created in the react client

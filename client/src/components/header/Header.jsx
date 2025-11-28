@@ -18,7 +18,7 @@ export default function Header() {
                         <>
                             <li><Link to="/games/create" className="nav-link">Add Game</Link></li>
                             <li><Link to={`/profile/${user._id}`} className="nav-link">Profile</Link></li>
-                            <li><Link onClick={logoutHandler} className="nav-link">Logout</Link></li>
+                            <li><Link to={'/'} onClick={logoutHandler} className="nav-link">Logout</Link></li>
                         </>
 
                     ) : (

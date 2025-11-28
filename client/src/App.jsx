@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useNavigate } from 'react-router'
 import Background from './components/background/Background.jsx'
 import Header from './components/header/Header.jsx'
 import Footer from './components/footer/Footer.jsx'
@@ -16,6 +16,7 @@ import LeaveReview from './components/leave-review/LeaveReview.jsx'
 
 function App() {
 
+    const navigate = useNavigate();
     const [user, setUser] = useState({});
 
     const onLogin = (user) => {
