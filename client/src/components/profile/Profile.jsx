@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import ProfileReviewSection from "../review-section/ProfileReviewSection.jsx";
 import UserContext from "../../contexts/userContext.js";
 import request from "../../utils/requester.js";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 
 export default function Profile() {
@@ -30,7 +30,7 @@ export default function Profile() {
                 </div>
                 <div className="profile-info">
                     <h1 className="username">{profileData.username}</h1>
-                    <p className="user-bio">“{profileData.bio}”</p>
+                    <p className="user-bio">{profileData.bio ? `"${profileData.bio}"` : ''}</p>
                 </div>
             </div>
 
@@ -39,8 +39,8 @@ export default function Profile() {
             </ProfileOwnerContext.Provider>
 
             {isOwner ? (<div className="profile-actions">
-                <a href="/auth/profile/edit"><button className="edit-btn">Edit Profile</button></a>
-                <a href="/auth/profile/delete"><button className="delete-btn">Delete Profile</button></a>
+                <Link to="/profile/edit"><button className="edit-btn">Edit Profile</button></Link>
+                <Link to="/profile/delete"><button className="delete-btn">Delete Profile</button></Link>
             </div>) : ''}
         </section>
     )

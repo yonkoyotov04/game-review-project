@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router'
+import { Route, Routes } from 'react-router'
 import Background from './components/background/Background.jsx'
 import Header from './components/header/Header.jsx'
 import Footer from './components/footer/Footer.jsx'
@@ -13,10 +13,9 @@ import Login from './components/login/Login.jsx'
 import GameDetails from './components/game-details/GameDetails.jsx'
 import UserContext from './contexts/userContext.js'
 import LeaveReview from './components/leave-review/LeaveReview.jsx'
+import EditProfile from './components/profile/EditProfile.jsx'
 
 function App() {
-
-    const navigate = useNavigate();
     const [user, setUser] = useState({});
 
     const onLogin = (user) => {
@@ -52,6 +51,7 @@ function App() {
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/profile/:userId' element={<Profile />} />
+                <Route path='/profile/edit' element={<EditProfile />} />
             </Routes>
 
             <Footer />

@@ -12,8 +12,7 @@ authController.post('/register', async (req, res) => {
         const token = await authService.register(userData);
         res.status(201).json(token);
     } catch (error) {
-        res.statusMessage = getErrorMessage(error);
-        res.status(401).end();
+        res.status(400).json({ message: getErrorMessage(error) });
     }
 })
 
@@ -24,11 +23,8 @@ authController.post('/login', async (req, res) => {
         const token = await authService.login(email, password);
         res.status(201).json(token);
     } catch (error) {
-       res.statusMessage = getErrorMessage(error);
-        res.status(401).end();
+        res.status(401).json({ message: getErrorMessage(error) });
     }
-
-
 })
 
 authController.get('/logout', (req, res) => {
@@ -39,12 +35,12 @@ authController.get('/logout', (req, res) => {
 authController.get('/:userId/profile', async (req, res) => {
     const userId = req.params.userId;
     const profileData = await authService.getProfileData(userId);
-    
+
     res.status(201).json(profileData)
 })
 
-authController.put('/profile/edit', async (req, res) => {
-    const userId = req.user?.id;
+authController.put('/profile/:userId/edit', async (req, res) => {
+    const userId = req.params.userId;
     const newData = req.body;
 
     try {

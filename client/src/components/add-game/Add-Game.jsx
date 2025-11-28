@@ -42,7 +42,7 @@ export default function AddGame({ editMode }) {
         }
     }
 
-    const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit, editMode)
+    const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit)
 
     return (
         <section id="create-game">
