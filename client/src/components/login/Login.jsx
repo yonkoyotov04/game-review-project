@@ -1,17 +1,19 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import UserContext from "../../contexts/userContext.js"
 import { useNavigate } from "react-router";
 import request from "../../utils/requester.js";
 import useControlledForm from "../../hooks/useControlledForm.js";
 
 export default function Login() {
-
     const {loginHandler} = useContext(UserContext);
     const navigate = useNavigate();
-    const initialValues = {
+    
+    const data = {
         email: '',
         password: ''
     }
+
+    const [initialValues, setInitialValues] = useState(data)
 
     const onSubmit = async(values) => {
         const data = values;

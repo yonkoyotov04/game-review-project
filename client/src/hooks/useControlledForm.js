@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorContainer from "../components/error-container/ErrorContainer.jsx";
 
 export default function useControlledForm(initialValues, onSubmit) {
     const [values, setValues] = useState(initialValues);
+
+    useEffect(() => {
+        setValues(initialValues);
+    }, [initialValues])
 
     const changeHandler = (e) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }))

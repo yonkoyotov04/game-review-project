@@ -3,7 +3,7 @@ import ProfileReviewSection from "../review-section/ProfileReviewSection.jsx";
 import UserContext from "../../contexts/userContext.js";
 import request from "../../utils/requester.js";
 import { useParams } from "react-router";
-import OwnerContext from "../../contexts/OwnerContext.js";
+import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 
 export default function Profile() {
     const { userId } = useParams();
@@ -34,9 +34,9 @@ export default function Profile() {
                 </div>
             </div>
 
-            <OwnerContext.Provider value={{ isOwner: isOwner }}>
+            <ProfileOwnerContext.Provider value={{ isOwner: isOwner }}>
                 {userId && <ProfileReviewSection id={userId} />}
-            </OwnerContext.Provider>
+            </ProfileOwnerContext.Provider>
 
             {isOwner ? (<div className="profile-actions">
                 <a href="/auth/profile/edit"><button className="edit-btn">Edit Profile</button></a>

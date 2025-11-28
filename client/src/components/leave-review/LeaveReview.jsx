@@ -1,29 +1,49 @@
 import { useNavigate, useParams } from "react-router"
 import useControlledForm from "../../hooks/useControlledForm.js"
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import UserContext from "../../contexts/userContext.js";
 import request from "../../utils/requester.js";
 
-export default function LeaveReview() {
-    const {gameId} = useParams();
-    const {user} = useContext(UserContext);
+export default function LeaveReview({ editMode }) {
+    const { gameId } = useParams();
+    const { reviewId } = useParams();
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const initialValues = {
+    const data = {
         rating: 0,
         playTime: 0,
         thoughts: ''
     }
 
-    const onSubmit = async(values) => {
-        const data = {...values, user: user?._id};
+    const [initialValues, setInitialValues] = useState(data);
 
-        request(`/reviews/${gameId}`, 'POST', data);
+    useEffect(() => {
+        if (editMode) {
+            request(`/reviews/${reviewId}`)
+                .then(result => {
+                    setInitialValues({ ...result });
+                });
+        }
+    }, [gameId, editMode])
 
-        navigate(`/games/${gameId}/details`);
+    const onSubmit = async (values) => {
+        const data = { ...values, user: user?._id };
+
+        if (editMode) {
+            request(`/reviews/${reviewId}/edit`, 'PUT', data);
+            navigate(`/profile/${user?._id}`)
+        } else {
+            request(`/reviews/${gameId}`, 'POST', data);
+            navigate(`/games/${gameId}/details`);
+        }
+
+        
+
+        
     }
 
-    const {values, changeHandler, submitHandler} = useControlledForm(initialValues, onSubmit)
+    const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit)
 
     return (
         <section id="leave-review">

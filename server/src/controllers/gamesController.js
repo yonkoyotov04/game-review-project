@@ -20,7 +20,7 @@ gamesController.post('/', async (req, res) => {
        const game = await gamesService.createGame(gameData, userId);
        res.json(game ?? {});
     } catch (error) {
-        res.status(400).json({ message: getErrorMessage(error) })
+        res.status(400).json({ message: getErrorMessage(error) });
     }
 })
 

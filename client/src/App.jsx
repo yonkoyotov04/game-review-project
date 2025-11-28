@@ -45,8 +45,10 @@ function App() {
                 <Route path='/games' element={<Catalogue />} />
                 <Route path='/games/:category' element={<Catalogue />} />
                 <Route path='/games/:gameId/details' element={<GameDetails />} />
-                <Route path='/games/create' element={<AddGame />} />
-                <Route path='/reviews/:gameId/review' element={<LeaveReview />} />
+                <Route path='/games/create' element={<AddGame editMode={false} />} />
+                <Route path='/games/:gameId/edit' element={<AddGame editMode={true} />} />
+                <Route path='/reviews/:gameId/review' element={<LeaveReview editMode={false} />} />
+                <Route path='/reviews/:reviewId/edit' element={<LeaveReview editMode={true} />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/profile/:userId' element={<Profile />} />

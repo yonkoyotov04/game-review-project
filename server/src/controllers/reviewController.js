@@ -4,7 +4,7 @@ import { getErrorMessage } from "../utils/errorUtils.js";
 
 const reviewController = Router();
 
-reviewController.get('/game/:gameId', async(req, res) => {
+reviewController.get('/game/:gameId', async (req, res) => {
     const gameId = req.params.gameId;
 
     const reviews = await reviewService.getGameReviews(gameId);
@@ -12,12 +12,24 @@ reviewController.get('/game/:gameId', async(req, res) => {
     res.json(reviews ?? []);
 })
 
-reviewController.get('/user/:userId', async(req, res) => {
+reviewController.get('/user/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     const reviews = await reviewService.getUserReviews(userId);
 
     res.json(reviews ?? []);
+})
+
+reviewController.get('/:reviewId', async (req, res) => {
+    const reviewId = req.params.reviewId;
+
+    try {
+        const review = await reviewService.getReviewById(reviewId);
+
+        res.json(review ?? {});
+    } catch (error) {
+        res.status(400).json({ messages: getErrorMessage(error) })
+    }
 })
 
 reviewController.post('/:gameId', async (req, res) => {
@@ -34,7 +46,7 @@ reviewController.post('/:gameId', async (req, res) => {
     }
 })
 
-reviewController.post('/:reviewId/edit', async(req, res) => {
+reviewController.put('/:reviewId/edit', async (req, res) => {
     const reviewId = req.params.reviewId;
     const user = req.user?.id;
     const formData = req.body;
@@ -43,14 +55,12 @@ reviewController.post('/:reviewId/edit', async(req, res) => {
     try {
         const newReview = { game, user, ...formData };
         await reviewService.editReview(reviewId, newReview);
-        res.redirect(`/auth/${user}/profile`);
     } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        res.status(401).render('404', {error: errorMessage});
+        res.status(400).json({ message: getErrorMessage(error) })
     }
 })
 
-reviewController.get('/:reviewId/delete', async(req, res) => {
+reviewController.get('/:reviewId/delete', async (req, res) => {
     const reviewId = req.params.reviewId;
 
     try {
@@ -58,7 +68,7 @@ reviewController.get('/:reviewId/delete', async(req, res) => {
         res.redirect('/');
     } catch (error) {
         const errorMessage = getErrorMessage(error);
-        res.status(401).render('404', {error: errorMessage});
+        res.status(401).render('404', { error: errorMessage });
     }
 })
 

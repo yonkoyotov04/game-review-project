@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router";
-import OwnerContext from "../../contexts/OwnerContext.js";
+import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 
-export default function ReviewCard({ id, popualatedData, playTime, rating, thoughts }) {
-    const { isOwner } = useContext(OwnerContext)
+export default function ReviewCard({ _id, popualatedData, playTime, rating, thoughts }) {
+    const { isOwner } = useContext(ProfileOwnerContext)
     let inGameDetails = true;
 
     if (!popualatedData.username) {
@@ -26,7 +26,7 @@ export default function ReviewCard({ id, popualatedData, playTime, rating, thoug
 
                     {isOwner ? (
                         <div>
-                            <Link to={`/reviews/${id}/edit`}><svg
+                            <Link to={`/reviews/${_id}/edit`}><svg
                                 style={{ marginRight: 10 }}
                                 width={24}
                                 height={24}
@@ -53,7 +53,7 @@ export default function ReviewCard({ id, popualatedData, playTime, rating, thoug
                                 </defs>
                             </svg>
                             </Link>
-                            <Link to={`/reviews/${id}/delete`}><svg
+                            <Link to={`/reviews/${_id}/delete`}><svg
                                 style={{ marginRight: 10 }}
                                 width={30}
                                 height={30}

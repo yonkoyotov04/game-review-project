@@ -1,14 +1,15 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useControlledForm from "../../hooks/useControlledForm.js"
 import request from "../../utils/requester.js";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/userContext.js";
 
-export default function AddGame() {
-    const {user} = useContext(UserContext);
+export default function AddGame({ editMode }) {
+    const { user } = useContext(UserContext);
+    const { gameId } = useParams();
     const navigate = useNavigate();
 
-    const initialValues = {
+    let data = {
         title: '',
         developers: '',
         genre: '',
@@ -18,20 +19,35 @@ export default function AddGame() {
         imageUrl: ''
     }
 
-    const onSubmit = async(values) => {
-        const data = {...values, ownerId: user._id};
+    const [initialValues, setInitialValues] = useState(data);
 
-        request('/games', 'POST', data);
+    useEffect(() => {
+        if (editMode) {
+            request(`/games/${gameId}/details`)
+                .then(result => {
+                    setInitialValues({ ...result });
+                });
+        }
+    }, [gameId, editMode])
 
-        navigate('/games')
+    const onSubmit = async (values) => {
+        const data = { ...values, ownerId: user._id };
+
+        if (editMode) {
+            request(`/games/${gameId}/edit`, 'PUT', data);
+            navigate(`/games/${gameId}/details`)
+        } else {
+            request('/games', 'POST', data);
+            navigate('/games')
+        }
     }
 
-    const {values, changeHandler, submitHandler} = useControlledForm(initialValues, onSubmit)
+    const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit, editMode)
 
     return (
         <section id="create-game">
             <div className="game-form">
-                <h3 className="form-title">Add Game</h3>
+                <h3 className="form-title">{editMode ? "Edit" : "Add"} Game</h3>
                 <form id="gameForm" method="POST" onSubmit={submitHandler}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
@@ -75,7 +91,7 @@ export default function AddGame() {
                         <label htmlFor="imageUrl">Game Image</label>
                         <input type="text" id="imageUrl" name="imageUrl" value={values.imageUrl} onChange={changeHandler} required />
                     </div>
-                    <button type="submit" className="submit-btn">Post</button>
+                    <button type="submit" className="submit-btn">{editMode ? "Update" : "Post"}</button>
                 </form>
             </div>
         </section>
