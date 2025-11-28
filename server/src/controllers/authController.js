@@ -12,7 +12,8 @@ authController.post('/register', async (req, res) => {
         const token = await authService.register(userData);
         res.status(201).json(token);
     } catch (error) {
-        res.status(400).json({ message: getErrorMessage(error) });
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -23,7 +24,8 @@ authController.post('/login', async (req, res) => {
         const token = await authService.login(email, password);
         res.status(201).json(token);
     } catch (error) {
-        res.status(401).json({ message: getErrorMessage(error) });
+        res.statusMessage = getErrorMessage(error);
+        res.status(401).end();
     }
 })
 
@@ -45,9 +47,10 @@ authController.put('/profile/:userId/edit', async (req, res) => {
 
     try {
         await authService.editProfile(userId, newData);
-
+        res.json({});
     } catch (error) {
-        res.status(401).json({ message: getErrorMessage(error) });
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -58,7 +61,8 @@ authController.delete('/profile/delete', async (req, res) => {
         await reviewService.deleteReviewsForUser(userId);
         await authService.deleteProfile(userId);
     } catch (error) {
-        res.status(401).json({ message: getErrorMessage(error) })
+        res.statusMessage = getErrorMessage(error);
+        res.status(401).end();
     }
 })
 

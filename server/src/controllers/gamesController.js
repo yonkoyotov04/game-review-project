@@ -17,10 +17,11 @@ gamesController.post('/', async (req, res) => {
     const userId = req.user?.id;
 
     try {
-       const game = await gamesService.createGame(gameData, userId);
-       res.json(game ?? {});
+        const game = await gamesService.createGame(gameData, userId);
+        res.json(game ?? {});
     } catch (error) {
-        res.status(400).json({ message: getErrorMessage(error) });
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -32,7 +33,8 @@ gamesController.get('/:gameId/details', async (req, res) => {
 
         res.json(game ?? {});
     } catch (error) {
-        res.status(400).json({ messages: getErrorMessage(error) })
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -42,8 +44,10 @@ gamesController.put('/:gameId/edit', async (req, res) => {
 
     try {
         await gamesService.editGame(gameId, newData);
+        res.json({})
     } catch (error) {
-        res.status(400).json({ message: getErrorMessage(error) });
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -59,7 +63,8 @@ gamesController.delete('/:gameId/delete', async (req, res) => {
         await reviewService.deleteReviewsForGame(gameId);
         await gamesService.deleteGame(gameId);
     } catch (error) {
-        res.status(400).json({message: getErrorMessage(error)});
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 

@@ -14,7 +14,7 @@ export default function EditProfile() {
         bio: '',
         profilePic: ''
     }
-    
+
     const [initialValues, setInitialValues] = useState(data);
 
     useEffect(() => {
@@ -27,9 +27,12 @@ export default function EditProfile() {
     const onSubmit = async (values) => {
         const data = { ...values };
 
-        request(`/auth/profile/${userId}/edit`, 'PUT', data);
+        request(`/auth/profile/${userId}/edit`, 'PUT', data)
+            .finally(() => {
+                navigate(`/profile/${userId}`);
+            });
 
-        navigate(`/profile/${userId}`);
+
     }
 
     const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit)

@@ -31,16 +31,22 @@ export default function LeaveReview({ editMode }) {
         const data = { ...values, user: user?._id };
 
         if (editMode) {
-            request(`/reviews/${reviewId}/edit`, 'PUT', data);
-            navigate(`/profile/${user?._id}`)
+            request(`/reviews/${reviewId}/edit`, 'PUT', data)
+                .finally(() => {
+                    navigate(`/profile/${user?._id}`);
+                });
+
         } else {
-            request(`/reviews/${gameId}`, 'POST', data);
-            navigate(`/games/${gameId}/details`);
+            request(`/reviews/${gameId}`, 'POST', data)
+                .finally(() => {
+                    navigate(`/games/${gameId}/details`);
+                });
+            ;
         }
 
-        
 
-        
+
+
     }
 
     const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit)

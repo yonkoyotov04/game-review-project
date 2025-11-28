@@ -28,7 +28,8 @@ reviewController.get('/:reviewId', async (req, res) => {
 
         res.json(review ?? {});
     } catch (error) {
-        res.status(400).json({ messages: getErrorMessage(error) })
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -42,7 +43,8 @@ reviewController.post('/:gameId', async (req, res) => {
         const review = await reviewService.reviewGame(reviewData);
         res.json(review ?? {});
     } catch (error) {
-        res.status(400).json({ message: getErrorMessage(error) })
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -55,8 +57,10 @@ reviewController.put('/:reviewId/edit', async (req, res) => {
     try {
         const newReview = { game, user, ...formData };
         await reviewService.editReview(reviewId, newReview);
+        res.json({});
     } catch (error) {
-        res.status(400).json({ message: getErrorMessage(error) })
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 
@@ -67,8 +71,8 @@ reviewController.get('/:reviewId/delete', async (req, res) => {
         await reviewService.deleteOneReview(reviewId);
         res.redirect('/');
     } catch (error) {
-        const errorMessage = getErrorMessage(error);
-        res.status(401).render('404', { error: errorMessage });
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 

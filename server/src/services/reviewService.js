@@ -18,7 +18,7 @@ export default {
     },
 
     editReview(reviewId, newReview) {
-        return Review.findByIdAndUpdate(reviewId, newReview);
+        return Review.findByIdAndUpdate(reviewId, newReview, {runValidators: true});
     },
 
     deleteOneReview(reviewId) {

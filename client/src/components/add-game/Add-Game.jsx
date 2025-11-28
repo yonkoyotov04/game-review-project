@@ -34,11 +34,17 @@ export default function AddGame({ editMode }) {
         const data = { ...values, ownerId: user._id };
 
         if (editMode) {
-            request(`/games/${gameId}/edit`, 'PUT', data);
-            navigate(`/games/${gameId}/details`)
+            request(`/games/${gameId}/edit`, 'PUT', data)
+                .finally(() => {
+                    navigate(`/games/${gameId}/details`)
+                });
+
         } else {
-            request('/games', 'POST', data);
-            navigate('/games')
+            request('/games', 'POST', data)
+                .finally(() => {
+                    navigate('/games')
+                });
+
         }
     }
 
