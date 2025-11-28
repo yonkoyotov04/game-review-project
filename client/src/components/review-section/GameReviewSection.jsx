@@ -1,39 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ReviewCard from "../review-card/ReviewCard.jsx";
 import request from "../../utils/requester.js";
+import ReviewContext from "../../contexts/ReviewContext.js";
 
-export default function GameReviewSection({id, setGameRating, setGameTime}) {
+export default function GameReviewSection({id}) {
     const [reviews, setReviews] = useState([]);
-
-    const calculateAverageRatingAndTime = (reviews) => {
-        let gameRatingAvg = 0;
-        let gameTimeAvg = 0;
-
-        if (reviews.length === 0) {
-            return;
-        }
-
-        reviews.forEach(review => {
-            gameRatingAvg += review.rating;
-            gameTimeAvg += review.playTime;
-        })
-
-        gameRatingAvg = (gameRatingAvg / reviews.length).toFixed(1);
-        gameTimeAvg = (gameTimeAvg / reviews.length).toFixed(1);
-
-        setGameRating(gameRatingAvg);
-        setGameTime(gameTimeAvg);
-    }
+    const { userId, reviewStatusHandler, gameStatsHandler } = useContext(ReviewContext);
 
     useEffect(() => {
         request(`/reviews/game/${id}`)
-        .then(result => {
-            setReviews(result);
-            calculateAverageRatingAndTime(result);
-        })
+            .then(result => {
+                setReviews(result);
+                gameStatsHandler(result);
+                if (result.some(review => review.user._id === userId)) {
+                    reviewStatusHandler()
+                }
+            })
     }, [id])
-
-    
 
     return (
         <div className="reviews-showcase">
@@ -42,10 +25,10 @@ export default function GameReviewSection({id, setGameRating, setGameTime}) {
             <div className="reviews-container">
                 <ul className="review-list">
                     {
-                    reviews.map(review => <ReviewCard 
-                    key={review._id} 
-                    id={review._id} 
-                    popualatedData={review.user} {...review} />)
+                        reviews.map(review => <ReviewCard
+                            key={review._id}
+                            id={review._id}
+                            popualatedData={review.user} {...review} />)
                     }
                     {reviews.length === 0 && <p className="section-title">There are no reviews yet...</p>}
                 </ul>

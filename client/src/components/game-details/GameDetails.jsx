@@ -1,21 +1,42 @@
 import { useParams, Link } from "react-router";
-import { useContext, useEffect, useState, } from "react";
-import request from "../../utils/requester.js";
+import { useContext, useState, } from "react";
 import UserContext from "../../contexts/userContext.js";
 import GameReviewSection from "../review-section/GameReviewSection.jsx";
 import useFetch from "../../hooks/useFetch.js";
+import ReviewContext from "../../contexts/ReviewContext.js";
 
 export default function GameDetails() {
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [gameRating, setGameRating] = useState(0);
     const [gameTime, setGameTime] = useState(0);
+    const [hasLeftReview, setHasLeftReview] = useState(false);
     const { isAuthenticated, user } = useContext(UserContext);
     let isOwner = false;
 
     if (gameData.ownerId === user?._id) {
         isOwner = true;
     }
+
+    const calculateAverageRatingAndTime = (reviews) => {
+            let gameRatingAvg = 0;
+            let gameTimeAvg = 0;
+    
+            if (reviews.length === 0) {
+                return;
+            }
+    
+            reviews.forEach(review => {
+                gameRatingAvg += review.rating;
+                gameTimeAvg += review.playTime;
+            })
+    
+            gameRatingAvg = (gameRatingAvg / reviews.length).toFixed(1);
+            gameTimeAvg = (gameTimeAvg / reviews.length).toFixed(1);
+    
+            setGameRating(gameRatingAvg);
+            setGameTime(gameTimeAvg);
+        }
 
     const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData)
 
@@ -47,20 +68,27 @@ export default function GameDetails() {
                 </div>
             </div>
 
-            {isAuthenticated ?
-                <Link to={`/reviews/${gameId}/review`}><button className="review-btn">Leave a Review</button></Link>
-                : <p className="basic-text">You need to <Link to="/login">login</Link> to leave a review!</p>}
-            <p className="basic-text">You already left a review!</p>
+            {isAuthenticated ? (hasLeftReview 
+            ?  <p className="basic-text">You already left a review!</p>
+            : <Link to={`/reviews/${gameId}/review`}><button className="review-btn">Leave a Review</button></Link>)
+            : <p className="basic-text">You need to <Link to="/login">login</Link> to leave a review!</p> }
+            
+            <ReviewContext.Provider 
+            value={
+                {userId: user?._id, 
+                reviewStatusHandler: () => { setHasLeftReview(true) },
+                gameStatsHandler: calculateAverageRatingAndTime }
+                }>
+                <GameReviewSection id={gameId} />
+            </ReviewContext.Provider>
 
-            <GameReviewSection id={gameId} setGameRating={setGameRating} setGameTime={setGameTime} />
 
             {isOwner ? (
                 <div className="game-actions">
-                    <a href={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></a>
-                    <a href={`/games/${gameId}/delete`}><button className="delete-btn">Delete Game</button></a>
+                    <Link to={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></Link>
+                    <Link to={`/games/${gameId}/delete`}><button className="delete-btn">Delete Game</button></Link>
                 </div>
             ) : ''}
-
         </section>
     )
 }
