@@ -4,12 +4,14 @@ import UserContext from "../../contexts/userContext.js";
 import request from "../../utils/requester.js";
 import { Link, useParams } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
+import useDelete from "../../hooks/useDelete.jsx";
 
 export default function Profile() {
     const { userId } = useParams();
     const { user } = useContext(UserContext);
     const [profileData, setProfileData] = useState({});
     const [isOwner, setIsOwner] = useState(false);
+    const { DeleteBox, onDeleteClick } = useDelete('profile', user._id);
 
     useEffect(() => {
         if (userId) {
@@ -38,9 +40,11 @@ export default function Profile() {
                 {userId && <ProfileReviewSection id={userId} />}
             </ProfileOwnerContext.Provider>
 
+            {DeleteBox}
+
             {isOwner ? (<div className="profile-actions">
                 <Link to="/profile/edit"><button className="edit-btn">Edit Profile</button></Link>
-                <Link to="/profile/delete"><button className="delete-btn">Delete Profile</button></Link>
+                <button onClick={onDeleteClick} className="delete-btn">Delete Profile</button>
             </div>) : ''}
         </section>
     )

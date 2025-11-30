@@ -39,7 +39,7 @@ export default function GameDetails() {
             setGameTime(gameTimeAvg);
     }
 
-    const { DeleteBox, onDeleteClick } = useDelete(gameData.title, gameData._id);
+    const { DeleteBox, onDeleteClick } = useDelete('game', gameData._id, gameData.title);
     const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData);
    
 

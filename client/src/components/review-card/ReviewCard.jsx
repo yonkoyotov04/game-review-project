@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
+import useDelete from "../../hooks/useDelete.jsx";
 
 export default function ReviewCard({ _id, popualatedData, playTime, rating, thoughts }) {
     const { isOwner } = useContext(ProfileOwnerContext)
+    const {DeleteBox, onDeleteClick} = useDelete('review', _id)
     let inGameDetails = true;
 
     if (!popualatedData.username) {
@@ -53,12 +55,14 @@ export default function ReviewCard({ _id, popualatedData, playTime, rating, thou
                                 </defs>
                             </svg>
                             </Link>
-                            <Link to={`/reviews/${_id}/delete`}><svg
+                            <svg
                                 style={{ marginRight: 10 }}
                                 width={30}
                                 height={30}
                                 viewBox="0 0 24 24"
                                 fill="none"
+                                onClick={onDeleteClick}
+                                cursor={'pointer'}
                                 xmlns="http://www.w3.org/2000/svg">
                                 <defs>
                                     <linearGradient id="trashLid" x1={0} y1={0} x2={24} y2={24}>
@@ -101,7 +105,6 @@ export default function ReviewCard({ _id, popualatedData, playTime, rating, thou
                                     strokeLinecap="round"
                                 />
                             </svg>
-                            </Link>
                         </div>
                     ) : ''}
                 </div>
@@ -111,6 +114,7 @@ export default function ReviewCard({ _id, popualatedData, playTime, rating, thou
                     <span className="playTime">⏲ {playTime} hours</span>
                 </div>
             </div>
+            {DeleteBox}
         </li>
     )
 }

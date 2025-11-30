@@ -64,12 +64,11 @@ reviewController.put('/:reviewId/edit', async (req, res) => {
     }
 })
 
-reviewController.get('/:reviewId/delete', async (req, res) => {
+reviewController.delete('/:reviewId/delete', async (req, res) => {
     const reviewId = req.params.reviewId;
 
     try {
         await reviewService.deleteOneReview(reviewId);
-        res.redirect('/');
     } catch (error) {
         res.statusMessage = getErrorMessage(error);
         res.status(400).end();
