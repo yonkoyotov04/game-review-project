@@ -43,10 +43,6 @@ export default function LeaveReview({ editMode }) {
                 });
             ;
         }
-
-
-
-
     }
 
     const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit)
@@ -68,7 +64,7 @@ export default function LeaveReview({ editMode }) {
                         <label htmlFor="thoughts">Thoughts:</label>
                         <textarea name="thoughts" id="thoughts" onChange={changeHandler} value={values.thoughts} required></textarea>
                     </div>
-                    <button type="submit" className="submit-btn">Post</button>
+                    <button type="submit" className="submit-btn">{editMode ? "Update" : 'Post'}</button>
                 </form>
             </div>
         </section>
