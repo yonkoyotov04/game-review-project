@@ -1,0 +1,89 @@
+.delete-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.delete-confirm-box {
+    width: 90%;
+    max-width: 520px;
+    background: rgba(0, 0, 0, 0.70);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid rgba(255, 94, 0, 0.25);
+
+    box-shadow:
+        0 0 25px rgba(0, 178, 255, 0.20),
+        0 0 60px rgba(255, 94, 0, 0.18);
+
+    text-align: center;
+    font-family: 'Orbitron', monospace;
+}
+
+.delete-confirm-box h2 {
+    font-size: 1.7rem;
+    margin-bottom: 14px;
+    background: linear-gradient(45deg, #FF5E00, #00B2FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.delete-confirm-box p {
+    color: #ffffffcc;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 26px;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.delete-buttons button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s ease;
+}
+
+.btn-no {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 94, 0, 0.25);
+}
+.btn-no:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(0, 178, 255, 0.2);
+}
+
+.btn-yes {
+    background: linear-gradient(90deg, #FF5E00, #00B2FF);
+    color: #fff;
+    box-shadow: 0 0 22px rgba(255, 94, 0, 0.35);
+}
+.btn-yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 32px rgba(255, 94, 0, 0.45);
+}
+
+@media (max-width: 480px) {
+    .delete-buttons {
+        flex-direction: column;
+    }
+    .delete-buttons button {
+        width: 100%;
+    }
+}

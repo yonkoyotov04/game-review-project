@@ -54,8 +54,8 @@ authController.put('/profile/:userId/edit', async (req, res) => {
     }
 })
 
-authController.delete('/profile/delete', async (req, res) => {
-    const userId = req.user.id;
+authController.delete('/:userId/delete', async (req, res) => {
+    const userId = req.params.userId;
 
     try {
         await reviewService.deleteReviewsForUser(userId);

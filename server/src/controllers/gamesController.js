@@ -56,9 +56,9 @@ gamesController.delete('/:gameId/delete', async (req, res) => {
     const gameData = await gamesService.getOneGame(gameId);
 
     try {
-        if (!gameData.ownerId.equals(req.user?.id)) {
-            throw new Error('Only the game creator can delete it')
-        }
+        // if (!gameData.ownerId.equals(req.user?.id)) {
+        //     throw new Error('Only the game creator can delete it')
+        // }
 
         await reviewService.deleteReviewsForGame(gameId);
         await gamesService.deleteGame(gameId);

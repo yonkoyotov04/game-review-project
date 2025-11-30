@@ -4,6 +4,7 @@ import UserContext from "../../contexts/userContext.js";
 import GameReviewSection from "../review-section/GameReviewSection.jsx";
 import useFetch from "../../hooks/useFetch.js";
 import ReviewContext from "../../contexts/ReviewContext.js";
+import useDelete from "../../hooks/useDelete.jsx";
 
 export default function GameDetails() {
     const { gameId } = useParams();
@@ -36,9 +37,11 @@ export default function GameDetails() {
     
             setGameRating(gameRatingAvg);
             setGameTime(gameTimeAvg);
-        }
+    }
 
-    const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData)
+    const { DeleteBox, onDeleteClick } = useDelete(gameData.title, gameData._id);
+    const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData);
+   
 
     if (error) {
         console.error(error);
@@ -82,11 +85,12 @@ export default function GameDetails() {
                 <GameReviewSection id={gameId} />
             </ReviewContext.Provider>
 
+            {DeleteBox}
 
             {isOwner ? (
                 <div className="game-actions">
                     <Link to={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></Link>
-                    <Link to={`/games/${gameId}/delete`}><button className="delete-btn">Delete Game</button></Link>
+                    <button onClick={onDeleteClick} className="delete-btn">Delete Game</button>
                 </div>
             ) : ''}
         </section>
