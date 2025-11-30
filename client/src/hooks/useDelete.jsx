@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import request from "../utils/requester.js";
 import { useNavigate } from "react-router";
-import UserContext from "../contexts/userContext.js";
+import UserContext from "../contexts/UserContext.js";
 
 export default function useDelete(item, id, itemName) {
     const [showBox, setShowBox] = useState(false);
@@ -38,17 +38,6 @@ export default function useDelete(item, id, itemName) {
                 break;
             }
         }
-        if (itemName === 'review') {
-
-        }
-
-        if (itemName === 'profile') {
-            request(`/profile/${id}/delete`, 'DELETE');
-            setShowBox(false);
-            navigate('/games');
-        }
-
-
     }
 
     const DeleteContainer = () => {

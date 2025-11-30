@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router"
 import useControlledForm from "../../hooks/useControlledForm.js"
 import { useContext, useState, useEffect } from "react";
-import UserContext from "../../contexts/userContext.js";
+import UserContext from "../../contexts/UserContext.js";
 import request from "../../utils/requester.js";
 
 export default function LeaveReview({ editMode }) {

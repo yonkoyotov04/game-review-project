@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import UserContext from "../../contexts/userContext.js";
+import UserContext from "../../contexts/UserContext.js";
 import { useNavigate } from "react-router";
 import useControlledForm from "../../hooks/useControlledForm.js";
 import request from "../../utils/requester.js";

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import ProfileReviewSection from "../review-section/ProfileReviewSection.jsx";
-import UserContext from "../../contexts/userContext.js";
+import UserContext from "../../contexts/UserContext.js";
 import request from "../../utils/requester.js";
 import { Link, useParams } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";

@@ -11,7 +11,7 @@ import Profile from './components/profile/Profile.jsx'
 import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import GameDetails from './components/game-details/GameDetails.jsx'
-import UserContext from './contexts/userContext.js'
+import UserContext from './contexts/UserContext.js'
 import LeaveReview from './components/leave-review/LeaveReview.jsx'
 import EditProfile from './components/profile/EditProfile.jsx'
 

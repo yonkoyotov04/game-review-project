@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router";
 import useControlledForm from "../../hooks/useControlledForm.js"
 import request from "../../utils/requester.js";
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../../contexts/userContext.js";
+import UserContext from "../../contexts/UserContext.js";
 
 export default function AddGame({ editMode }) {
     const { user } = useContext(UserContext);

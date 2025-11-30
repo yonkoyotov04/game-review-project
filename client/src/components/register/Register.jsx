@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import useControlledForm from "../../hooks/useControlledForm.js"
 import request from "../../utils/requester.js";
-import UserContext from "../../contexts/userContext.js";
+import UserContext from "../../contexts/UserContext.js";
 import { useNavigate } from "react-router";
 
 export default function Register() {
