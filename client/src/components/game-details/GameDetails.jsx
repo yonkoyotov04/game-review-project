@@ -42,10 +42,6 @@ export default function GameDetails() {
     const { DeleteBox, onDeleteClick } = useDelete('game', gameData._id, gameData.title);
     const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData);
 
-    if (error) {
-        console.error(error);
-    }
-
     return (
         <section className="game-card">
             <h2 className="section-title">Game Overview</h2>
@@ -77,8 +73,7 @@ export default function GameDetails() {
             
             <ReviewContext.Provider 
             value={
-                {userId: user?._id, 
-                reviewStatusHandler: () => { setHasLeftReview(true) },
+                { reviewStatusHandler: () => { setHasLeftReview(true) },
                 gameStatsHandler: calculateAverageRatingAndTime }
                 }>
                 <GameReviewSection id={gameId} />

@@ -3,6 +3,7 @@ import GameCard from "../gameCard/GameCard.jsx";
 import { useParams } from "react-router";
 import Pagination from "../pagination/Pagination.jsx";
 import useFetch from "../../hooks/useFetch.js";
+import betterUseFetch from "../../hooks/betterUseFetch.js";
 
 export default function Catalogue() {
     let { category } = useParams();
@@ -10,25 +11,12 @@ export default function Catalogue() {
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(24);
 
-    if (category) {
-        if (['rpg', 'fps', 'mmo'].includes(category)) {
-            category = category.toUpperCase();
-        } else {
-            category = category[0].toUpperCase() + category.slice(1);
-        }
-    }
-
-    const { isLoading, error, refetch } = useFetch('/games', setGames, category);
-
-    if (error) {
-        console.log(error);
-    }
+    const { fetcher, isLoading } = betterUseFetch('/games', setGames, {category});
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;
 
     const displayedGames = games.slice(firstGameIndex, lastGameIndex);
-
 
     return (
         <section className="games-list">

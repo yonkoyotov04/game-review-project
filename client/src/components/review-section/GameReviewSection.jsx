@@ -2,17 +2,19 @@ import { useContext, useEffect, useState } from "react";
 import ReviewCard from "../review-card/ReviewCard.jsx";
 import request from "../../utils/requester.js";
 import ReviewContext from "../../contexts/ReviewContext.js";
+import UserContext from "../../contexts/UserContext.js";
 
 export default function GameReviewSection({id}) {
     const [reviews, setReviews] = useState([]);
-    const { userId, reviewStatusHandler, gameStatsHandler } = useContext(ReviewContext);
+    const {user} = useContext(UserContext);
+    const { reviewStatusHandler, gameStatsHandler } = useContext(ReviewContext);
 
     useEffect(() => {
         request(`/reviews/game/${id}`)
             .then(result => {
                 setReviews(result);
                 gameStatsHandler(result);
-                if (result.some(review => review.user._id === userId)) {
+                if (result.some(review => review.user._id === user?._id)) {
                     reviewStatusHandler()
                 }
             })
