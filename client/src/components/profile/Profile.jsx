@@ -1,28 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ProfileReviewSection from "../review-section/ProfileReviewSection.jsx";
 import UserContext from "../../contexts/UserContext.js";
-import request from "../../utils/requester.js";
 import { Link, useParams } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 import useDelete from "../../hooks/useDelete.jsx";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function Profile() {
     const { userId } = useParams();
     const { user } = useContext(UserContext);
-    const [profileData, setProfileData] = useState({});
-    const [isOwner, setIsOwner] = useState(false);
     const { DeleteBox, onDeleteClick } = useDelete('profile', user._id);
+    const [profileData, setProfileData] = useState({});
+    const isOwner = userId === user?._id;
 
-    useEffect(() => {
-        if (userId) {
-            request(`/auth/${userId}/profile`)
-                .then(result => {
-                    setProfileData(result);
-                    setIsOwner(userId === user?._id);
-                })
-                .catch(err => alert(err.message))
-        }
-    }, [userId])
+    useFetch(`/auth/${userId}/profile`, setProfileData)
 
     return (
         <section className="profile" id="profile">

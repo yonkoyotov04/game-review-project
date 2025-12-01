@@ -1,29 +1,21 @@
 import { useNavigate, useParams } from "react-router";
 import useControlledForm from "../../hooks/useControlledForm.js"
-import request from "../../utils/requester.js";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function AddGame({ editMode }) {
     const { user } = useContext(UserContext);
     const { gameId } = useParams();
+    const { fetcher } = useFetch()
     const navigate = useNavigate();
 
-    let data = {
-        title: '',
-        developers: '',
-        genre: '',
-        relDate: '',
-        platforms: '',
-        description: '',
-        imageUrl: ''
-    }
-
-    const [initialValues, setInitialValues] = useState(data);
+    const [initialValues, setInitialValues] = useState({title: '', developers: '', genre: '',
+         relDate: '', platforms: '', description: '', imageUrl: ''});
 
     useEffect(() => {
         if (editMode) {
-            request(`/games/${gameId}/details`)
+            fetcher(`/games/${gameId}/details`)
                 .then(result => {
                     setInitialValues({ ...result });
                 });
@@ -34,17 +26,16 @@ export default function AddGame({ editMode }) {
         const data = { ...values, ownerId: user._id };
 
         if (editMode) {
-            request(`/games/${gameId}/edit`, 'PUT', data)
+            fetcher(`/games/${gameId}/edit`, 'PUT', data)
                 .finally(() => {
                     navigate(`/games/${gameId}/details`)
                 });
 
         } else {
-            request('/games', 'POST', data)
+            fetcher('/games', 'POST', data)
                 .finally(() => {
                     navigate('/games')
                 });
-
         }
     }
 

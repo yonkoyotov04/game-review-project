@@ -1,16 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReviewCard from "../review-card/ReviewCard.jsx";
-import request from "../../utils/requester.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function ProfileReviewSection({id}) {
     const [reviews, setReviews] = useState([]);
 
-    useEffect(() => {
-        request(`/reviews/user/${id}`)
-        .then(result => {
-            setReviews(result);
-        })
-    }, [id])
+    useFetch(`/reviews/user/${id}`, setReviews)
 
     return (
         <div className="reviews-showcase">

@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import useControlledForm from "../../hooks/useControlledForm.js"
-import request from "../../utils/requester.js";
 import UserContext from "../../contexts/UserContext.js";
 import { useNavigate } from "react-router";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function Register() {
-    const {loginHandler} = useContext(UserContext)
+    const { fetcher } = useFetch();
+    const { loginHandler } = useContext(UserContext)
     const navigate = useNavigate()
 
     const data = {
@@ -22,7 +23,7 @@ export default function Register() {
     const onSubmit = async(values) => {
         const data = values;
 
-        const result = await request('/auth/register', "POST", data);
+        const result = await fetcher('/auth/register', "POST", data);
 
         loginHandler(result);
         navigate('/');

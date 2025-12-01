@@ -2,25 +2,20 @@ import { useNavigate, useParams } from "react-router"
 import useControlledForm from "../../hooks/useControlledForm.js"
 import { useContext, useState, useEffect } from "react";
 import UserContext from "../../contexts/UserContext.js";
-import request from "../../utils/requester.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function LeaveReview({ editMode }) {
     const { gameId } = useParams();
     const { reviewId } = useParams();
     const { user } = useContext(UserContext);
+    const { fetcher } = useFetch();
     const navigate = useNavigate();
 
-    const data = {
-        rating: 0,
-        playTime: 0,
-        thoughts: ''
-    }
-
-    const [initialValues, setInitialValues] = useState(data);
+    const [initialValues, setInitialValues] = useState({rating: 0, playTime: 0, thoughts: ''});
 
     useEffect(() => {
         if (editMode) {
-            request(`/reviews/${reviewId}`)
+            fetcher(`/reviews/${reviewId}`)
                 .then(result => {
                     setInitialValues({ ...result });
                 });
@@ -31,13 +26,13 @@ export default function LeaveReview({ editMode }) {
         const data = { ...values, user: user?._id };
 
         if (editMode) {
-            request(`/reviews/${reviewId}/edit`, 'PUT', data)
+            fetcher(`/reviews/${reviewId}/edit`, 'PUT', data)
                 .finally(() => {
                     navigate(`/profile/${user?._id}`);
                 });
 
         } else {
-            request(`/reviews/${gameId}`, 'POST', data)
+            fetcher(`/reviews/${gameId}`, 'POST', data)
                 .finally(() => {
                     navigate(`/games/${gameId}/details`);
                 });

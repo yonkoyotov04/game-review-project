@@ -2,9 +2,9 @@ import { useParams, Link } from "react-router";
 import { useContext, useState, } from "react";
 import UserContext from "../../contexts/UserContext.js";
 import GameReviewSection from "../review-section/GameReviewSection.jsx";
-import useFetch from "../../hooks/useFetch.js";
 import ReviewContext from "../../contexts/ReviewContext.js";
 import useDelete from "../../hooks/useDelete.jsx";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function GameDetails() {
     const { gameId } = useParams();
@@ -40,7 +40,7 @@ export default function GameDetails() {
     }
 
     const { DeleteBox, onDeleteClick } = useDelete('game', gameData._id, gameData.title);
-    const { isLoading, error, refetch } = useFetch(`/games/${gameId}/details`, setGameData);
+    useFetch(`/games/${gameId}/details`, setGameData);
 
     return (
         <section className="game-card">

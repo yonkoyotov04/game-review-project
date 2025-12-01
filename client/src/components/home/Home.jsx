@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
-import request from "../../utils/requester.js";
-import useFetch from "../../hooks/useFetch.js";
 import Categories from "./Categories.jsx";
-import betterUseFetch from "../../hooks/betterUseFetch.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function Home() {
 
     const [games, setGames] = useState([]);
 
-    const { isLoading } = betterUseFetch('/', setGames);
+    const { isLoading } = useFetch('/', setGames);
 
     return (
         <>

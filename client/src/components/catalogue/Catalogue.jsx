@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
 import { useParams } from "react-router";
 import Pagination from "../pagination/Pagination.jsx";
 import useFetch from "../../hooks/useFetch.js";
-import betterUseFetch from "../../hooks/betterUseFetch.js";
 
 export default function Catalogue() {
     let { category } = useParams();
@@ -11,7 +10,7 @@ export default function Catalogue() {
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(24);
 
-    const { fetcher, isLoading } = betterUseFetch('/games', setGames, {category});
+    const { isLoading } = useFetch('/games', setGames, {category});
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;

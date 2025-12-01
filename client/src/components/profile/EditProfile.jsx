@@ -1,38 +1,24 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState} from "react";
 import UserContext from "../../contexts/UserContext.js";
 import { useNavigate } from "react-router";
 import useControlledForm from "../../hooks/useControlledForm.js";
-import request from "../../utils/requester.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function EditProfile() {
     const { user } = useContext(UserContext);
     const userId = user?._id;
     const navigate = useNavigate();
+    const [initialValues, setInitialValues] = useState({username: '', bio: '', profilePic: ''});
 
-    const data = {
-        username: '',
-        bio: '',
-        profilePic: ''
-    }
-
-    const [initialValues, setInitialValues] = useState(data);
-
-    useEffect(() => {
-        request(`/auth/${userId}/profile`)
-            .then(result => {
-                setInitialValues({ ...result });
-            });
-    }, [userId])
+    const {fetcher} = useFetch(`/auth/${userId}/profile`, setInitialValues);
 
     const onSubmit = async (values) => {
         const data = { ...values };
 
-        request(`/auth/profile/${userId}/edit`, 'PUT', data)
+        fetcher(`/auth/profile/${userId}/edit`, 'PUT', data)
             .finally(() => {
                 navigate(`/profile/${userId}`);
             });
-
-
     }
 
     const { values, changeHandler, submitHandler } = useControlledForm(initialValues, onSubmit)

@@ -1,11 +1,12 @@
 import { useContext, useState } from "react"
 import UserContext from "../../contexts/UserContext.js"
 import { useNavigate } from "react-router";
-import request from "../../utils/requester.js";
 import useControlledForm from "../../hooks/useControlledForm.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function Login() {
-    const {loginHandler} = useContext(UserContext);
+    const { fetcher } = useFetch()
+    const { loginHandler } = useContext(UserContext);
     const navigate = useNavigate();
     
     const data = {
@@ -18,7 +19,7 @@ export default function Login() {
     const onSubmit = async(values) => {
         const data = values;
 
-        const result = await request('/auth/login', 'POST', data);
+        const result = await fetcher('/auth/login', 'POST', data);
 
         loginHandler(result);
         navigate('/');

@@ -1,24 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ReviewCard from "../review-card/ReviewCard.jsx";
-import request from "../../utils/requester.js";
 import ReviewContext from "../../contexts/ReviewContext.js";
-import UserContext from "../../contexts/UserContext.js";
+import useFetch from "../../hooks/useFetch.js";
 
 export default function GameReviewSection({id}) {
     const [reviews, setReviews] = useState([]);
-    const {user} = useContext(UserContext);
     const { reviewStatusHandler, gameStatsHandler } = useContext(ReviewContext);
 
-    useEffect(() => {
-        request(`/reviews/game/${id}`)
-            .then(result => {
-                setReviews(result);
-                gameStatsHandler(result);
-                if (result.some(review => review.user._id === user?._id)) {
-                    reviewStatusHandler()
-                }
-            })
-    }, [id])
+    useFetch(`/reviews/game/${id}`, setReviews, {gameStatsHandler, reviewStatusHandler})
 
     return (
         <div className="reviews-showcase">

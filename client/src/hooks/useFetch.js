@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../contexts/UserContext.js";
 
-let baseURL = 'http://localhost:2222';
+const baseURL = 'http://localhost:2222'
 
-export default function useFetch(url, setData, filter) {
+export default function useFetch(url, setData, extras = {}) {
+    const { isAuthenticated, user } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [refresh, setRefresh] = useState(false);
 
-    const request = async(url, method, data, config = {}) => {
+    const fetcher = async (url, method, data, config = {}) => {
         let options = {};
 
         if (method) {
@@ -29,48 +29,45 @@ export default function useFetch(url, setData, filter) {
             }
         }
 
-        const response = await fetch (`${baseURL}${url}`, options);
+        const response = await fetch(`${baseURL}${url}`, options);
 
         if (!response.ok) {
             throw response.statusText;
         }
 
-        return response.json();
+        const result = response.json();
+
+        return result;
     }
 
     useEffect(() => {
-        const abortController = new AbortController();
-    
-        fetch(`${baseURL}${url}`, { signal: abortController.signal })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.text);
+        if (!url) return;
+
+        fetcher(url)
+            .then(result => {
+                if (extras.category) {
+                    result = result.filter(game => game.genre === extras.category);
                 }
 
-                return response.json()
-            })
-            .then(result => {
-                if (filter) {
-                    result = result.filter(game => game.genre === filter);
+                setData(result)
+
+                if (extras.gameStatsHandler) {
+                    extras.gameStatsHandler(result);
                 }
-                setData(result);
+
+                if (extras.reviewStatusHandler) {
+                    if (result.some(review => review.user._id === user?._id)) {
+                        extras.reviewStatusHandler()
+                    }
+                }
             })
-            .catch(err => {
-                setError(err.message)
-            })
+            .catch(err => alert(err))
             .finally(() => {
                 setIsLoading(false);
             })
+    }, [url]);
 
-        return () => {
-            abortController.abort();
-        }
-    }, [url, refresh])
-
-    const refetch = () => {
-        setRefresh(state => !state);
+    return {
+        fetcher, isLoading
     }
-
-    return {isLoading, error, refetch}
 }
-
