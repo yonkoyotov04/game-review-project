@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import ProfileReviewSection from "../review-section/ProfileReviewSection.jsx";
-import UserContext from "../../contexts/UserContext.js";
+import UserContext from "../../contexts/UserContext.jsx";
 import { Link, useParams } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 import useDelete from "../../hooks/useDelete.jsx";
@@ -9,7 +9,7 @@ import useFetch from "../../hooks/useFetch.js";
 export default function Profile() {
     const { userId } = useParams();
     const { user } = useContext(UserContext);
-    const { DeleteBox, onDeleteClick } = useDelete('profile', user._id);
+    const { DeleteBox, onDeleteClick } = useDelete('profile', user?._id);
     const [profileData, setProfileData] = useState({});
     const isOwner = userId === user?._id;
 

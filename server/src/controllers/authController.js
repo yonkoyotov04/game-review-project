@@ -6,7 +6,7 @@ import { isAuth, isGuest } from "../middlewares/authMiddleware.js";
 
 const authController = Router();
 
-authController.post('/register', async (req, res) => {
+authController.post('/register', isGuest, async (req, res) => {
     const userData = req.body;
 
     try {

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../contexts/UserContext.js";
+import UserContext from "../contexts/UserContext.jsx";
 import { ErrorContext } from "../contexts/ErrorContext.jsx";
 
 const baseURL = 'http://localhost:2222'

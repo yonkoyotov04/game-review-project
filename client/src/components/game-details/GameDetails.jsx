@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router";
 import { useContext, useState, } from "react";
-import UserContext from "../../contexts/UserContext.js";
+import UserContext from "../../contexts/UserContext.jsx";
 import GameReviewSection from "../review-section/GameReviewSection.jsx";
 import ReviewContext from "../../contexts/ReviewContext.js";
 import useDelete from "../../hooks/useDelete.jsx";

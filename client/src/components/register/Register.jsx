@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import useControlledForm from "../../hooks/useControlledForm.js"
-import UserContext from "../../contexts/UserContext.js";
+import UserContext from "../../contexts/UserContext.jsx";
 import { useNavigate } from "react-router";
 import useFetch from "../../hooks/useFetch.js";
 

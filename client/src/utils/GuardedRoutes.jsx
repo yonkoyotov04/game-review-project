@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import UserContext from "../contexts/UserContext.js";
+import UserContext from "../contexts/UserContext.jsx";
 import { Navigate, Outlet } from "react-router";
 
 export default function GuardedRoutes() {

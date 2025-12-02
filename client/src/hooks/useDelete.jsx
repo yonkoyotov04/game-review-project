@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import UserContext from "../contexts/UserContext.js";
+import UserContext from "../contexts/UserContext.jsx";
 import useFetch from "./useFetch.js";
 
 export default function useDelete(item, id, itemName) {
