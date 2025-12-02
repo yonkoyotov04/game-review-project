@@ -8,13 +8,8 @@ export default function Login() {
     const { fetcher } = useFetch()
     const { loginHandler } = useContext(UserContext);
     const navigate = useNavigate();
-    
-    const data = {
-        email: '',
-        password: ''
-    }
 
-    const [initialValues, setInitialValues] = useState(data)
+    const [initialValues, setInitialValues] = useState({email: '', password: ''});
 
     const onSubmit = async(values) => {
         const data = values;

@@ -1,4 +1,4 @@
-export default function ErrorContainer(error) {
+export default function ErrorContainer({error}) {
     return (
         <div>
             <div className="errorContainer">
