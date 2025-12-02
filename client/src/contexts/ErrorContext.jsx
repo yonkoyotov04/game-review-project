@@ -9,7 +9,7 @@ export function ErrorProvider({children}) {
     const errorSetter = (error) => {
         setError(error);
 
-        setInterval(() => {
+        setTimeout(() => {
             setError(null)
         }, "5000");
     }
