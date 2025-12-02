@@ -30,7 +30,7 @@ function App() {
 
     const contextValues = {
         user,
-        isAuthenticated: !!user.email,
+        isAuthenticated: !!user?.email,
         loginHandler: onLogin,
         logoutHandler: onLogout
     }

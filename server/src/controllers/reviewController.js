@@ -1,6 +1,7 @@
 import { Router } from "express";
 import reviewService from "../services/reviewService.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
+import { isAuth } from "../middlewares/authMiddleware.js";
 
 const reviewController = Router();
 
@@ -33,7 +34,7 @@ reviewController.get('/:reviewId', async (req, res) => {
     }
 })
 
-reviewController.post('/:gameId', async (req, res) => {
+reviewController.post('/:gameId', isAuth, async (req, res) => {
     const game = req.params.gameId;
     const user = req.user?.id;
     const formData = req.body;
@@ -48,7 +49,7 @@ reviewController.post('/:gameId', async (req, res) => {
     }
 })
 
-reviewController.put('/:reviewId/edit', async (req, res) => {
+reviewController.put('/:reviewId/edit', isAuth, async (req, res) => {
     const reviewId = req.params.reviewId;
     const user = req.user?.id;
     const formData = req.body;
@@ -64,7 +65,7 @@ reviewController.put('/:reviewId/edit', async (req, res) => {
     }
 })
 
-reviewController.delete('/:reviewId/delete', async (req, res) => {
+reviewController.delete('/:reviewId/delete', isAuth, async (req, res) => {
     const reviewId = req.params.reviewId;
 
     try {

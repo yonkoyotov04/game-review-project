@@ -31,21 +31,16 @@ export default function useFetch(url, setData, extras = {}) {
             }
         }
 
-        try {
-            const response = await fetch(`${baseURL}${url}`, options);
+        const response = await fetch(`${baseURL}${url}`, options);
 
-            if (!response.ok) {
-                throw response.statusText;
-            }
-
-            const result = response.json();
-
-            return result;
-        } catch (error) {
-            errorSetter(error);
+        if (!response.ok) {
+            errorSetter(response.statusText);
+            throw response.statusText;
         }
 
+        const result = response.json();
 
+        return result;
     }
 
     useEffect(() => {

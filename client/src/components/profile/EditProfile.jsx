@@ -15,8 +15,8 @@ export default function EditProfile() {
     const onSubmit = async (values) => {
         const data = { ...values };
 
-        fetcher(`/auth/profile/${userId}/edit`, 'PUT', data)
-            .finally(() => {
+        fetcher(`/auth/profile/${userId}/edit`, 'PUT', data, {accessToken: user?.accessToken})
+            .then(() => {
                 navigate(`/profile/${userId}`);
             });
     }

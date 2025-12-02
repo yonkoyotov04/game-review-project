@@ -2,6 +2,7 @@ import { Router } from "express";
 import authService from "../services/authService.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
 import reviewService from "../services/reviewService.js";
+import { isAuth, isGuest } from "../middlewares/authMiddleware.js";
 
 const authController = Router();
 
@@ -17,7 +18,7 @@ authController.post('/register', async (req, res) => {
     }
 })
 
-authController.post('/login', async (req, res) => {
+authController.post('/login', isGuest, async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -29,7 +30,7 @@ authController.post('/login', async (req, res) => {
     }
 })
 
-authController.get('/logout', (req, res) => {
+authController.get('/logout', isAuth, (req, res) => {
     res.clearCookie('auth');
     res.redirect('/');
 })
@@ -41,7 +42,7 @@ authController.get('/:userId/profile', async (req, res) => {
     res.status(201).json(profileData)
 })
 
-authController.put('/profile/:userId/edit', async (req, res) => {
+authController.put('/profile/:userId/edit', isAuth, async (req, res) => {
     const userId = req.params.userId;
     const newData = req.body;
 
@@ -54,7 +55,7 @@ authController.put('/profile/:userId/edit', async (req, res) => {
     }
 })
 
-authController.delete('/:userId/delete', async (req, res) => {
+authController.delete('/:userId/delete', isAuth, async (req, res) => {
     const userId = req.params.userId;
 
     try {

@@ -2,6 +2,7 @@ import { Router } from "express";
 import gamesService from "../services/gamesService.js";
 import reviewService from "../services/reviewService.js"
 import { getErrorMessage } from "../utils/errorUtils.js";
+import { isAuth } from "../middlewares/authMiddleware.js";
 
 const gamesController = Router();
 
@@ -12,7 +13,7 @@ gamesController.get('/', async (req, res) => {
     res.json(games ?? []);
 })
 
-gamesController.post('/', async (req, res) => {
+gamesController.post('/', isAuth, async (req, res) => {
     const gameData = req.body;
     const userId = req.user?.id;
 
@@ -38,7 +39,7 @@ gamesController.get('/:gameId/details', async (req, res) => {
     }
 })
 
-gamesController.put('/:gameId/edit', async (req, res) => {
+gamesController.put('/:gameId/edit', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const newData = req.body;
 
@@ -51,14 +52,14 @@ gamesController.put('/:gameId/edit', async (req, res) => {
     }
 })
 
-gamesController.delete('/:gameId/delete', async (req, res) => {
+gamesController.delete('/:gameId/delete', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const gameData = await gamesService.getOneGame(gameId);
 
     try {
-        // if (!gameData.ownerId.equals(req.user?.id)) {
-        //     throw new Error('Only the game creator can delete it')
-        // }
+        if (!gameData.ownerId.equals(req.user?.id)) {
+            throw new Error('Only the game creator can delete it')
+        }
 
         await reviewService.deleteReviewsForGame(gameId);
         await gamesService.deleteGame(gameId);

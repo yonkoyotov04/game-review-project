@@ -26,14 +26,14 @@ export default function LeaveReview({ editMode }) {
         const data = { ...values, user: user?._id };
 
         if (editMode) {
-            fetcher(`/reviews/${reviewId}/edit`, 'PUT', data)
-                .finally(() => {
+            fetcher(`/reviews/${reviewId}/edit`, 'PUT', data, {accessToken: user?.accessToken})
+                .then(() => {
                     navigate(`/profile/${user?._id}`);
                 });
 
         } else {
-            fetcher(`/reviews/${gameId}`, 'POST', data)
-                .finally(() => {
+            fetcher(`/reviews/${gameId}`, 'POST', data, {accessToken: user?.accessToken})
+                .then(() => {
                     navigate(`/games/${gameId}/details`);
                 });
             ;

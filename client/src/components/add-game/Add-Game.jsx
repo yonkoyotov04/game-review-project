@@ -23,16 +23,16 @@ export default function AddGame({ editMode }) {
     }, [gameId, editMode])
 
     const onSubmit = async (values) => {
-        const data = { ...values, ownerId: user._id };
+        const data = { ...values};
 
         if (editMode) {
-            fetcher(`/games/${gameId}/edit`, 'PUT', data)
+            fetcher(`/games/${gameId}/edit`, 'PUT', data, {accessToken: user?.accessToken})
                 .finally(() => {
                     navigate(`/games/${gameId}/details`)
                 });
 
         } else {
-            fetcher('/games', 'POST', data)
+            fetcher('/games', 'POST', data, {accessToken: user?.accessToken})
                 .finally(() => {
                     navigate('/games')
                 });
