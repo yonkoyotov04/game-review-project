@@ -16,9 +16,10 @@ import LeaveReview from './components/leave-review/LeaveReview.jsx'
 import EditProfile from './components/profile/EditProfile.jsx'
 import GuardedRoutes from './utils/GuardedRoutes.jsx'
 import { ErrorProvider } from './contexts/ErrorContext.jsx'
+import useLocalStorage from './hooks/useLocalStorage.js'
 
 function App() {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useLocalStorage(null, 'user');
 
     const onLogin = (user) => {
         setUser(user);
