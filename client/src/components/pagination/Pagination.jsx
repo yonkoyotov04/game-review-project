@@ -9,9 +9,17 @@ export default function Pagination({totalGames, gamesPerPage, currentPage, setCu
         setCurrentPage(page);
     }
 
+    const previousButtonHandler = () => {
+        setCurrentPage((state) => state - 1);
+    }
+
+    const nextButtonHandler = () => {
+        setCurrentPage((state) => state + 1);
+    }
+
     return (
         <div className="pagination">
-            <button className="page-btn prev">← Previous</button>
+            {currentPage === 1 || <button className="page-btn prev" onClick={previousButtonHandler}>← Previous</button>}
             <div className="page-numbers">
                 {pages.map((page, i) => {
                     return <button 
@@ -20,7 +28,7 @@ export default function Pagination({totalGames, gamesPerPage, currentPage, setCu
                     onClick={() => pageButtonHandler(page)}>{page}</button>
                 })}
             </div>
-            <button className="page-btn next">Next →</button>
+            {currentPage === pages[pages.length - 1] || <button className="page-btn next" onClick={nextButtonHandler}>Next →</button>}
         </div>
     )
 }
