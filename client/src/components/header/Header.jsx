@@ -35,7 +35,7 @@ export default function Header() {
                 </ul>
             </div>
             {isAuthenticated ? (<div className="nav-user">
-                <span>
+                <span className="nav-username">
                     {profileData.username}
                 </span>
                 <span><Link to={`/profile/${user?._id}`}>

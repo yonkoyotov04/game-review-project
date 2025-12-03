@@ -41,7 +41,7 @@ function App() {
                     <Route path='/reviews/:reviewId/edit' element={<LeaveReview editMode={true} />} />
                 </Route>
             </Routes>
-
+            
             <Footer />
         </ErrorProvider>
     )
