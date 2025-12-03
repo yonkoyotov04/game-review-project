@@ -60,7 +60,11 @@ export default function GameDetails() {
                     <p><strong>Description:</strong> {gameData.description}</p>
 
                     <div className="game-stats">
-                        <p><strong>Rating:</strong> {gameRating}/10</p>
+                        <p><strong>Rating: </strong> 
+                        <span className={gameRating > 0 && gameRating < 4 ? 'negative-score' 
+                        : gameRating > 4 && gameRating < 8 ? 'mixed-score' 
+                        : gameRating > 7 && gameRating <= 10 ? 'positive-score' 
+                        : ''}>{gameRating}</span> / <span className="positive-score">10</span></p>
                         <p><strong>Average Time:</strong> {gameTime} hours</p>
                     </div>
                 </div>

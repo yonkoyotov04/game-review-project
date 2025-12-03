@@ -63,6 +63,22 @@
     padding-top: 10px;
 }
 
+.game-stats span {
+    font-weight: 700;
+}
+
+.negative-score {
+    color: #db2518;
+}
+
+.mixed-score {
+    color: #e78a08;
+}
+
+.positive-score {
+    color: #228B22;
+}
+
 .basic-text {
     font-family: 'Orbitron', monospace;
     font-size: 1rem;
