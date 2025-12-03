@@ -233,8 +233,10 @@ body {
 }
 
 nav {
+    display: flex;
     position: fixed;
     top: 0;
+    height: 80px;
     width: 100%;
     padding: 20px 50px;
     background: rgba(10, 10, 10, 0.8);
@@ -256,6 +258,12 @@ nav.scrolled {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .logo-link {
@@ -297,6 +305,9 @@ nav.scrolled {
 
 .nav-links {
     display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     gap: 30px;
     list-style: none;
 }
@@ -480,4 +491,3 @@ footer {
         transform: scale(0.6);
     }
 }
-

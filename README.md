@@ -29,7 +29,3 @@ profile if they so wish. Other users' profiles can be viewed as well by clicking
 - [x] Show edit and delete buttons on reviews in your profile page
 - [x] Show Edit and delete profile buttons in your profile page
 - [] Fix the footer's position
-
-- [x] Implement a dynamic error container that appears when an error is present.
-- [x] Give the access token to X-Authorization for some specific requests and try to handle it on the server so server side guarding can happen
-- [] Implement useLocalStorage so that login can persist

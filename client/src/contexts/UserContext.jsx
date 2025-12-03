@@ -1,5 +1,6 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage.js";
+import useFetch from "../hooks/useFetch.js";
 
 const UserContext = createContext({
     user: {},
@@ -31,6 +32,14 @@ export function UserProvider({ children }) {
             {children}
         </UserContext.Provider>
     )
+}
+
+export function getProfileData(userId) {
+    const [profileData, setProfileData] = useState({});
+
+    useFetch(`/auth/${userId}/profile`, setProfileData)
+
+    return profileData;
 }
 
 export default UserContext;
