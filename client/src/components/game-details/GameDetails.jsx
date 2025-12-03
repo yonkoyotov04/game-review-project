@@ -68,7 +68,7 @@ export default function GameDetails() {
 
             {isAuthenticated ? (hasLeftReview 
             ?  <p className="basic-text">You already left a review!</p>
-            : <Link to={`/games/${gameId}/review`}><button className="review-btn">Leave a Review</button></Link>)
+            : <Link to={`/games/${gameId}/review`} className="link"><button className="review-btn">Leave a Review</button></Link>)
             : <p className="basic-text">You need to <Link to="/login">login</Link> to leave a review!</p> }
             
             <ReviewContext.Provider 
