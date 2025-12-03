@@ -114,11 +114,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.stars {
-    color: #FF5E00;
-    font-weight: 700;
-}
-
 .playTime {
     color: #228B22;
     font-weight: 700;

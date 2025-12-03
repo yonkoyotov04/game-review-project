@@ -19,6 +19,10 @@
     animation: fadeIn 1s ease-out;
 }
 
+.game-image {
+    align-self: center;
+}
+
 .game-image img {
     width: 300px;
     height: auto;
@@ -63,20 +67,19 @@
     padding-top: 10px;
 }
 
-.game-stats span {
-    font-weight: 700;
-}
-
 .negative-score {
     color: #db2518;
+    font-weight: 700;
 }
 
 .mixed-score {
     color: #e78a08;
+    font-weight: 700;
 }
 
 .positive-score {
     color: #228B22;
+    font-weight: 700;
 }
 
 .basic-text {

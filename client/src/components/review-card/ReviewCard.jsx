@@ -110,7 +110,10 @@ export default function ReviewCard({ _id, popualatedData, playTime, rating, thou
                 </div>
                 <p className="review-text">{thoughts}</p>
                 <div className="review-footer">
-                    <span className="stars">⭐ {rating}/10</span>
+                    <span className={rating > 0 && rating < 4 ? 'negative-score' 
+                        : rating > 4 && rating < 8 ? 'mixed-score' 
+                        : rating > 7 && rating <= 10 ? 'positive-score' 
+                        : ''}>⭐ {rating}/10</span>
                     <span className="playTime">⏲ {playTime} hours</span>
                 </div>
             </div>
