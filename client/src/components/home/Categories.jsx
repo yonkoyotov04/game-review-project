@@ -5,84 +5,84 @@ export default function Categories() {
         <section className="categories">
             <h2 className="section-title">Browse by Category</h2>
             <div className="category-grid">
-                <Link to="/games/Action">
+                <Link to="/games/action">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Action</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Adventure">
+                <Link to="/games/adventure">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Adventure</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/RPG">
+                <Link to="/games/rpg">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>RPG</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Fighting">
+                <Link to="/games/fighting">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Fighting</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/FPS">
+                <Link to="/games/fps">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>FPS</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Simulation">
+                <Link to="/games/simulation">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Simulation</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Strategy">
+                <Link to="/games/strategy">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Strategy</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Horror">
+                <Link to="/games/horror">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Horror</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Sports">
+                <Link to="/games/sports">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Sports</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Racing">
+                <Link to="/games/racing">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Racing</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/Tactical">
+                <Link to="/games/tactical">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>Tactical</h3>
                         </div>
                     </div>
                 </Link>
-                <Link to="/games/MMO">
+                <Link to="/games/mmo">
                     <div className="category-card">
                         <div className="category-overlay">
                             <h3>MMO</h3>

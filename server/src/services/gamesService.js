@@ -6,7 +6,11 @@ export default {
         let query = Game.find().select({ title: true, imageUrl: true, id: true, reviewsCount: true, genre: true })
 
         if (filter.title) {
-            query.find({ title: { $regex: filter.title, $options: 'i' } });
+            query.find({ title: { $regex: filter.title, $options: 'i' }});
+        }
+
+        if (filter.genre) {
+            query.find({ genre: {$regex: filter.genre, $options: 'i'}})
         }
 
         return query;

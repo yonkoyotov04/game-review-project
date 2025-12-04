@@ -46,13 +46,13 @@ export default function useFetch(url, setData, extras = {}) {
     useEffect(() => {
         if (!url) return;
 
+        if (extras.category) {
+            url = url + `/?genre=${extras.category}`;
+        }
+
         try {
             fetcher(url)
                 .then(result => {
-                    if (extras.category) {
-                        result = result.filter(game => game.genre === extras.category);
-                    }
-
                     setData(result)
 
                     if (extras.gameStatsHandler) {
@@ -73,7 +73,7 @@ export default function useFetch(url, setData, extras = {}) {
         }
 
 
-    }, [url]);
+    }, [url, extras.category]);
 
     return {
         fetcher, isLoading

@@ -32,7 +32,6 @@ authController.post('/login', isGuest, async (req, res) => {
 
 authController.get('/logout', isAuth, (req, res) => {
     res.clearCookie('auth');
-    res.redirect('/');
 })
 
 authController.get('/:userId/profile', async (req, res) => {
