@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link } from "react-router";
 import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 import useDelete from "../../hooks/useDelete.jsx";
+import UserContext from "../../contexts/UserContext.jsx";
 
 export default function ReviewCard({ _id, popualatedData, playTime, rating, thoughts }) {
     const { isOwner } = useContext(ProfileOwnerContext)
+    const { isAdmin } = useContext(UserContext); 
     const {DeleteBox, onDeleteClick} = useDelete('review', _id)
     let inGameDetails = true;
 
@@ -26,9 +28,9 @@ export default function ReviewCard({ _id, popualatedData, playTime, rating, thou
                         </Link></span>
                     </div>
 
-                    {isOwner ? (
+                    {isOwner || isAdmin ? (
                         <div>
-                            <Link to={`/reviews/${_id}/edit`}><svg
+                            {isOwner || !isAdmin ? <Link to={`/reviews/${_id}/edit`}><svg
                                 style={{ marginRight: 10 }}
                                 width={24}
                                 height={24}
@@ -54,7 +56,7 @@ export default function ReviewCard({ _id, popualatedData, playTime, rating, thou
                                     </linearGradient>
                                 </defs>
                             </svg>
-                            </Link>
+                            </Link> : ''}
                             <svg
                                 style={{ marginRight: 10 }}
                                 width={30}

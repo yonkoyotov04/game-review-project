@@ -5,7 +5,7 @@ import useFetch from "./useFetch.js";
 
 export default function useDelete(item, id, itemName) {
     const [showBox, setShowBox] = useState(false);
-    const { logoutHandler } = useContext(UserContext)
+    const { user, logoutHandler } = useContext(UserContext)
     const { fetcher } = useFetch();
     const navigate = useNavigate();
 
@@ -20,21 +20,23 @@ export default function useDelete(item, id, itemName) {
     const onButtonYes = () => {
         switch (item) {
             case 'game': {
-                fetcher(`/games/${id}/delete`, 'DELETE');
+                fetcher(`/games/${id}`, 'DELETE');
                 setShowBox(false);
                 navigate('/games');
                 break;
             }
             case 'review': {
-                fetcher(`/reviews/${id}/delete`, 'DELETE');
+                fetcher(`/reviews/${id}`, 'DELETE');
                 setShowBox(false);
-                navigate('/')
+                navigate(`/`)
                 break;
             }
             case 'profile': {
-                fetcher(`/auth/${id}/delete`, 'DELETE')
+                fetcher(`/auth/${id}`, 'DELETE')
                 setShowBox(false);
-                logoutHandler();
+                if (id === user?._id) {
+                    logoutHandler();
+                }
                 navigate('/');
                 break;
             }

@@ -8,12 +8,12 @@ import useFetch from "../../hooks/useFetch.js";
 
 export default function Profile() {
     const { userId } = useParams();
-    const { user } = useContext(UserContext);
-    const { DeleteBox, onDeleteClick } = useDelete('profile', user?._id);
+    const { user, isAdmin } = useContext(UserContext);
+    const { DeleteBox, onDeleteClick } = useDelete('profile', userId);
     const [profileData, setProfileData] = useState({});
     const isOwner = userId === user?._id;
 
-    useFetch(`/auth/${userId}/profile`, setProfileData)
+    useFetch(`/auth/${userId}`, setProfileData)
 
     return (
         <section className="profile" id="profile">
@@ -33,8 +33,9 @@ export default function Profile() {
 
             {DeleteBox}
 
-            {isOwner ? (<div className="profile-actions">
-                <Link to="/profile/edit"><button className="edit-btn">Edit Profile</button></Link>
+            {isOwner || isAdmin ? 
+            (<div className="profile-actions">
+                {isOwner || !isAdmin ? <Link to="/profile/edit"><button className="edit-btn">Edit Profile</button></Link> : ''}
                 <button onClick={onDeleteClick} className="delete-btn">Delete Profile</button>
             </div>) : ''}
         </section>

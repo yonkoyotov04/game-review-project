@@ -4,11 +4,7 @@ import UserContext, { getProfileData } from "../../contexts/UserContext.jsx"
 
 export default function Header() {
     const { isAuthenticated, user, logoutHandler } = useContext(UserContext);
-    let profileData = {};
-
-    if (isAuthenticated) {
-        profileData = getProfileData(user?._id);
-    }
+    const profileData = isAuthenticated ? getProfileData(user?._id) : {};
 
     return (
         <nav id="navbar" >
@@ -36,10 +32,10 @@ export default function Header() {
             </div>
             {isAuthenticated ? (<div className="nav-user">
                 <span className="nav-username">
-                    {profileData.username}
+                    {profileData?.username}
                 </span>
                 <span><Link to={`/profile/${user?._id}`}>
-                    <img src={profileData.profilePic}
+                    <img src={profileData?.profilePic}
                         alt="image" className="game-icon" />
                 </Link></span>
             </div>) : ""}

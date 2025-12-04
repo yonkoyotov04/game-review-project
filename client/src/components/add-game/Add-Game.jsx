@@ -15,7 +15,7 @@ export default function AddGame({ editMode }) {
 
     useEffect(() => {
         if (editMode) {
-            fetcher(`/games/${gameId}/details`)
+            fetcher(`/games/${gameId}`)
                 .then(result => {
                     setInitialValues({ ...result });
                 });
@@ -26,14 +26,14 @@ export default function AddGame({ editMode }) {
         const data = { ...values};
 
         if (editMode) {
-            fetcher(`/games/${gameId}/edit`, 'PUT', data, {accessToken: user?.accessToken})
-                .finally(() => {
+            fetcher(`/games/${gameId}`, 'PUT', data, {accessToken: user?.accessToken})
+                .then(() => {
                     navigate(`/games/${gameId}/details`)
                 });
 
         } else {
             fetcher('/games', 'POST', data, {accessToken: user?.accessToken})
-                .finally(() => {
+                .then(() => {
                     navigate('/games')
                 });
         }

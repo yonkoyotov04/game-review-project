@@ -49,7 +49,7 @@ reviewController.post('/:gameId', isAuth, async (req, res) => {
     }
 })
 
-reviewController.put('/:reviewId/edit', isAuth, async (req, res) => {
+reviewController.put('/:reviewId', isAuth, async (req, res) => {
     const reviewId = req.params.reviewId;
     const user = req.user?.id;
     const formData = req.body;
@@ -65,7 +65,7 @@ reviewController.put('/:reviewId/edit', isAuth, async (req, res) => {
     }
 })
 
-reviewController.delete('/:reviewId/delete', isAuth, async (req, res) => {
+reviewController.delete('/:reviewId', isAuth, async (req, res) => {
     const reviewId = req.params.reviewId;
 
     try {

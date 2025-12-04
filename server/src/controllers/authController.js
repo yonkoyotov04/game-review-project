@@ -34,14 +34,14 @@ authController.get('/logout', isAuth, (req, res) => {
     res.clearCookie('auth');
 })
 
-authController.get('/:userId/profile', async (req, res) => {
+authController.get('/:userId', async (req, res) => {
     const userId = req.params.userId;
     const profileData = await authService.getProfileData(userId);
 
     res.status(201).json(profileData)
 })
 
-authController.put('/profile/:userId/edit', isAuth, async (req, res) => {
+authController.put('/:userId', isAuth, async (req, res) => {
     const userId = req.params.userId;
     const newData = req.body;
 
@@ -54,7 +54,7 @@ authController.put('/profile/:userId/edit', isAuth, async (req, res) => {
     }
 })
 
-authController.delete('/:userId/delete', isAuth, async (req, res) => {
+authController.delete('/:userId', isAuth, async (req, res) => {
     const userId = req.params.userId;
 
     try {

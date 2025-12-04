@@ -72,7 +72,6 @@ export default function useFetch(url, setData, extras = {}) {
             errorSetter(error)
         }
 
-
     }, [url, extras.category]);
 
     return {

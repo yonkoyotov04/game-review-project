@@ -26,7 +26,7 @@ gamesController.post('/', isAuth, async (req, res) => {
     }
 })
 
-gamesController.get('/:gameId/details', async (req, res) => {
+gamesController.get('/:gameId', async (req, res) => {
     const gameId = req.params.gameId;
 
     try {
@@ -39,33 +39,38 @@ gamesController.get('/:gameId/details', async (req, res) => {
     }
 })
 
-gamesController.put('/:gameId/edit', isAuth, async (req, res) => {
+gamesController.put('/:gameId', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
+    const gameData = await gamesService.getOneGame(gameId);
     const newData = req.body;
 
     try {
+        if (!gameData.ownerId.equals(req.user?.id) && !req.isAdmin) {
+            throw new Error('Only the game creator and admin can edit it')
+        }
+
         await gamesService.editGame(gameId, newData);
         res.json({})
     } catch (error) {
         res.statusMessage = getErrorMessage(error);
-        res.status(400).end();
+        res.status(401).end();
     }
 })
 
-gamesController.delete('/:gameId/delete', isAuth, async (req, res) => {
+gamesController.delete('/:gameId', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const gameData = await gamesService.getOneGame(gameId);
 
     try {
-        if (!gameData.ownerId.equals(req.user?.id)) {
-            throw new Error('Only the game creator can delete it')
+        if (!gameData.ownerId.equals(req.user?.id) && !req.isAdmin) {
+            throw new Error('Only the game creator and admin can delete it')
         }
 
         await reviewService.deleteReviewsForGame(gameId);
         await gamesService.deleteGame(gameId);
     } catch (error) {
         res.statusMessage = getErrorMessage(error);
-        res.status(400).end();
+        res.status(401).end();
     }
 })
 

@@ -26,7 +26,7 @@ export default function LeaveReview({ editMode }) {
         const data = { ...values, user: user?._id };
 
         if (editMode) {
-            fetcher(`/reviews/${reviewId}/edit`, 'PUT', data, {accessToken: user?.accessToken})
+            fetcher(`/reviews/${reviewId}`, 'PUT', data, {accessToken: user?.accessToken})
                 .then(() => {
                     navigate(`/profile/${user?._id}`);
                 });

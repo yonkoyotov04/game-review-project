@@ -5,6 +5,7 @@ import useFetch from "../hooks/useFetch.js";
 const UserContext = createContext({
     user: {},
     isAuthenticated: false,
+    isAdmin: false,
     loginHandler() { },
     logoutHandler() { }
 })
@@ -23,6 +24,7 @@ export function UserProvider({ children }) {
     const contextValues = {
         user,
         isAuthenticated: !!user?.email,
+        isAdmin: user?._id === '69173291beba34c5fc2f9c04' ? true : false,
         loginHandler: onLogin,
         logoutHandler: onLogout
     }
@@ -37,7 +39,7 @@ export function UserProvider({ children }) {
 export function getProfileData(userId) {
     const [profileData, setProfileData] = useState({});
 
-    useFetch(`/auth/${userId}/profile`, setProfileData)
+    useFetch(`/auth/${userId}`, setProfileData)
 
     return profileData;
 }

@@ -10,12 +10,12 @@ export default function EditProfile() {
     const navigate = useNavigate();
     const [initialValues, setInitialValues] = useState({username: '', bio: '', profilePic: ''});
 
-    const {fetcher} = useFetch(`/auth/${userId}/profile`, setInitialValues);
+    const {fetcher} = useFetch(`/auth/${userId}`, setInitialValues);
 
     const onSubmit = async (values) => {
         const data = { ...values };
 
-        fetcher(`/auth/profile/${userId}/edit`, 'PUT', data, {accessToken: user?.accessToken})
+        fetcher(`/auth/${userId}`, 'PUT', data, {accessToken: user?.accessToken})
             .then(() => {
                 navigate(`/profile/${userId}`);
             });

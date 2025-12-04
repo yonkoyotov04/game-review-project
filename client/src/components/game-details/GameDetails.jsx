@@ -12,7 +12,7 @@ export default function GameDetails() {
     const [gameRating, setGameRating] = useState(0);
     const [gameTime, setGameTime] = useState(0);
     const [hasLeftReview, setHasLeftReview] = useState(false);
-    const { isAuthenticated, user } = useContext(UserContext);
+    const { isAuthenticated, isAdmin, user } = useContext(UserContext);
     let isOwner = false;
 
     if (gameData.ownerId === user?._id) {
@@ -40,7 +40,7 @@ export default function GameDetails() {
     }
 
     const { DeleteBox, onDeleteClick } = useDelete('game', gameData._id, gameData.title);
-    useFetch(`/games/${gameId}/details`, setGameData);
+    useFetch(`/games/${gameId}`, setGameData);
 
     return (
         <section className="game-card">
@@ -85,7 +85,7 @@ export default function GameDetails() {
 
             {DeleteBox}
 
-            {isOwner ? (
+            {isOwner || isAdmin ? (
                 <div className="game-actions">
                     <Link to={`/games/${gameId}/edit`}><button className="edit-btn">Edit Game</button></Link>
                     <button onClick={onDeleteClick} className="delete-btn">Delete Game</button>

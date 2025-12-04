@@ -13,6 +13,7 @@ export default function authMiddleware(req, res, next) {
 
         req.user = decodedToken;
         req.isAuthenticated = true;
+        req.isAdmin = decodedToken.id === '69173291beba34c5fc2f9c04' ? true : false;
 
         next();
     } catch (error) {
@@ -23,7 +24,7 @@ export default function authMiddleware(req, res, next) {
 
 export function isAuth(req, res, next) {
     if (!req.isAuthenticated) {
-        throw new Error("Please log in first!")
+        return res.status(401);
     }
 
     next();
@@ -31,7 +32,7 @@ export function isAuth(req, res, next) {
 
 export function isGuest(req, res, next) {
     if (req.isAuthenticated) {
-        throw new Error("You're already logged in!");
+        return res.status(403);
     }
 
     next();
