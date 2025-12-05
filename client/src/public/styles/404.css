@@ -1,6 +1,8 @@
 .error-404-container {
     max-width: 700px;
-    margin: 150px auto;
+    margin: auto;
+    margin-top: 258px;
+    margin-bottom: 258px;
     padding: 40px 50px;
 
     background: rgba(255, 255, 255, 0.03);

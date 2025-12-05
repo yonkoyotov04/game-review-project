@@ -14,6 +14,7 @@ import LeaveReview from './components/leave-review/LeaveReview.jsx'
 import EditProfile from './components/profile/EditProfile.jsx'
 import GuardedRoutes from './utils/GuardedRoutes.jsx'
 import { ErrorProvider } from './contexts/ErrorContext.jsx'
+import NotFound from './components/404/404.jsx'
 
 function App() {
 
@@ -40,6 +41,8 @@ function App() {
                     <Route path='/games/:gameId/review' element={<LeaveReview editMode={false} />} />
                     <Route path='/reviews/:reviewId/edit' element={<LeaveReview editMode={true} />} />
                 </Route>
+
+                <Route path='/*' element={<NotFound />} />
             </Routes>
             
             <Footer />
