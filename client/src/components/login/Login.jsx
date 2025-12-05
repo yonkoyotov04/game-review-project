@@ -23,7 +23,7 @@ export default function Login() {
     const {values, changeHandler, submitHandler} = useControlledForm(initialValues, onSubmit);
 
     return (
-        <section id="login">
+        <section id="login" className="loginSection">
             <div className="auth-form">
                 <h3 className="form-title">Login</h3>
                 <form id="authForm" method="POST" onSubmit={submitHandler}>

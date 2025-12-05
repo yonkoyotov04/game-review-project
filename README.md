@@ -11,12 +11,12 @@ profile if they so wish. Other users' profiles can be viewed as well by clicking
 
 
 ## What's left:
-- [] Search functionality for catalogue
+- [x] Search functionality for catalogue
 - [x] Register functionality
 - [x] Login Functionality
 - [x] Logout Functionality
 - [x] Button Hiding
-- [] Route Guarding
+- [x] Route Guarding
 - [x] Leave Review functionality
 - [x] Hide leave review if you've already left a review
 - [x] Hide leave review if you're not logged in
@@ -28,4 +28,4 @@ profile if they so wish. Other users' profiles can be viewed as well by clicking
 - [x] Show reviews in another user's profile dynamically
 - [x] Show edit and delete buttons on reviews in your profile page
 - [x] Show Edit and delete profile buttons in your profile page
-- [] Fix the footer's position
+- [x] Fix the footer's position

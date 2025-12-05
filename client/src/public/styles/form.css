@@ -13,6 +13,11 @@
     backdrop-filter: blur(10px);
 }
 
+.loginSection {
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
 .form-title {
     font-family: 'Orbitron', monospace;
     font-size: 2rem;
