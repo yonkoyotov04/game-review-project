@@ -1,6 +1,6 @@
 import { useState } from "react";
 import GameCard from "../gameCard/GameCard.jsx";
-import { useParams} from "react-router";
+import { useParams } from "react-router";
 import Pagination from "../pagination/Pagination.jsx";
 import useFetch from "../../hooks/useFetch.js";
 import useControlledForm from "../../hooks/useControlledForm.js";
@@ -10,7 +10,7 @@ export default function Catalogue() {
     const [games, setGames] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(24);
-    const [initialValues, setInitialValues] = useState({ title: '' })
+    const [initialValues, setInitialValues] = useState({ searchBy: '', input: '' })
 
     const { fetcher, isLoading } = useFetch('/games', setGames, { category });
 
@@ -20,7 +20,7 @@ export default function Catalogue() {
     const displayedGames = games.slice(firstGameIndex, lastGameIndex);
 
     const onSubmit = async (values) => {
-        let url = `/games/?title=${values.title}`;
+        let url = `/games/?${values.searchBy}=${values.input}`;
 
         if (category) {
             url += `&genre=${category}`
@@ -37,9 +37,15 @@ export default function Catalogue() {
 
             <div className="search-bar">
                 <form onSubmit={submitHandler}>
-                    <input type="text" id="gameSearch" name="title"
+                    <select className="search-by" name="searchBy" id="searchBy" onChange={changeHandler} value={values.searchBy}>
+                        <option value="">Search By</option>
+                        <option value="title">Title</option>
+                        <option value="developers">Developers</option>
+                        <option value="platforms">Platform</option>
+                    </select>
+                    <input type="text" id="gameSearch" name='input'
                         onChange={changeHandler}
-                        value={values.title} placeholder="Search for a game..." />
+                        value={values.input} placeholder="Search for games..." />
                     <button type="submit" className="search-btn">Search</button>
                 </form>
             </div>

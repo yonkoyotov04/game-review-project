@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+    margin: auto;
     margin-bottom: 50px;
     flex-wrap: wrap;
 }
@@ -50,4 +51,23 @@
 .search-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px rgba(255, 94, 0, 0.5);
+}
+
+.search-by {
+    padding: 12px 25px;
+    margin-right: 10px;
+    background: linear-gradient(45deg, #FF5E00, #00B2FF);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-by option {
+    background: rgba(54, 52, 52, 0.913);
 }
