@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/UserContext.jsx";
 import { ErrorContext } from "../contexts/ErrorContext.jsx";
+import { useNavigate } from "react-router";
 
 const baseURL = 'http://localhost:2222'
 
 export default function useFetch(url, setData, extras = {}) {
     const { isAuthenticated, user } = useContext(UserContext);
+    const navigate = useNavigate();
     const { errorSetter } = useContext(ErrorContext)
     const [isLoading, setIsLoading] = useState(true);
     const [refresh, setRefresh] = useState(false);
@@ -41,6 +43,11 @@ export default function useFetch(url, setData, extras = {}) {
         if (!response.ok) {
             errorSetter(response.statusText);
             throw response.statusText;
+        }
+
+        if (response.status === 401) {
+            localStorage.removeItem('user');
+            navigate('/login');
         }
 
         const result = response.json();

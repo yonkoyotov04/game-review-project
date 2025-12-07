@@ -17,8 +17,6 @@ export default function authMiddleware(req, res, next) {
 
         next();
     } catch (error) {
-        localStorage.removeItem('user')
-        res.statusMessage = "Invalid User!";
         res.status(401).end();
     }
 }
