@@ -10,22 +10,54 @@ Logged in users can see their profile and all the reviews they've left, and can 
 profile if they so wish. Other users' profiles can be viewed as well by clicking on their profile picture on any of the reviews they've left, but obviously cannot be edited or deleted by anyone other than their owner.
 
 
-## What's left:
-- [x] Search functionality for catalogue
-- [x] Register functionality
-- [x] Login Functionality
-- [x] Logout Functionality
-- [x] Button Hiding
-- [x] Route Guarding
-- [x] Leave Review functionality
-- [x] Hide leave review if you've already left a review
-- [x] Hide leave review if you're not logged in
-- [x] Add ownerId to games created in the react client
-- [x] Show edit and delete buttons in a game's details page if you're the owner or admin;
-- [x] Render Profile dynamically
-- [x] Render other user's profiles
-- [x] Show reviews in your profile dynamically
-- [x] Show reviews in another user's profile dynamically
-- [x] Show edit and delete buttons on reviews in your profile page
-- [x] Show Edit and delete profile buttons in your profile page
-- [x] Fix the footer's position
+# Project Architecture
+
+## Folder Structure
+- client
+    - '/src/components' - Contains all of the components that make up the project.
+    - '/src/contexts' - Contains all of the contexts used in the project.
+    - '/src/hooks' - Contains the custom hooks used in the project.
+    - '/src/styles' - Contains all the CSS for the project seperated into different files.
+    - '/src/utils' - Contains utility functions that are not widely used enough to implement into a hook.
+    - '/src/App.jsx' - The component where all other components are loaded.
+    - '/src/main.jsx' - The main component where App.jsx is loaded.
+
+- server
+    - '/src/config' - Contains just the connstants.js file for now.
+    - '/src/controllers' - Contains all the controllers of the server.
+    - '/src/middlewares' - Contains any middleware that can be used in the server, but for now it only holds authMiddleware.js;
+    - '/src/models' - Contains the models used to create objects for the collections in MongoDB;
+    - '/src/services' - Contains all the services of the server.
+    - '/src/utils' - Contains utility functions in their own files so that they can be used on multiple different places without repeating them again and again.
+    - '/index.js' - The main file of the server, where express and mongoose are initiated.
+    - '/routes.js' - A router used in index.js that connects all the controller routes into one.
+
+## State Management
+- Authentication state and user data is stored in 'UserContext'
+- Error state is stored in 'ErrorContext'
+- Dynamic pages such as Home, Catalogue and Game Details store their states in their component's body, but the states are set by a custom hook for fetching data.
+
+## Routing 
+- '/' - A Home page with the 12 most popular games on the site.
+- '/games - A Catalogue with all the games.
+- '/games/:genre' - A Catalogue with only a certain genre of games.
+- '/games/create - A form for adding a new game.
+- '/games/:gameId/details - A details page for games.
+- '/games/:gameId/review - A form for leaving a review.
+- '/games/:gameId/edit - A form for editing a game.
+- '/register' - A register form.
+- '/login' - A login form.
+- '/profile/:userId' - A profile page for any user. Can be accessed even if you're not logged in to view other users' profiles. All of the reviews a user has left on any game are listed in the profile.
+- '/profile/edit' - A form for editing your profile. Can only be accessed when you're logged in and viewing your own profile. It gets the userId from UserContext.
+- '/reviews/:reviewId/edit - A form for editing a review. Reviews can only be edited by the user that left them, in their profile.
+- '/about' - An about page.
+
+## Tech Stack
+- React
+- React Router
+- Node/Express 
+- MongoDB
+- Mongoose
+- Vite
+
+
