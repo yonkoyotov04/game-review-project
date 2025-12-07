@@ -7,7 +7,7 @@ export default function GameReviewSection({id}) {
     const [reviews, setReviews] = useState([]);
     const { reviewStatusHandler, gameStatsHandler } = useContext(ReviewContext);
 
-    useFetch(`/reviews/game/${id}`, setReviews, {gameStatsHandler, reviewStatusHandler})
+    const {refresher} = useFetch(`/reviews/game/${id}`, setReviews, {gameStatsHandler, reviewStatusHandler})
 
     return (
         <div className="reviews-showcase">
@@ -18,6 +18,7 @@ export default function GameReviewSection({id}) {
                     {
                         reviews.map(review => <ReviewCard
                             key={review._id}
+                            refresher={refresher}
                             id={review._id}
                             popualatedData={review.user} {...review} />)
                     }
