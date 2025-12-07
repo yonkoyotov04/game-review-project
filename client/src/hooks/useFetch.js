@@ -8,6 +8,11 @@ export default function useFetch(url, setData, extras = {}) {
     const { isAuthenticated, user } = useContext(UserContext);
     const { errorSetter } = useContext(ErrorContext)
     const [isLoading, setIsLoading] = useState(true);
+    const [refresh, setRefresh] = useState(false);
+
+    const refresher = () => {
+        setRefresh(state => !state);
+    }
 
     const fetcher = async (url, method, data, config = {}) => {
         let options = {};
@@ -72,9 +77,9 @@ export default function useFetch(url, setData, extras = {}) {
             errorSetter(error)
         }
 
-    }, [url, extras.category]);
+    }, [url, extras.category, refresh]);
 
     return {
-        fetcher, isLoading
+        fetcher, isLoading, refresher
     }
 }

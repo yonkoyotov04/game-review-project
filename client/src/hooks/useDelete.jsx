@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import UserContext from "../contexts/UserContext.jsx";
 import useFetch from "./useFetch.js";
 
-export default function useDelete(item, id, itemName) {
+export default function useDelete(item, id, itemName, onSuccess) {
     const [showBox, setShowBox] = useState(false);
     const { user, logoutHandler } = useContext(UserContext)
     const { fetcher } = useFetch();
@@ -28,7 +28,7 @@ export default function useDelete(item, id, itemName) {
             case 'review': {
                 fetcher(`/reviews/${id}`, 'DELETE');
                 setShowBox(false);
-                navigate(`/`)
+                onSuccess()
                 break;
             }
             case 'profile': {

@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetch.js";
 export default function ProfileReviewSection({id}) {
     const [reviews, setReviews] = useState([]);
 
-    useFetch(`/reviews/user/${id}`, setReviews)
+    const {refresher} = useFetch(`/reviews/user/${id}`, setReviews)
 
     return (
         <div className="reviews-showcase">
@@ -13,7 +13,7 @@ export default function ProfileReviewSection({id}) {
 
             <div className="reviews-container">
                 <ul className="review-list">
-                    {reviews.map(review => <ReviewCard key={review._id} popualatedData={review.game} {...review} />)}
+                    {reviews.map(review => <ReviewCard key={review._id} refresher={refresher} popualatedData={review.game} {...review} />)}
                     {reviews.length === 0 && <p className="section-title">There are no reviews yet...</p>}
                 </ul>
             </div>

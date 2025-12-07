@@ -4,10 +4,10 @@ import ProfileOwnerContext from "../../contexts/ProfileOwnerContext.js";
 import useDelete from "../../hooks/useDelete.jsx";
 import UserContext from "../../contexts/UserContext.jsx";
 
-export default function ReviewCard({ _id, popualatedData, playTime, rating, thoughts }) {
+export default function ReviewCard({ _id, popualatedData, refresher, playTime, rating, thoughts }) {
     const { isOwner } = useContext(ProfileOwnerContext)
     const { isAdmin } = useContext(UserContext); 
-    const {DeleteBox, onDeleteClick} = useDelete('review', _id)
+    const {DeleteBox, onDeleteClick} = useDelete('review', _id, '', refresher)
     let inGameDetails = true;
 
     if (!popualatedData.username) {

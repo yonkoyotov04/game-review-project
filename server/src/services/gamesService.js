@@ -18,7 +18,6 @@ export default {
         }
 
         if (filter.platforms) {
-            console.log(filter.platforms);
             query.find({ platforms: { $regex: filter.platforms, $options: 'i' } })
         }
 
