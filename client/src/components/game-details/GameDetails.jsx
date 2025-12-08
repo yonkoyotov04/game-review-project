@@ -44,8 +44,6 @@ export default function GameDetails() {
 
     return (
         <section className="game-card">
-            <h2 className="section-title">Game Overview</h2>
-
             <div className="game-card-container">
                 <div className="game-image">
                     <img src={gameData.imageUrl} />

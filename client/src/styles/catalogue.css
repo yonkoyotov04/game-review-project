@@ -71,3 +71,16 @@
 .search-by option {
     background: rgba(54, 52, 52, 0.913);
 }
+
+.missing-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 93px;
+    margin-bottom: 93px;
+    background: linear-gradient(45deg, #FF5E00, #00B2FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}

@@ -60,7 +60,7 @@ export default function Catalogue() {
                     :
                     <>
                         {displayedGames.map(game => <GameCard key={game._id} {...game} />)}
-                        {games.length === 0 && <p className="section-title">There are no {category ? `${category}` : ''} games yet...</p>}
+                        {games.length === 0 && <p className="missing-text">No {category ? `${category}` : ''} games found...</p>}
                     </>}
             </div>
 
