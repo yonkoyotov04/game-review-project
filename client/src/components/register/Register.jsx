@@ -22,6 +22,10 @@ export default function Register() {
 
     const onSubmit = async(values) => {
         const data = values;
+        
+        if (!data.profilePic) {
+            data.profilePic = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+        }
 
         const result = await fetcher('/auth/register', "POST", data);
 
@@ -58,7 +62,7 @@ export default function Register() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="profilePic">Profile Picture</label>
-                        <input type="text" id="profilePic" name="profilePic" onChange={changeHandler} value={values.profilePic} required />
+                        <input type="text" id="profilePic" name="profilePic" onChange={changeHandler} value={values.profilePic} />
                     </div>
                     <button type="submit" className="submit-btn">Register</button>
                 </form>
