@@ -7,7 +7,7 @@ export function generateAuthToken(user) {
         email: user.email,
     }
 
-    const token = jwt.sign(payload, JWT_SECRET, {expiresIn: '2h'})
+    const token = jwt.sign(payload, JWT_SECRET, {expiresIn: '8h'})
 
     return token;
 }

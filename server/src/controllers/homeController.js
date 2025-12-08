@@ -12,7 +12,8 @@ homeController.get('/', async (req, res) => {
 
         res.json(games ?? []);
     } catch (error) {
-        res.status(404).json({ message: getErrorMessage(error) })
+        res.statusMessage = getErrorMessage(error);
+        res.status(400).end();
     }
 })
 

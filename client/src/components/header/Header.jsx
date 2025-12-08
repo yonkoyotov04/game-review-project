@@ -1,10 +1,9 @@
 import { useContext } from "react"
 import { Link } from "react-router"
-import UserContext, { getProfileData } from "../../contexts/UserContext.jsx"
+import UserContext from "../../contexts/UserContext.jsx"
 
 export default function Header() {
     const { isAuthenticated, user, logoutHandler } = useContext(UserContext);
-    const profileData = isAuthenticated ? getProfileData(user?._id) : {};
 
     return (
         <nav id="navbar" >
@@ -32,10 +31,10 @@ export default function Header() {
             </div>
             {isAuthenticated ? (<div className="nav-user">
                 <span className="nav-username">
-                    {profileData?.username}
+                    {user?.username}
                 </span>
                 <span><Link to={`/profile/${user?._id}`}>
-                    <img src={profileData?.profilePic}
+                    <img src={user?.profilePic}
                         alt="image" className="game-icon" />
                 </Link></span>
             </div>) : ""}

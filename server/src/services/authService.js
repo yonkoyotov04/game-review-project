@@ -22,6 +22,8 @@ export default {
         return {
             _id: user.id,
             email: user.email,
+            username: user.username,
+            profilePic: user.profilePic,
             accessToken: token
         };
     },
@@ -44,6 +46,8 @@ export default {
         return {
             _id: user.id,
             email: user.email,
+            username: user.username,
+            profilePic: user.profilePic,
             accessToken: token
         };
     },

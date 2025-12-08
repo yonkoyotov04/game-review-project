@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 const baseURL = 'http://localhost:2222'
 
 export default function useFetch(url, setData, extras = {}) {
-    const { isAuthenticated, user } = useContext(UserContext);
+    const { isAuthenticated, user, logoutHandler } = useContext(UserContext);
     const navigate = useNavigate();
     const { errorSetter } = useContext(ErrorContext)
     const [isLoading, setIsLoading] = useState(true);
@@ -41,13 +41,12 @@ export default function useFetch(url, setData, extras = {}) {
         const response = await fetch(`${baseURL}${url}`, options);
 
         if (!response.ok) {
+            if (response.statusText === "Unauthorized") {
+                logoutHandler();
+                return navigate('/');
+            }
             errorSetter(response.statusText);
             throw response.statusText;
-        }
-
-        if (response.status === 401) {
-            localStorage.removeItem('user');
-            navigate('/login');
         }
 
         const result = response.json();

@@ -36,12 +36,4 @@ export function UserProvider({ children }) {
     )
 }
 
-export function getProfileData(userId) {
-    const [profileData, setProfileData] = useState({});
-
-    useFetch(`/auth/${userId}`, setProfileData)
-
-    return profileData;
-}
-
 export default UserContext;
