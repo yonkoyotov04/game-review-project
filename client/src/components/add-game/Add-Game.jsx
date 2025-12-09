@@ -10,10 +10,19 @@ export default function AddGame({ editMode }) {
     const { fetcher } = useFetch()
     const navigate = useNavigate();
 
-    const [initialValues, setInitialValues] = useState({title: '', developers: '', genre: '',
-         relDate: '', platforms: '', description: '', imageUrl: ''});
+    const [initialValues, setInitialValues] = useState({
+        title: '', developers: '', genre: '',
+        relDate: '', platforms: '', description: '', imageUrl: ''
+    });
 
     useEffect(() => {
+        fetcher(`/games/${gameId}/status`)
+            .then(result => {
+                if (!result) {
+                    navigate(`/games/${gameId}/details`);
+                }
+            })
+
         if (editMode) {
             fetcher(`/games/${gameId}`)
                 .then(result => {
@@ -23,16 +32,16 @@ export default function AddGame({ editMode }) {
     }, [gameId, editMode])
 
     const onSubmit = async (values) => {
-        const data = { ...values};
+        const data = { ...values };
 
         if (editMode) {
-            fetcher(`/games/${gameId}`, 'PUT', data, {accessToken: user?.accessToken})
+            fetcher(`/games/${gameId}`, 'PUT', data, { accessToken: user?.accessToken })
                 .then(() => {
                     navigate(`/games/${gameId}/details`)
                 });
 
         } else {
-            fetcher('/games', 'POST', data, {accessToken: user?.accessToken})
+            fetcher('/games', 'POST', data, { accessToken: user?.accessToken })
                 .then(() => {
                     navigate('/games')
                 });

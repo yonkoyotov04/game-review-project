@@ -39,6 +39,18 @@ gamesController.get('/:gameId', async (req, res) => {
     }
 })
 
+gamesController.get('/:gameId/status', isAuth, async (req, res) => {
+    const gameId = req.params.gameId;
+    const gameData = await gamesService.getOneGame(gameId);
+    let isOwner = true;
+    
+    if (!gameData.ownerId.equals(req.user?.id) && !req.isAdmin) {
+        isOwner = false;
+    }
+
+    return res.json(isOwner);
+}) 
+
 gamesController.put('/:gameId', isAuth, async (req, res) => {
     const gameId = req.params.gameId;
     const gameData = await gamesService.getOneGame(gameId);

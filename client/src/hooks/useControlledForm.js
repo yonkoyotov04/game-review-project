@@ -18,7 +18,6 @@ export default function useControlledForm(initialValues, onSubmit) {
 
         try {
             await onSubmit(values);
-            setValues(initialValues);
         } catch (error) {
             errorSetter(error);
         }

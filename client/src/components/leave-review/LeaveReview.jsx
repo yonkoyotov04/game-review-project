@@ -14,6 +14,13 @@ export default function LeaveReview({ editMode }) {
     const [initialValues, setInitialValues] = useState({rating: 0, playTime: 0, thoughts: ''});
 
     useEffect(() => {
+        fetcher(`/reviews/${gameId}/status`)
+            .then(result => {
+                if (result) {
+                    navigate(`/games/${gameId}/details`);
+                }
+            })
+
         if (editMode) {
             fetcher(`/reviews/${reviewId}`)
                 .then(result => {

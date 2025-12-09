@@ -2,6 +2,7 @@ import { Router } from "express";
 import reviewService from "../services/reviewService.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
+import Review from "../models/Review.js";
 
 const reviewController = Router();
 
@@ -34,10 +35,31 @@ reviewController.get('/:reviewId', async (req, res) => {
     }
 })
 
+reviewController.get('/:gameId/status', isAuth, async (req, res) => {
+    const game = req.params.gameId;
+    const user = req.user?.id;
+    let hasReviewed = false;
+
+    const exists = await Review.findOne({game, user});
+
+    if (exists) {
+        hasReviewed = true;
+    }
+
+    return res.json(hasReviewed);
+})
+
 reviewController.post('/:gameId', isAuth, async (req, res) => {
     const game = req.params.gameId;
     const user = req.user?.id;
     const formData = req.body;
+
+    const exists = await Review.findOne({game, user});
+
+    if (exists) {
+        res.statusMessage = "You already reviwed this game!";
+        return res.status(400).end();
+    }
 
     try {
         const reviewData = { game, user, ...formData };
