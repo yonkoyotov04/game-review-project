@@ -21,10 +21,15 @@ export function UserProvider({ children }) {
         setUser(null);
     }
 
+    const updateUser = (editedFields) => {
+        setUser({...user, ...editedFields});
+    }
+
     const contextValues = {
         user,
         isAuthenticated: !!user?.email,
         isAdmin: user?._id === '69173291beba34c5fc2f9c04' ? true : false,
+        updateUser: updateUser,
         loginHandler: onLogin,
         logoutHandler: onLogout
     }

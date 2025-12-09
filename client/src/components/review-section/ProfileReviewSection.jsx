@@ -9,7 +9,7 @@ export default function ProfileReviewSection({id}) {
 
     return (
         <div className="reviews-showcase">
-            <h3 className="reviews-title">Player Reviews</h3>
+            <h3 className="reviews-title">Your Reviews</h3>
 
             <div className="reviews-container">
                 <ul className="review-list">

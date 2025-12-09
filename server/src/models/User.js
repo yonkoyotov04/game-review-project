@@ -25,7 +25,6 @@ const userSchema = new Schema({
     },
     profilePic: {
         type: String,
-        required: [true, "A profile picture is required"],
         match: [/^https?:\/\//, "Image URL is invalid"]
     }
 })

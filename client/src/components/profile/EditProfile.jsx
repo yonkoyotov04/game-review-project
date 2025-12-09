@@ -5,7 +5,7 @@ import useControlledForm from "../../hooks/useControlledForm.js";
 import useFetch from "../../hooks/useFetch.js";
 
 export default function EditProfile() {
-    const { user } = useContext(UserContext);
+    const { user, updateUser } = useContext(UserContext);
     const userId = user?._id;
     const navigate = useNavigate();
     const [initialValues, setInitialValues] = useState({username: '', bio: '', profilePic: ''});
@@ -15,8 +15,16 @@ export default function EditProfile() {
     const onSubmit = async (values) => {
         const data = { ...values };
 
-        fetcher(`/auth/${userId}`, 'PUT', data, {accessToken: user?.accessToken})
+        if (!data.profilePic) {
+            data.profilePic = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+        }
+
+       fetcher(`/auth/${userId}`, 'PUT', data, {accessToken: user?.accessToken})
             .then(() => {
+                updateUser({
+                    username: data.username, 
+                    profilePic: data.profilePic
+                })
                 navigate(`/profile/${userId}`);
             });
     }
@@ -38,7 +46,7 @@ export default function EditProfile() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="profilePic">Profile Picture</label>
-                        <input type="text" id="profilePic" name="profilePic" onChange={changeHandler} value={values.profilePic} required />
+                        <input type="text" id="profilePic" name="profilePic" onChange={changeHandler} value={values.profilePic} />
                     </div>
                     <button type="submit" className="submit-btn">Apply Changes</button>
                 </form>

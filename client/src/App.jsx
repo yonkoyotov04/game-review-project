@@ -19,7 +19,6 @@ import GuestRoutes from './utils/GuestRoutes.jsx'
 
 function App() {
 
-
     return (
         <ErrorProvider>
             <Header />
