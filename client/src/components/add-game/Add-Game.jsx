@@ -16,14 +16,14 @@ export default function AddGame({ editMode }) {
     });
 
     useEffect(() => {
-        fetcher(`/games/${gameId}/status`)
-            .then(result => {
-                if (!result) {
-                    navigate(`/games/${gameId}/details`);
-                }
-            })
-
         if (editMode) {
+            fetcher(`/games/${gameId}/status`)
+                .then(result => {
+                    if (!result) {
+                        navigate(`/games/${gameId}/details`);
+                    }
+                })
+
             fetcher(`/games/${gameId}`)
                 .then(result => {
                     setInitialValues({ ...result });

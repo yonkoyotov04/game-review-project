@@ -11,21 +11,22 @@ export default function LeaveReview({ editMode }) {
     const { fetcher } = useFetch();
     const navigate = useNavigate();
 
-    const [initialValues, setInitialValues] = useState({rating: 0, playTime: 0, thoughts: ''});
+    const [initialValues, setInitialValues] = useState({ rating: 0, playTime: 0, thoughts: '' });
+
 
     useEffect(() => {
-        fetcher(`/reviews/${gameId}/status`)
-            .then(result => {
-                if (result) {
-                    navigate(`/games/${gameId}/details`);
-                }
-            })
-
         if (editMode) {
             fetcher(`/reviews/${reviewId}`)
                 .then(result => {
-                    setInitialValues({ ...result });
+                    return setInitialValues({ ...result });
                 });
+        } else {
+            fetcher(`/reviews/${gameId}/status`)
+                .then(result => {
+                    if (result) {
+                        navigate(`/games/${gameId}/details`);
+                    }
+                })
         }
     }, [gameId, editMode])
 
@@ -33,13 +34,13 @@ export default function LeaveReview({ editMode }) {
         const data = { ...values, user: user?._id };
 
         if (editMode) {
-            fetcher(`/reviews/${reviewId}`, 'PUT', data, {accessToken: user?.accessToken})
+            fetcher(`/reviews/${reviewId}`, 'PUT', data, { accessToken: user?.accessToken })
                 .then(() => {
                     navigate(`/profile/${user?._id}`);
                 });
 
         } else {
-            fetcher(`/reviews/${gameId}`, 'POST', data, {accessToken: user?.accessToken})
+            fetcher(`/reviews/${gameId}`, 'POST', data, { accessToken: user?.accessToken })
                 .then(() => {
                     navigate(`/games/${gameId}/details`);
                 });
