@@ -7,6 +7,7 @@ export default function Pagination({ totalGames, gamesPerPage, currentPage, setC
 
     const pageButtonHandler = (page) => {
         setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     const previousButtonHandler = () => {

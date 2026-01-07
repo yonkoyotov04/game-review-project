@@ -34,7 +34,7 @@ export default function useFetch(url, setData, extras = {}) {
         if (isAuthenticated || config.accessToken) {
             options.headers = {
                 ...options.headers,
-                'X-Authorization': config.accessToken || user.accessToken
+                'X-Authorization': config.accessToken || user?.accessToken
             }
         }
 

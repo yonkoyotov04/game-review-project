@@ -14,8 +14,6 @@ export function ErrorProvider({children}) {
         }, "5000");
     }
 
-
-
     return (
         <ErrorContext.Provider value={{error, errorSetter}} >
             {children}

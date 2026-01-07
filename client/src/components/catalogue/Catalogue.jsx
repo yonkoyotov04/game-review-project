@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import Pagination from "../pagination/Pagination.jsx";
 import useFetch from "../../hooks/useFetch.js";
 import useControlledForm from "../../hooks/useControlledForm.js";
-import { useEffect } from "react";
 
 export default function Catalogue() {
     let { category } = useParams();
@@ -19,10 +18,6 @@ export default function Catalogue() {
     const firstGameIndex = lastGameIndex - gamesPerPage;
 
     const displayedGames = games.slice(firstGameIndex, lastGameIndex);
-
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, [currentPage]);
 
     const onSubmit = async (values) => {
         let url = `/games/?${values.searchBy}=${values.input}`;
@@ -64,7 +59,7 @@ export default function Catalogue() {
                     </>}
             </div>
 
-            {games.length > 24 && <Pagination
+            {games.length > gamesPerPage && <Pagination
                 totalGames={games.length}
                 gamesPerPage={gamesPerPage}
                 currentPage={currentPage}

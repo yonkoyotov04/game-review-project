@@ -3,7 +3,7 @@ export default function About() {
         <section className="about" id="about">
             <div className="about-content">
                 <div className="about-text">
-                    <h2>What is CyberCritic</h2>
+                    <h2>What is CyberCritic?</h2>
                     <p>Welcome to your new favorite spot for all things gaming!
                         This site lets players create an account, rate the games they love (or love to roast)
                         , and explore what everyone else is saying. Didn’t find the game you’re looking for?

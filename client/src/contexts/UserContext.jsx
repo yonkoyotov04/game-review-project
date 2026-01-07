@@ -1,6 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext} from "react";
 import useLocalStorage from "../hooks/useLocalStorage.js";
-import useFetch from "../hooks/useFetch.js";
 
 const UserContext = createContext({
     user: {},

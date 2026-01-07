@@ -77,7 +77,7 @@ export default function AddGame({ editMode }) {
                             <option value="Horror">Horror</option>
                             <option value="Sports">Sports</option>
                             <option value="Racing">Racing</option>
-                            <option value="Tactical">Taactical</option>
+                            <option value="Tactical">Tactical</option>
                             <option value="MMO">MMO</option>
                         </select>
                     </div>
